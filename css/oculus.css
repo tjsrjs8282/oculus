@@ -1,0 +1,553 @@
+body{font-family: 'Noto Sans', sans-serif; background:#f6f6f6;}
+html{font-size:14px; scroll-behavior: smooth;}
+span{display: block;}
+.sliderHidden{overflow: hidden;}
+::-webkit-scrollbar{width:20px;}
+::-webkit-scrollbar-thumb{background: linear-gradient(transparent,#606060,#1e1e1e); border-radius: 15px;}
+::-webkit-scrollbar-thumb:hover{background: linear-gradient(transparent,#606060,#1e1e1e,#161616);}
+/*---------------------------------window setting*/
+#main{width: 100%;}
+.main-navBox{width: 100%; height: 80px;  background:rgba(0,0,0,0.6); position: absolute; top: 0; z-index: 9999; position: fixed; transition: 0.4s;}
+.main-navBox.black{height: 50px; background:rgba(0,0,0,0.4); }
+
+.main-nav{width: 1245px; height: 100%; margin:0 auto; }
+.main-nav img{float: left; width: 160px; margin-top: 6px; cursor: pointer; transition: 0.4s;}
+.main-navBox.black img{width: 120px; margin-top: 0px;}
+
+.main-nav ul li{float: right; padding:0 35px; font-size: 1.8em; line-height: 80px; transition:0.4s; text-align: center;  font-weight: bold; color: #fff;}
+.main-navBox.black ul li{font-size: 1.5em; line-height: 50px;}
+
+.main-nav ul li a{color: #fff;  transition:0.4s; }
+.main-nav ul li a:hover,
+.navMenu.active{border-bottom: 3px solid orange; color: orange;}
+
+.main-nav ul li:nth-child(1),
+.main-nav ul li:nth-child(2){margin-right:0; font-size:1.3em; width: 50px; height: 45px; padding: 0px; border: 2px solid #fff; margin-top: 17px; line-height:45px;  cursor: pointer; }
+.main-nav ul li:nth-child(2){margin-left:60px;}
+
+.main-navBox.black ul li:nth-child(1),
+.main-navBox.black ul li:nth-child(2){ font-size:1.1em; width: 40px; height:35px; margin-top: 5px; line-height:35px;}
+.main-navBox.black ul li:nth-child(2){margin-left:120px;}
+
+.main-nav ul li:nth-child(1):hover,
+.main-nav ul li:nth-child(2):hover,
+.languege.active{background:#fff; color: #000;}
+
+.hamberger{display: none;}
+.hamberger .fa-bars{color: #fff; font-size:3em; line-height: 80px; cursor: pointer;}
+
+
+
+@media screen and (max-width:1000px){
+    .html{font-size:12px;}
+	.main-nav{width: 100%;}
+    .languege{display: none; transition: 0s;}
+    .main-nav.reponsive .languege{display: none;}
+    .main-navBox img{width: 120px; float: none; margin: 0;}
+    .main-nav ul li{float: none; display: none; transition: 0s;}
+    .main-nav ul li a{transition: 0s;}
+    .main-nav.reponsive ul li{display: block; background:rgba(0,0,0,0.3);}
+    .hamberger{display:inline-block; position:fixed; top: 3px; right: 30px;}
+    .main-navBox{height: 50px; background:rgba(0,0,0,0.3);}
+}
+/*--------------------------------------------main slider */
+.main-sliderWrap{ width: 100%; height: 1000px; position: relative; z-index:3333;}
+.oculus_juckberg {width: 100%;  height:1000px; background: url(../images/oculus_display.jpg); background-size: cover;}
+.handtrackingBack {width: 100%;  height:1000px; background: url(../images/cameras-vr-hands-2.jpg); background-size: cover;}
+.oculusGamesBack {width: 100%;  height:1000px; background: url(../images/oculus-quest-games.jpg); background-size: cover;}
+.vrGamesBack {width: 100%;  height:1000px; background: url(../images/SS_GEARVR22.jpg); background-size: cover;}
+.main-sliderTextBox{position: absolute; top: 47%; left: 10%; color: #eeeeee; font-weight:bold; text-shadow: 2px 2px 10px black; background:rgba(0,0,0,0.3); padding: 20px;}
+.main-sliderTextBox h1{font-size:5em;}
+.main-sliderTextBox p{font-size:1.4em; margin-bottom: 10px;}
+
+.main-sliderTextBox .fa-play-circle{font-size: 2.2em; color:#fff; margin-left: 35px; transition: 0.4s;}
+.main-sliderTextBox .fa-play-circle:hover{color:orange;}
+
+.nextBtn,
+.prevBtn{width: 75px; height: 150px; position: absolute; top:300px; cursor: pointer; background: rgba(0,0,0,0.4); transition: 0.2s; z-index: 8888;}
+.prevBtn{left:0;}
+.nextBtn{right: 0;}
+.nextBtn:hover,
+.prevBtn:hover
+{background: rgba(0,0,0,0.8); }
+.nextBtn img:nth-child(1){width: 50px; height: 100px; position:absolute; top:25px; right: 0; animation:mainSliderGirdRight1 1s alternate infinite;} 
+@keyframes mainSliderGirdRight1{
+    to{right:10px;}
+}
+.nextBtn img:nth-child(2){width: 30px; height: 70px; position:absolute; top:40px; right: 25px; animation:mainSliderGirdRight2 1s .2s alternate infinite;}
+@keyframes mainSliderGirdRight2{
+    to{right: 35px;}
+}
+.prevBtn img:nth-child(1){width: 50px; height: 100px; position:absolute; top:25px;left: 0; animation:mainSliderGirdLeft1 1s alternate infinite;} 
+@keyframes mainSliderGirdLeft1{
+    to{left:10px;}
+}
+.prevBtn img:nth-child(2){width: 30px; height: 70px; position:absolute; top:40px; left: 25px;animation:mainSliderGirdLeft2 1s .2s alternate infinite;}
+@keyframes mainSliderGirdLeft2{
+    to{left: 35px;}
+}
+@media screen and (max-width:560px){
+.main-sliderTextBox{top: 10%; right: 5%; left: 5%;}
+.main-sliderTextBox h1{font-size: 4em;}
+.nextBtn,.prevBtn{display: none;}
+}
+
+/*-------------------------------------------------------------------main header nav end*/
+
+/*-------------------------------------------------------------------quest list box*/
+.riftContentListBox{width: 1245px; height: 120px;position: absolute; top:880px; left: 50%; transform: translate(-50%, 0); z-index: 5000;}
+.riftContentListBox ul li{float: left; background: #eee; width: 33.33%; height: 60px; text-align: center; line-height: 60px;font-size: 1.2em;  box-sizing: border-box; border: 1px solid #000; transition: 0.3s; cursor: pointer;}
+.riftContentListBox ul li:nth-child(1){ width: 1245px; border: none; background: #1c1e20; color: #fff; letter-spacing: 1px;}
+
+.listBtn.active,
+.listBtn:hover{border:3px solid #585858; background: #ccc;}
+
+@media screen and (max-width:560px){
+.riftContentListBox{width: 100%;  top:760px; }
+.riftContentListBox ul li{width: 100%;}
+.riftContentListBox ul li:nth-child(1){ width: 100%}
+}
+/*-------------------------------------------------------------------quest list box*/
+
+/*-------------------------------------------------------------------main article box*/
+.riftMainContentBox{width: 1245px; height: 100%; margin:0 auto;  overflow: hidden; }
+.riftMainContentBox > ul{}  
+.riftMainContentBox > ul > li{float: left; width: 1245px; height: 600px;  text-align: center; border: 3px solid #585858; overflow:hidden; position:relative; background-color: #eee; box-sizing: border-box;}
+.riftMainContentBox > ul > li:nth-child(1){width: 100%; height: 100px; }
+.riftMainContentBox > ul > li:nth-child(2){width: 100%; background:url(../images/201348335_1280.jpg); background-size: cover; }
+.riftMainContentBox > ul > li:nth-child(3){width: 100%; height: 100px; }
+.riftMainContentBox > ul > li:nth-child(4){width: 33.33%;}
+.riftMainContentBox > ul > li:nth-child(5){width: 33.33%; border-right:none; border-left: none; }  
+.riftMainContentBox > ul > li:nth-child(6){width: 33.33%;}
+.riftMainContentBox > ul > li:nth-child(7){width: 100%; height: 100px;}
+.riftMainContentBox > ul > li:nth-child(8){width: 33.33%; height: 430px; border-bottom: none; border-right: none;}
+.riftMainContentBox > ul > li:nth-child(9){width: 33.33%; height: 430px; border-bottom: none;  border-right:none;}
+.riftMainContentBox > ul > li:nth-child(10){width: 33.33%; height: 430px; border-bottom: none;}
+.riftMainContentBox > ul > li:nth-child(11){width: 100%; height:300px; border: none;}
+.riftMainContentBox > ul > li:nth-child(12){width: 100%; height:680px; border: none;}
+
+@media screen and (max-width:560px){
+    .riftMainContentBox{width: 100%;}
+    .riftMainContentBox > ul > li:nth-child(1){width: 100%; height: 100px; }
+    .riftMainContentBox > ul > li:nth-child(2){width: 100%; background:url(../images/201348335_1280.jpg); background-size: cover; }
+    .riftMainContentBox > ul > li:nth-child(3){width: 100%; height: 100px; }
+    .riftMainContentBox > ul > li:nth-child(4){width: 100%;}
+    .riftMainContentBox > ul > li:nth-child(5){width: 100%; border: 3px solid #585858;}  
+    .riftMainContentBox > ul > li:nth-child(6){width: 100%;}
+    .riftMainContentBox > ul > li:nth-child(7){width: 100%; height: 100px;}
+    .riftMainContentBox > ul > li:nth-child(8){width: 100%; height: 430px; border-bottom: none; border-right: none;}
+    .riftMainContentBox > ul > li:nth-child(9){width: 100%; height: 430px; border-bottom: none;  border-right:none;}
+    .riftMainContentBox > ul > li:nth-child(10){width: 100%; height: 430px; border-bottom: none;}
+    .riftMainContentBox > ul > li:nth-child(11){width: 100%; height:900px; border: none;}
+    .riftMainContentBox > ul > li:nth-child(12){display: none;}
+    .oculusimagesBox img{transform: none;}
+
+}
+/*-------------------------------------------------------------------main article box*/
+
+/*------------------------------------------------------------------main card1*/
+.riftMainContentBox > ul > li:nth-child(1) h2{ font-size:2.8em;}
+.riftMainContentBox > ul > li:nth-child(1) p{ font-size:1.2em; margin-top: 5px;}
+/*------------------------------------------------------------------main card1*/
+
+/*------------------------------------------------------------------main card2*/
+.oculus_zuckerbergBox{width: 100%; height: 100%;}
+.zuckerbergWrap{color: #fff; position: absolute; top: 40px; right: 30px; width: 580px;}
+.zuckerbergTextBox h2{ font-size: 2.5em; margin-bottom: 30px;}
+.zuckerbergTextBox{margin-bottom: 50px;}
+.zuckerbergTextBox p{font-size: 1.2em; margin-bottom: 15px;}
+.zuckerbergTextBox p:nth-child(6){margin-bottom: 50px;}
+.zuckerbergWrap a{color: #fff; font-size: 1.6em; font-weight: bold;}
+.zuckerbergWrap a:hover{color:orange;}
+/*------------------------------------------------------------------main card2*/
+
+/*------------------------------------------------------------------main card3*/
+.riftMainContentBox > ul > li:nth-child(3) h2{ font-size:2.8em;}
+.riftMainContentBox > ul > li:nth-child(3) p{ font-size:1.2em; margin-top: 5px;}
+/*------------------------------------------------------------------main card3*/
+
+/*------------------------------------------------------------------main card 4,5,6*/
+.choiceBox1,
+.choiceBox2,
+.choiceBox3{width: 100%; height: 100%;}
+.choiceImg img{width: 100%; height: 250px;}
+.choiceTextBox {padding:25px;}
+.choiceTextBox h3{font-size:1.8em; margin-bottom: 20px;}
+.choiceTextBox p{font-size: 1.1em;}
+.choiceBox1 a,
+.choiceBox2 a,
+.choiceBox3 a
+{font-size: 1.4em; color: #0c68ff; font-weight: bold; position: absolute; transform: translate(-50%, 0); bottom: 40px; padding:5px 10px; border: 1px solid #0c68ff;}
+.choiceBox1 a:hover,
+.choiceBox2 a:hover,
+.choiceBox3 a:hover
+{background: #fff;}
+/*------------------------------------------------------------------main card 4,5,6*/
+
+/*------------------------------------------------------------------main card7*/
+.riftMainContentBox > ul > li:nth-child(7) h2{ font-size:2.8em;}
+.riftMainContentBox > ul > li:nth-child(7) p{ font-size:1.2em; margin-top: 5px;}
+/*------------------------------------------------------------------main card7*/
+
+/*------------------------------------------------------------------main card8,9,10*/
+.productChoiceBox {width: 100%; height: 100%;}
+.productChoiceBox img{width: 100%; height: 100%; transition: 0.8s;}
+.riftMainContentBox > ul > li:nth-child(8):hover img,
+.riftMainContentBox > ul > li:nth-child(9):hover img,
+.riftMainContentBox > ul > li:nth-child(10):hover img{transform: scale(1.1);}
+.productTextBox{width: 380px; margin-left: 20px; position: absolute; bottom: 20px; text-align: left;  text-shadow: 2px 2px 10px #000;}
+.productTextBox h2{font-size: 1em; color: #eee;}
+.productTextBox h3{font-size:2em; color: #fff; margin-bottom: 5px;}
+.productTextBox .fa-play-circle{color: #fff; font-size:2em; transition: 0.3s;}
+.productTextBox .fa-play-circle:hover{color: orange;}
+
+@media screen and (max-width:560px){
+    .productTextBox { width: 90%; margin-left: 10px; }
+    .productTextBox h2{font-size: 1.4em;}
+    .productTextBox h3{font-size:2em;}
+    .productTextBox .fa-play-circle{font-size:4em; }
+}
+/*------------------------------------------------------------------main card8,9,10*/
+
+/*------------------------------------------------------------------main card11*/
+.product-atricleBox{width: 100%; height: 100%;}
+.product-atricleBox ul li{float: left; width: 33.33%; height: 300px; position: relative; cursor: pointer; box-sizing: border-box; border-left: 3px solid #585858;}
+.product-atricleBox ul li h2{margin-top: 250px;  font-size: 1.7em;  position:absolute; left: 140px; transition:0.5s;}
+.product-atricleBox ul li img{width:230px; position:absolute; top: 25px; }
+
+.product-atricleBox ul li:nth-child(1){ background-color:#585858;}
+.product-atricleBox ul li:nth-child(2) { background-color: #1c1e20;}
+.product-atricleBox ul li:nth-child(3){background-color: #eeeeee; border-right: 3px solid #585858;}
+
+.product-atricleBox ul li:nth-child(1) h2{color:#fff;}
+.product-atricleBox ul li:nth-child(2) h2 {color:#eeeeee;}
+.product-atricleBox ul li:nth-child(3) h2{color:#1c1e20; left: 160px;}
+
+.product-atricleBox ul li:hover h2{transform: scale(1.3); transform-origin: bottom;}
+.product-atricleBox ul li:hover img{transform: scale(1.1);}
+
+.product-atricleBox .bounceInDown{animation-duration: 1.5s;}
+
+.product-atricleBox ul li img{width:230px; position:absolute; top: 25px; left: 90px; }
+.product-atricleBox ul li:nth-child(1) img{animation:quest_ani 1.5s alternate infinite cubic-bezier(0.39,-0.02, 0.62, 1.1);}
+.product-atricleBox ul li:nth-child(2) img{animation:rift_ani 1.5s alternate infinite cubic-bezier(0.39,-0.02, 0.62, 1.1);}
+.product-atricleBox ul li:nth-child(3) img{animation:go_ani 1.5s alternate infinite cubic-bezier(0.39,-0.02, 0.62, 1.1);}
+@keyframes quest_ani{
+    to{top:15px; transform: skewX(-1deg) rotate(-2deg) scale(1.05);}
+}
+@keyframes rift_ani{
+    to{top:15px; transform: skewX(-1deg) rotate(-2deg) scale(1.05);}
+}
+@keyframes go_ani{
+    to{top:15px; transform: skewX(-1deg) rotate(-2deg) scale(1.05);}
+}
+
+@media screen and (max-width:560px){
+    .product-atricleBox ul li{width: 100%;}
+    .product-atricleBox ul li h2 {left: 50%; transform: translate(-50%, 0);}
+    .product-atricleBox ul li:nth-child(3) h2 {  left: 50%; transform: translate(-50%, 0);}
+    .product-atricleBox ul li img {top: 35px; left: 65px;}
+    .productTextBox {width:100%;}
+}
+/*------------------------------------------------------------------main card11*/
+
+/*------------------------------------------------------------------main card12*/
+.zurkerberg_productContent_Box{width: 100%; height: 100%; background: #090a0c;}
+.zurkerberg_productContent_Box img{position: absolute;}
+.zurkerberg_product_HoverBox img{width: 100%; top: 0; left: -100%; transition: 1.2s;}
+.zurkerberg_productContent_Box.active .zurkerberg_product_HoverBox img{left: 0;}
+.zurkerberg_bottom_Box img{width: 100%; height: 220px; bottom: 0; left: 0;}
+
+.zurkerberg_questText,.zurkerberg_riftText,.zurkerberg_goText
+{font-size: 1.3em; bottom: 140px; color: #eee; z-index: 1; position: absolute; opacity: 0; cursor: pointer; animation-fill-mode: forwards;}
+
+.zurkerberg_questText{left: 130px;  animation-delay: 1s;}
+.zurkerberg_riftText{left: 550px;  animation-delay: 1.4s;}
+.zurkerberg_goText{right: 130px;  animation-delay: 1.8s;}
+.zurkerberg_questText h2,.zurkerberg_riftText h2,.zurkerberg_goText h2{transition: 0.3s; margin-bottom: 5px;}
+.zurkerberg_questText:hover h2{color: #ffc897; transform: scale(1.1);}
+.zurkerberg_riftText:hover h2{color: #f96496; transform: scale(1.1);}
+.zurkerberg_goText:hover h2{color: #37c6ff; transform: scale(1.1);}
+
+.zurkerberg_productContent_Box .fa-play-circle{font-size: 1.5em; color: #eee; transition: 0.3s;}
+.zurkerberg_questText:hover .fa-play-circle{color: #ffc897; transform: scale(1.1);}
+.zurkerberg_riftText:hover .fa-play-circle{color: #f96496; transform: scale(1.1);}
+.zurkerberg_goText:hover .fa-play-circle{color: #37c6ff; transform: scale(1.1);}
+
+.zurkerberg_guideText{position: absolute; width: 1000px; bottom: 350px; left: 50%; transform: translate(-50%, 0);cursor: pointer; transition:1s;  z-index: 9999;}
+.zurkerberg_guideText h3{margin-bottom: 10px;  font-size:2.56em; transition: 1s;}
+.zurkerberg_productContent_Box.active .zurkerberg_guideText{bottom: 50px; left: 50%; transform: translate(-50% 0);}
+.zurkerberg_productContent_Box.active .zurkerberg_guideText h3{font-size:1.8em;}
+.zurkerberg_guideText a{color: #eee;}
+.zurkerberg_guideText h3:hover{color: orange;}
+
+/*------------------------------------------------------------------main card12*/
+
+
+/*--------------------------------------------games card slider */
+.gamesCardTextBoxWrap{width: 100%; height: 100px; background:#fff; position: absolute; top: 0; text-align: center;  z-index: 9999;  }
+.gamesCardTextBox { width: 1245px; margin:0 auto; height: 100px; color: #000; background:#eee;  border: 3px solid #585858; box-sizing: border-box; transition: 1s;} 
+.gamesSliderHoverBox.active .gamesCardTextBox{width: 100%;}
+.gamesCardTextBox h2{font-size: 2.8em; margin-bottom: 5px;}
+.gamesCardTextBox p{font-size: 1.2em; margin-top: 5px;}
+
+.gamesMoreText{width: 100%; position: absolute; bottom: 270px; left:50%; transform: translate(-50%, 0); color: #fff; text-align: center; transition: 2s;}
+.gamesMoreText h3{font-size: 2em;  padding:5px 10px; border: 2px solid #fff; display: inline-block; cursor: pointer; transition: 0.4s; margin-top: 5px;}
+.gamesMoreText h3:hover{color: #000; font-weight: bold; background: #fff;}
+.gamesMoreText p{font-size: 1.1em; margin-bottom: 5px;}
+.gamesSliderHoverBox.active .gamesMoreText{bottom: 50px;}
+
+.gamesSliderHoverBox{width: 100%; height: 800px; position: relative; overflow:hidden; }
+.gamesBlackBox{width:1245px; height: 100%; margin: 0 auto; background: black; transition: 1s;}
+.gamesSliderHoverBox.active .gamesBlackBox{width: 100%;}
+.gamesBackBox{width: 1245; height:100%; margin:0 auto; transition: 1s;  background:url(../images/oculus-quest-games.jpg); background-size: cover; z-index: 1; }
+.gamesSliderHoverBox.active .gamesBackBox{width: 100%; opacity: 0.15;}
+
+.gamesSliderWrap{ width: 100%; height: 600px;  position: absolute; top:-1000px; transition: 3s; z-index: 1;}
+.gamesSliderHoverBox.active .gamesSliderWrap{top: 120px;}
+
+.oculusimagesBox{width: 100%; height: 480px; background-color:rgba(0,0,0,0.7); display: flex; justify-content: space-around;}
+.oculusimagesBox:hover img{opacity: 0.4;}
+.oculusimagesBox img{width:320px; height: 260px; transform:perspective(400px) rotateY(25deg); transition:all 0.4s; -webkit-box-reflect: below 1px linear-gradient(transparent,transparent,#0004);cursor: pointer; margin-top: 50px;}
+.oculusimagesBox img:hover{transform: rotateY(0deg) scale(1.3); width: 400px; height: 260px; opacity: 1; z-index: 9999;}
+
+
+@media screen and (max-width:560px){
+    .oculusimagesBox img{transform: none;}
+
+    .gamesSliderWrap .bx-wrapper .bx-pager, .bx-wrapper .bx-controls-auto {display: none;}
+    .gamesMoreText {bottom: 280px;}
+    .gamesSliderHoverBox {height: 700px;}
+    .oculusimagesBox {height: 430px;}
+    .gamesCardTextBox h2 {
+    font-size:1.5em;
+    padding: 0 10px;}
+    .gamesCardTextBox{width: 100%;}
+}
+
+/*--------------------------------------------games card slider*/
+
+/*--------------------------------------------new games*/
+.newGamesBox{width: 1245px;height: 500px; margin: 0 auto;}
+.newGamesBox ul li{float:left; width: 33.33%; height: 100%; position: relative; border: 3px solid #585858; box-sizing: border-box;}
+.newGamesBox ul li:nth-child(1){height: 500px;}
+.newGamesBox ul li:nth-child(2){height: 500px;}
+.newGamesBox ul li:nth-child(3){height: 500px;}
+.newGamesBox h3{ font-size: 1.3em; color: #0c68ff;}
+.newGamesBox p{padding: 20px; padding-top: 10px; font-weight: bold; font-size: 1.1em;}
+.newGamesBox ul li:nth-child(1) h3,
+.newGamesBox ul li:nth-child(2) h3{padding: 20px;}
+.newGamesBox ul li:nth-child(3) h3{padding: 20px; padding-bottom: 44px;}
+.newGamesBox img{width: 100%; height: 240px;}
+.newgameUpdateTimeText p{position: absolute; bottom: 15px; left: 20px;color: #585858; padding: 0;}
+
+@media screen and (max-width:560px){
+  .newGamesBox{width: 100%; height: 1600px;}
+  .newGamesBox ul li:nth-child(1){height: 550px;}
+.newGamesBox ul li:nth-child(2){height: 550px;}
+  .newGamesBox ul li{width: 100%;}
+}
+/*--------------------------------------------new games*/
+
+/*-------------------------------------------------------------------------------new text / video hover*/
+.newsTextBox{text-align: center; margin:0 auto; width: 1245px; height: 100px; background:#eee; border: 3px solid #585858; box-sizing: border-box; transition: 1.2s;}
+.newsTextBox h2{ font-size:2.8em;}
+.newsTextBox p{font-size:1.2em; margin-top: 5px;}
+
+.newsMainVideoBox video{width:100%;  margin: 0 auto;}
+.newsMainVideoBox{width: 1245px; height: 0; margin:0 auto; overflow: hidden; transition: 1.2s; position: relative;}
+.newsMainVideoBox h2{font-size: 6em; color: #fff; position: absolute; transition: 3s;}
+.newsMainVideoBox h2:nth-child(1){top: 50px; left: 200px;}
+.newsMainVideoBox h2:nth-child(2){top: 150px; left: 50%; transform: translate(-50%,0);}
+.newsMainVideoBox h2:nth-child(3){top: 250px; right: -20%;}
+.newsMainVideoBox h2:nth-child(4){font-size:3em; bottom: -200px; left: 50%; transform: translate(-50%,0); transition: 4.5s;}
+
+.newsMainVideoHoverBox.active .newsMainVideoBox h2:nth-child(1){left: 50%; transform: translate(-50%,0);}
+.newsMainVideoHoverBox.active .newsMainVideoBox h2:nth-child(3){right: 50%; transform: translate(50%,0);}
+.newsMainVideoHoverBox.active .newsMainVideoBox h2:nth-child(4){bottom: 70px; font-size:8.5em; color:#fff;}
+.newsMainVideoHoverBox.active .newsMainVideoBox{width: 100%; height: 600px;}
+.newsMainVideoHoverBox.active .newsTextBox{width: 100%;}
+/*-------------------------------------------------------------------------------new text / video hover*/
+
+/*----------------------------------------------------------------------------------news article box 틀*/
+.newsContentBox{width:1245px; height: 1340px; margin:0 auto; text-align: center;}
+.newsContentBox ul li{width: 100%; height: 440px; float: left; position:relative; overflow: hidden; border: 3px solid #585858; box-sizing: border-box;}
+.newsContentBox ul li:nth-child(1){width: 33.33%;}
+.newsContentBox ul li:nth-child(2){width: 66.66%;}
+.newsContentBox ul li:nth-child(3){width: 66.66%; height: 460px;}
+.newsContentBox ul li:nth-child(4){width: 33.33%; height: 460px;}
+.newsContentBox ul li:nth-child(5){width: 33.33%; background:gray;}
+.newsContentBox ul li:nth-child(6){width: 66.66%; background-color: salmon;}
+/*--------------------------------------------------------------------------------news article box 틀*/
+
+/*---------------------------------------------------------newsContentBox card 1*/
+.samsungNewsWrap{width: 100%; height: 100%;}
+.samsungNewsWrap:hover img:first-child{transform: scale(1.1);}
+.samsungNewsWrap img:first-child{width: 100%; transition:0.6s;}
+.samsungNewsWrap img:last-child{position: absolute; bottom: 10px;left: 20px; width: 220px;}
+.samsungNewsWrap h3{position: absolute; font-size: 1.6em; bottom: 80px; text-align:left; left: 20px; color: #eee; text-shadow: 2px 2px 10px #000; z-index: 1;}
+/*---------------------------------------------------------newsContentBox card 1*/
+
+/*---------------------------------------------------------newsContentBox card 2*/
+.samsungNewsVideoWrap{width: 100%; height: 100%;}
+.samsungNewsVideoHoverBox{width: 100%; height: 100%; position: absolute; top: 0; left: 0; background: rgba(0,0,0,0.3); opacity: 0; transition: 0.6s; z-index: 1;}
+.samsungNewsVideoWrap:hover .samsungNewsVideoHoverBox{opacity: 1;}
+.samsungNewsVideoWrap img{width: 100%; height: 460px; transition: 1.2s;}
+.samsungNewsVideoWrap:hover img{transform: scale(2) translate(-130px, -30px)}
+.samsungNewsVideoWrap p{width: 400px; position: absolute; color: #eee; font-size: 1.3em; top: -100px; left: 50%; transform:translate(-50%, 0); transition: 1s; z-index: 1; }
+.samsungNewsVideoWrap:hover p{top: 80px;}
+.samsungNewsVideoWrap a{position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 6em;  color:rgba(255,255,255,0.7); z-index: 1;}
+.samsungNewsVideoWrap a:hover{color:#eee;}
+/*---------------------------------------------------------newsContentBox card 2*/
+
+/*---------------------------------------------------------newsContentBox card 3*/
+.zuckerberg_handtrakingWrap{width: 100%; height: 100%;}
+.handtrakingHoverBox{width: 100%; height: 100%; position: absolute; top: 0; left: 0; background: rgba(0,0,0,0.3); opacity: 0; z-index: 1; transition: 0.6s;}
+.zuckerberg_handtrakingWrap:hover .handtrakingHoverBox{opacity: 1;}
+.zuckerberg_handtrakingWrap img{width: 100%; height: 460px; transition: 1.2s;}
+.zuckerberg_handtrakingWrap:hover img{transform: scale(2) translate(130px, -55px)}
+.zuckerberg_handtrakingWrap p{width: 400px; position: absolute; color: #eee; font-size: 1.3em; bottom: -100px; left: 50%; transform:translate(-50%, 0); transition: 1s; z-index:1; }
+.zuckerberg_handtrakingWrap:hover p{bottom: 80px;}
+.zuckerberg_handtrakingWrap a{position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 6em; color:rgba(255,255,255,0.7); z-index: 1; }
+.zuckerberg_handtrakingWrap a:hover{color:#eee;}
+/*---------------------------------------------------------newsContentBox card 3*/
+
+/*---------------------------------------------------------newsContentBox card 4*/
+.newsHandtrakingBox1,.newsHandtrakingBox2 {width: 100%; height: 50%; overflow: hidden;}
+.newsHandtrakingBox1{border-bottom: 3px solid #585858;}
+.newsHandtrakingBox1 img,
+.newsHandtrakingBox2 img{width: 100%; height:100%; transition: 0.5s;}
+.newsHandtrakingBox1:hover img,
+.newsHandtrakingBox2:hover img{transform: scale(1.1);}
+.HandtrakinghoverBox1{width: 100%; height: 50%; background: rgba(0,0,0,0.3); opacity:0; transition: 0.6s; z-index: 1; position: relative; position: absolute; top: 0; left: 0; z-index: 99;}
+.HandtrakinghoverBox2{width: 100%; height: 50%; background: rgba(0,0,0,0.3); opacity:0; transition: 0.6s; z-index: 1; position: relative; position: absolute; bottom: 0; left: 0; z-index: 99;}
+.newsHandtrakingBox1:hover .HandtrakinghoverBox1,
+.newsHandtrakingBox2:hover .HandtrakinghoverBox2{opacity: 1;}
+.HandtrakinghoverBox1 a,.HandtrakinghoverBox2 a{position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size:5em; color:rgba(255,255,255,0.7); z-index: 1; }
+.HandtrakinghoverBox1 a:hover,.HandtrakinghoverBox2 a:hover{color:#eee;}
+
+/*---------------------------------------------------------newsContentBox card 4*/
+
+/*---------------------------------------------------------newsContentBox card 5*/
+.netflixBox{width: 100%; height: 100%; }
+.netflixBack img{width: 100%;}
+.netflixText{position: absolute; top: 168px; left:110px; z-index: 1; transition: 1s;cursor: pointer;}
+.netflixText img{width: 200px;}
+.netflixBox:hover .netflixText{transform: scale(1.4); top: 155px;}
+.netflixBox p{width: 330px; position: absolute; top: 270px; left: 50%; transform: translate(-50%,0); color: rgba(255,255,255,0.7); z-index: 1; cursor: pointer;}
+.netflixBox:hover p{color: #eee;}
+/*---------------------------------------------------------newsContentBox card 5*/
+
+/*---------------------------------------------------------newsContentBox card 6*/
+.KpopSliderWrap{width: 100%; height: 100%;}
+.KpopSliderWrap ul li{border: none;}
+.kpopHoverBox{width: 100%; height: 100%; background:rgba(0,0,0,0.3);position: absolute; top: 0; left: 0; opacity: 0; transition: 0.5s;}
+.kpopSlider img{width: 100%; height: 450px; transition: 1s;}
+.KpopSliderWrap:hover .kpopHoverBox{opacity:1;}
+.KpopSliderWrap:hover img{transform: scale(1.1);}
+.kpopSlider .fa-play-circle{font-size:6em; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: rgba(255,255,255,0.7); cursor: pointer;}
+.kpopSlider .fa-play-circle:hover{color: #eee;}
+/*---------------------------------------------------------newsContentBox card 6*/
+
+
+
+
+
+
+.footerBox{width: 100%; height: 1250px; position:relative; }
+#footerQuestBack{width: 100%; height: 1250px; position: absolute; top: -450px; z-index: -1; overflow: hidden; background: url(../images/footerquest.jpg); background-size: cover; background-repeat: no-repeat;}
+
+.footerTextBox{width: 100%; height: 70px;  border-top: 1px solid #585858; position:absolute; top: 700px;background: #f6f6f6;}
+.footerText2{border-top: 1px solid #585858;}
+.footerText1,.footerText2{width: 1245px; height: 100%; margin: 0 auto;}
+.footerText1{line-height: 70px;}
+.footerText2 p{margin-top: 20px;}
+
+.lastFooter{width: 100%; height: 400px; background: #1c1e20; position: absolute; bottom: 0;}
+.lastFooter h3{color: #eee; font-size: 8em; text-align: center; line-height: 400px;}
+
+
+/*-------------------BxSlider */
+.bx-wrapper {
+    -moz-box-shadow: none;
+    -webkit-box-shadow:none; 
+    box-shadow: none;
+    border: none;
+    background: none;}
+
+.bx-wrapper .bx-pager.bx-default-pager a {
+    border:3px solid #fff;
+    background:transparent;
+    text-indent: -9999px;
+    display: block;
+    width: 20px;
+    height: 20px;
+    margin: 0 5px;
+    outline: 0;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 50%;}
+
+.bx-wrapper .bx-pager.bx-default-pager a:hover,
+.bx-wrapper .bx-pager.bx-default-pager a.active,
+.bx-wrapper .bx-pager.bx-default-pager a:focus {
+    background: #fff;}
+
+.KpopSliderWrap .bx-wrapper .bx-pager.bx-default-pager a:hover,
+.KpopSliderWrap .bx-wrapper .bx-pager.bx-default-pager a.active,
+.KpopSliderWrap .bx-wrapper .bx-pager.bx-default-pager a:focus {
+    background:#ff9ae7;}
+
+.main-sliderWrap .bx-wrapper .bx-pager, .bx-wrapper .bx-controls-auto {
+position: absolute;
+bottom: 150px;
+width: 100%;}
+
+
+.gamesSliderWrap .bx-wrapper .bx-pager, .bx-wrapper .bx-controls-auto {
+position: absolute;
+bottom:75px;
+width: 100%;}
+
+.KpopSliderWrap .bx-wrapper .bx-pager, .bx-wrapper .bx-controls-auto {
+position: absolute;
+top: 5px; left: 5px;
+width:180px;}
+
+@media screen and (max-width: 560px){
+.main-sliderWrap .bx-wrapper .bx-pager, .bx-wrapper .bx-controls-auto {
+    position: absolute;
+    bottom: 380px;
+    width: 100%;}
+.bx-wrapper .bx-pager.bx-default-pager a {
+    border:3px solid #fff;
+    background:transparent;
+    text-indent: -9999px;
+    display: block;
+    width: 30px;
+    height: 30px;
+    margin: 0 10px;
+    outline: 0;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 50%;}
+}
+
+
+@media screen and (max-width:560px){
+.riftMainContentBox > ul > li:nth-child(1) h2 {
+       font-size:1.5em;
+    padding: 0 10px;}
+.riftMainContentBox > ul > li:nth-child(3) h2 {
+    font-size:1.5em;
+    padding: 0 10px; margin-top: 10px;}
+
+    .riftMainContentBox > ul > li:nth-child(7) h2 {
+    font-size:1.5em;
+    padding: 0 10px;}
+
+    .gamesCardTextBox h2 {
+    font-size:1.5em;
+    padding: 0 10px;}
+
+}

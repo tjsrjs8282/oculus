@@ -1,0 +1,232 @@
+body{font-family: 'Noto Sans', sans-serif; background: #f6f6f6;}
+html{font-size:14px; scroll-behavior: smooth;}
+span{display: block;}
+.sliderHidden{overflow: hidden;}
+::-webkit-scrollbar{width:20px;}
+::-webkit-scrollbar-thumb{background: linear-gradient(transparent,#606060,#1e1e1e); border-radius: 15px;}
+::-webkit-scrollbar-thumb:hover{background: linear-gradient(transparent,#606060,#1e1e1e,#161616);}
+/*---------------------------------window setting*/
+#main{width: 100%;}
+.main-navBox{width: 100%; height: 80px;  background:rgba(0,0,0,0.6); position: absolute; top: 0; z-index: 9999; position: fixed; transition: 0.4s;}
+.main-navBox.black{height: 50px;  background:rgba(0,0,0,0.4); }
+
+.main-nav{width: 1245px; height: 100%; margin:0 auto; }
+.main-nav img{float: left; width: 160px; margin-top: 6px; cursor: pointer; transition: 0.4s;}
+.main-navBox.black img{width: 120px; margin-top: 0px;}
+
+.main-nav ul li{float: right; padding:0 35px; font-size: 1.8em; color: #fff;  text-align: center; font-weight: bold; line-height: 80px; transition:0.4s;  }
+.main-navBox.black ul li{font-size: 1.5em; line-height: 50px;}
+
+.main-nav ul li a{color: #fff;  transition:0.4s; }
+.main-nav ul li a:hover,
+.navMenu.active{border-bottom: 3px solid orange; color: orange;}
+
+.main-nav ul li:nth-child(1),
+.main-nav ul li:nth-child(2){margin-right:0; font-size:1.3em; width: 50px; height: 45px; padding: 0px; border: 2px solid #fff; margin-top: 17px; line-height:45px;  cursor: pointer; }
+.main-nav ul li:nth-child(2){margin-left:60px;}
+
+.main-navBox.black ul li:nth-child(1),
+.main-navBox.black ul li:nth-child(2){ font-size:1.1em; width: 40px; height:35px; margin-top: 5px; line-height:35px;}
+.main-navBox.black ul li:nth-child(2){margin-left:120px;}
+
+.main-nav ul li:nth-child(1):hover,
+.main-nav ul li:nth-child(2):hover,
+.languege.active{background:#fff; color: #000;}
+/*--------------------------------------------main slider */
+.main-sliderWrap{ width: 100%; height: 1000px; position: relative; z-index:3333;}
+.main-slider .vaderimmortalBack {width: 100%;  height:1000px; background: url(../images/oculus-quest-black-friday.jpg); background-size: cover;}
+.main-slider .beatSaberBack {width: 100%;  height:1000px; background: url(../images/OculusQuest-BeatSaber.png); background-size: cover;}
+.main-slider .blackfridayBack {width: 100%;  height:1000px; background: url(../images/black-friday-2019-vr-deals_feature1.jpg); background-size: cover;}
+.vrGamesBack {width: 100%;  height:1000px; background: url(../images/vr_games.jpg); background-size: cover;}
+.main-sliderTextBox{position: absolute; top: 55%; left: 10%; color: #eeeeee; font-weight:bold;  text-shadow: 2px 2px 10px black; background:rgba(0,0,0,0.3); padding: 20px; }
+.main-sliderTextBox h1{font-size:5em;}
+.main-sliderTextBox p{font-size:1.4em; margin-bottom: 10px;}
+
+.main-sliderTextBox .fa-play-circle{font-size: 2.2em; color:#fff; margin-left: 35px; transition: 0.4s;}
+.main-sliderTextBox .fa-play-circle:hover{color:orange;}
+
+.nextBtn,
+.prevBtn{width: 75px; height: 150px; position: absolute; top:300px; cursor: pointer; background: rgba(0,0,0,0.4); transition: 0.2s; z-index: 8888;}
+.prevBtn{left:0;}
+.nextBtn{right: 0;}
+.nextBtn:hover,
+.prevBtn:hover
+{background: rgba(0,0,0,0.8); }
+.nextBtn img:nth-child(1){width: 50px; height: 100px; position:absolute; top:25px; right: 0; animation:mainSliderGirdRight1 1s alternate infinite;} 
+@keyframes mainSliderGirdRight1{
+    to{right:10px;}
+}
+.nextBtn img:nth-child(2){width: 30px; height: 70px; position:absolute; top:40px; right: 25px; animation:mainSliderGirdRight2 1s .2s alternate infinite;}
+@keyframes mainSliderGirdRight2{
+    to{right: 35px;}
+}
+.prevBtn img:nth-child(1){width: 50px; height: 100px; position:absolute; top:25px;left: 0; animation:mainSliderGirdLeft1 1s alternate infinite;} 
+@keyframes mainSliderGirdLeft1{
+    to{left:10px;}
+}
+.prevBtn img:nth-child(2){width: 30px; height: 70px; position:absolute; top:40px; left: 25px;animation:mainSliderGirdLeft2 1s .2s alternate infinite;}
+@keyframes mainSliderGirdLeft2{
+    to{left: 35px;}
+}
+/*-------------------------------------------------------------------main header nav end*/
+
+/*-------------------------------------------------------------------quest list box*/
+.riftContentListBox{width: 1245px; height: 120px;position: absolute; top:880px; left: 50%; transform: translate(-50%, 0); z-index: 5000;}
+.riftContentListBox ul li{float: left;background: #eee; width: 415px; height: 60px; text-align: center; line-height: 60px;font-size: 1.2em;  box-sizing: border-box; border: 1px solid #000; transition: 0.3s; cursor: pointer;}
+.riftContentListBox ul li:nth-child(1){ width: 1245px; border: none; background: #1c1e20; color: #fff; }
+.listBtn.active,
+.listBtn:hover{border:3px solid #585858; background: #ccc;}
+/*-------------------------------------------------------------------quest list box*/
+
+/*-------------------------------------------------------------------main article box*/
+.riftPc_ContentBox{width: 1245px; height:3770px; margin:0 auto;}
+.riftPc_ContentBox > ul > li{float: left; height: 720px;  position: relative; overflow: hidden; text-align: center;  border: 3px solid #585858;  background-color: #eee; box-sizing: border-box;}
+.riftPc_ContentBox > ul > li:nth-child(1){width: 100%; height:1050px; background-color: #f5f5f5} 
+.riftPc_ContentBox > ul > li:nth-child(2){ width:33.33%; background: #fff;} 
+.riftPc_ContentBox > ul > li:nth-child(3){width: 33.33%; background: #fff;}
+.riftPc_ContentBox > ul > li:nth-child(4){width: 33.33%; background: #fff;}
+.riftPc_ContentBox > ul > li:nth-child(5){width: 100%; height: 200px; background-color:#eee;}
+.riftPc_ContentBox > ul > li:nth-child(6){width: 100%; height: 820px; background-color:#fff;}
+.riftPc_ContentBox > ul > li:nth-child(7){width: 100%; height: 400px; background-color:#1c1e20; border-bottom: none;}
+.riftPc_ContentBox > ul > li:nth-child(8){width: 100%; height: 580px; background-color:#1c1e20; border-top:none;}
+/*-------------------------------------------------------------------main article box*/
+
+/*------------------------------------------------------------------main card1*/
+.oculusPC_desktop img{animation:desktop_ani 3s 1s forwards; width: 1550px; position: absolute; bottom:-500px; left: -150px;}
+@keyframes desktop_ani{
+    to{bottom:0px;}
+}
+.oculusDesktopWrap{margin-top: 50px;}
+.oculusDesktopLogo img{width: 130px;}
+.oculusDesktopText{margin-top: 20px; width: 700px;  display:inline-block; }
+.oculusDesktopText h2{font-size: 4em;}
+.oculusDesktopText p{font-size: 1.3em; margin-top: 20px; color: #585858;}
+
+.oculusDesktopMoreBtn{margin:50px;}
+.oculusDesktopMoreBtn a{padding: 10px 25px; border: 1px solid #0c68ff; font-size: 1.3em; font-weight: bold; background-color: #0c68ff; color: #fff; border-radius: 8px; margin:0 10px;}
+/*------------------------------------------------------------------main card1*/
+
+/*------------------------------------------------------------------main card2,3,4*/
+.bestDesktopBox{width: 100%; height: 400px; background-color:#fff; overflow: hidden;}
+.bestDesktopBox img { width: 350px; height:100%; }
+
+.bestDesktopText{padding:20px;}
+.bestDesktopText h3{margin-bottom: 10px; font-size: 1.7em;}
+.bestDesktopTopText p{font-size: 1.2em; margin-bottom: 15px;}
+.bestDesktopText > p{font-size: 1.1em; margin-bottom: 30px; color:blue;}
+
+.bestDesktopTopText{height: 160px;}
+.buyBtn a{padding: 10px 25px; border: 1px solid #0c68ff; font-size: 1.3em; font-weight: bold; background-color: #0c68ff; color: #fff; border-radius: 8px;}
+.buyBtn a:hover{background: #148aff;}
+/*------------------------------------------------------------------main card2,3,4*/
+
+/*------------------------------------------------------------------main card4*/
+.riftPc_ContentBox > ul > li:nth-child(5) h2{ font-size:3.5em; margin-top: 30px;}
+.riftPc_ContentBox > ul > li:nth-child(5) p{ font-size:1.3em; margin-top: 6px;}
+/*------------------------------------------------------------------main card4*/
+
+/*-------------------------------------------------------------------main card5 slider*/
+.swiper-container {
+      width: 1245px;
+      height: 700px;
+      padding-top: 50px;
+      margin-top: 20px;
+      padding-bottom: 50px;
+    }
+    .swiper-slide {
+      width: 400px !important;
+      height: 580px !important;
+      background-size: cover;
+      background: #fff;
+      margin-top: 30px;
+    }
+     .swiper-slide img{width: 100%;}
+
+    .swiper-pagination-bullet {
+    width: 15px !important;
+    height: 15px !important;}
+
+.swiper-pagination-fraction, .swiper-pagination-custom, .swiper-container-horizontal > .swiper-pagination-bullets {
+    bottom: 30px !important;
+    left: 0;
+    width: 100%;}
+
+.PcSliderBtn a{padding: 10px 25px; border: 1px solid #0c68ff; font-size: 1.3em; font-weight: bold; background-color: #0c68ff; color: #fff; border-radius: 8px; }
+.PcSliderBtn a:hover{background: #148aff;}
+
+.desktopBuyTextBox{padding:10px;}
+.desktopBuyTextBox h3{margin-bottom: 10px; font-size:2.0em; margin-bottom: 20px;}
+.desktopBuyTextBox p:nth-child(2){font-size: 1.2em; margin-bottom: 5px; color:blue;}
+.desktopBuyTextBox p:nth-child(3){font-size: 1.1em; margin-bottom: 30px; color:#585858;}
+
+.bestDesktopTopText{height: 160px;}
+.buyBtn a{padding: 10px 25px; border: 1px solid #0c68ff; font-size: 1.3em; font-weight: bold; background-color: #0c68ff; color: #fff; border-radius: 8px;}
+.buyBtn a:hover{background: #148aff;}
+.buyDesktopGuideText {color: #999999; margin-top: 30px;}
+/*-------------------------------------------------------------------main card5 slider*/
+
+/*-------------------------------------------------------------------main card6 test slider*/
+.oculusDeskTestWrap{margin-top: 50px;}
+.oculusDesktopLogo img{width: 130px;}
+.oculusDeskTestText{margin-top: 20px; width: 700px;  display:inline-block; }
+.oculusDeskTestText h2{font-size: 4em; color: #fff}
+.oculusDeskTestText p{font-size: 1.3em; margin-top: 20px; color: #eee;}
+
+.desktopTestSliderWrap{width: 1050px; margin: 0 auto; position: relative;}
+.TestSlider img{width: 500px;}
+.TestSliderTextBox{width:500px; position: absolute; right: 10px; top: 20px; text-align: left;}
+.TestSliderTextBox h3{font-size: 3em; color: #fff; margin-bottom:20px; letter-spacing: 1px;}
+.TestSliderTextBox p:nth-child(2){font-size: 1.4em; color: #999999;}
+
+.sliderFiexdText{width: 500px; position: absolute; bottom: 130px; right: 110px; font-size: 1.6em; color: #eee; }
+.sliderFiexdText img{width: 160px;}
+/*-------------------------------------------------------------------main card6 test slider*/
+
+/*-------------------------------------------------------------------footer*/
+.lastFooter{width: 100%; height: 500px; background: #1c1e20; margin-top: 100px;}
+.lastFooter h3{color: #eee; font-size: 10em; text-align: center; line-height: 400px;}
+.lastFooter p:nth-child(1){color:#888888; line-height: 80px; border-bottom:1px solid #888888; text-align: center;}
+/*-------------------------------------------------------------------footer*/
+
+
+
+/*-------------------BxSlider */
+.bx-wrapper {
+    -moz-box-shadow: none;
+    -webkit-box-shadow:none; 
+    box-shadow: none;
+    border: none;
+    background: none;}
+
+.bx-wrapper .bx-pager.bx-default-pager a {
+    border:3px solid #fff;
+    background:transparent;
+    text-indent: -9999px;
+    display: block;
+    width: 20px;
+    height: 20px;
+    margin: 0 5px;
+    outline: 0;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 50%;}
+
+.bx-wrapper .bx-pager.bx-default-pager a:hover,
+.bx-wrapper .bx-pager.bx-default-pager a.active,
+.bx-wrapper .bx-pager.bx-default-pager a:focus {
+    background: #fff;}
+
+
+.main-sliderWrap .bx-wrapper .bx-pager, .bx-wrapper .bx-controls-auto {
+position: absolute;
+bottom: 150px;
+width: 100%;}
+
+
+.riftSliderWrap .bx-wrapper .bx-pager, .bx-wrapper .bx-controls-auto {
+position: absolute;
+bottom: 50px;
+width: 100%;}
+
+
+

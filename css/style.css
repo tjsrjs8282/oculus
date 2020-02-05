@@ -1,0 +1,371 @@
+body{font-family: 'Noto Sans', sans-serif; background: #f6f6f6;}
+html{font-size:14px; scroll-behavior: smooth;}
+span{display: block;}
+.sliderHidden{overflow: hidden;}
+::-webkit-scrollbar{width:20px;}
+::-webkit-scrollbar-thumb{background: linear-gradient(transparent,#606060,#1e1e1e); border-radius: 15px;}
+::-webkit-scrollbar-thumb:hover{background: linear-gradient(transparent,#606060,#1e1e1e,#161616);}
+/*--------------------------------------------------------------------------------base*/
+
+#main{width: 100%;}
+.main-navBox{width: 100%; height: 80px;  background:rgba(0,0,0,0.6); position: absolute; top: 0; position: fixed; transition: 0.4s; z-index: 9999;}
+.main-navBox.black{height: 50px;  background:rgba(0,0,0,0.4);}
+
+.main-nav{width: 1245px; height: 100%; margin:0 auto;}
+.main-nav img{float: left; width: 160px; margin-top: 6px; cursor: pointer; transition: 0.4s;}
+.main-navBox.black img{width: 120px; margin-top: 0px;}
+
+.main-nav ul li{float: right; padding:0 35px; text-align: center;  font-weight: bold; color: #fff; font-size: 1.8em; line-height: 80px; transition:0.4s; }
+.main-navBox.black ul li{ padding:0 35px; font-size: 1.5em; line-height: 50px;}
+
+.main-nav ul li a{color: #fff; transition:0.4s; }
+.main-nav ul li a:hover,
+.navMenu.active{border-bottom: 3px solid orange; color: orange;}
+
+.main-nav ul li:nth-child(1),
+.main-nav ul li:nth-child(2){margin-right:0; font-size:1.3em; width: 50px; height: 45px; padding: 0px; border: 2px solid #fff; margin-top: 17px; line-height:45px;  cursor: pointer; }
+.main-nav ul li:nth-child(2){margin-left:60px;}
+
+.main-navBox.black ul li:nth-child(1),
+.main-navBox.black ul li:nth-child(2){ font-size:1.1em; width: 40px; height:35px; margin-top: 5px; line-height:35px;}
+.main-navBox.black ul li:nth-child(2){margin-left:120px;}
+
+.main-nav ul li:nth-child(1):hover,
+.main-nav ul li:nth-child(2):hover,
+.languege.active{background:#fff; color: #000;}
+
+/*-----------------------------------------------------------------------------------main bener slider*/
+.main-sliderWrap{ width: 100%; height: 1000px; position: relative; z-index:3333;}
+.main-slider .vaderimmortalBack {width: 100%;  height:1000px; background: url(../images/oculus-quest-black-friday.jpg); background-size: cover;}
+.main-slider .beatSaberBack {width: 100%;  height:1000px; background: url(../images/OculusQuest-BeatSaber.png); background-size: cover;}
+.main-slider .blackfridayBack {width: 100%;  height:1000px; background: url(../images/black-friday-2019-vr-deals_feature1.jpg); background-size: cover;}
+.vrGamesBack {width: 100%;  height:1000px; background: url(../images/vr_games.jpg); background-size: cover;}
+.main-sliderTextBox{position: absolute; top: 35%; left: 10%; color: #eeeeee; font-weight:bold;  text-shadow: 2px 2px 10px black; background:rgba(0,0,0,0.3); padding: 20px;}
+.main-sliderTextBox h1{font-size:5em;}
+.main-sliderTextBox p{font-size:1.4em;  margin-bottom: 10px;}
+
+.main-sliderTextBox .fa-play-circle{font-size: 2.2em; color:#fff; margin-left: 35px; transition: 0.4s;}
+.main-sliderTextBox .fa-play-circle:hover{color:orange;}
+.nextBtn,
+.prevBtn{width: 75px; height: 150px; position: absolute; top:300px; cursor: pointer; background: rgba(0,0,0,0.4); transition: 0.2s; z-index: 8888;}
+.prevBtn{left:0;}
+.nextBtn{right: 0;}
+.nextBtn:hover,
+.prevBtn:hover
+{background: rgba(0,0,0,0.8); }
+.nextBtn img:nth-child(1){width: 50px; height: 100px; position:absolute; top:25px; right: 0; animation:mainSliderGirdRight1 1s alternate infinite;} 
+@keyframes mainSliderGirdRight1{
+    to{right:10px;}
+}
+.nextBtn img:nth-child(2){width: 30px; height: 70px; position:absolute; top:40px; right: 25px; animation:mainSliderGirdRight2 1s .2s alternate infinite;}
+@keyframes mainSliderGirdRight2{
+    to{right: 35px;}
+}
+.prevBtn img:nth-child(1){width: 50px; height: 100px; position:absolute; top:25px;left: 0; animation:mainSliderGirdLeft1 1s alternate infinite;} 
+@keyframes mainSliderGirdLeft1{
+    to{left:10px;}
+}
+.prevBtn img:nth-child(2){width: 30px; height: 70px; position:absolute; top:40px; left: 25px;animation:mainSliderGirdLeft2 1s .2s alternate infinite;}
+@keyframes mainSliderGirdLeft2{
+    to{left: 35px;}
+}
+/*-----------------------------------------------------------------------------------main bener slider*/
+/*---------------------------------------------------------------------------------------------------------main header/nav end*/
+
+/*-------------------------------------------------------------------------------product article box start*/
+.product-atricle-content{width: 1245px; height: 300px; position:absolute; top: 700px; left: 50%; transform: translate(-50%, 0); z-index:5555;}
+.product-atricleBox{width: 100%; height: 100%;}
+.oculus_quest{color:#fff; background-color:#585858;}
+.oculus_rift {color:#eeeeee; background-color: #1c1e20;}
+.oculus_go {color:#1c1e20; background-color: #eeeeee;}
+
+.product-atricleBox ul li{float: left; width: 415px; height: 300px; position: relative; cursor: pointer;}
+.product-atricleBox ul li h2{font-size: 1.6em; position:absolute; transition:0.7s; transform: translate(-50%, -50%); top: 85%; left: 50%; white-space: nowrap; }
+.oculus_quest.active h2,.oculus_rift.active h2,.oculus_go.active h2{font-size:3em; top: 115%}
+.product-atricleBox ul li:hover h2{transform:translate(-50%, -50%) scale(1.2); transform-origin: bottom; }
+
+.product-atricleBox ul li img{width:55%; position:absolute; top: 40%; left: 50%; transform: translate(-50%, -50%); }
+.product-atricleBox ul li:nth-child(1) img{animation:quest_ani 1.5s alternate infinite cubic-bezier(0.39,-0.02, 0.62, 1.1);}
+.product-atricleBox ul li:nth-child(2) img{animation:rift_ani 1.5s alternate infinite cubic-bezier(0.39,-0.02, 0.62, 1.1);}
+.product-atricleBox ul li:nth-child(3) img{animation:go_ani 1.5s alternate infinite cubic-bezier(0.39,-0.02, 0.62, 1.1);}
+@keyframes quest_ani{
+    to{ transform:translate(-50%, -52%) skewX(-1deg) rotate(-2deg) scale(1.05);}
+}
+@keyframes rift_ani{
+    to{transform:translate(-50%, -52%)  skewX(-1deg) rotate(-2deg) scale(1.05);}
+}
+@keyframes go_ani{
+    to{transform:translate(-50%, -52%) skewX(-1deg) rotate(-2deg) scale(1.05);}
+}
+
+@media screen and (max-width:1245px){
+    .product-atricle-content{width:100%;}
+.product-atricleBox{width: 100%; height: 100%;}
+.product-atricleBox ul li{width:33.33%; height: 300px;}
+.product-atricleBox ul li h2{font-size: 1.5em;}
+.product-atricleBox ul li img{width: 60%; position:absolute; top: 40%; left: 50%; transform: translate(-50%, -50%); }
+}
+/*-------------------------------------------------------------------------------product article box end*/
+
+/*--------------------------------------------------------------------------------product slider*/
+.oulusQuestBox,
+.oulusRiftBox,
+.oulusGoBox
+{width: 100%; height: 700px; background-color:#585858; transition:1.3s; position: absolute; top: 300px; overflow: hidden;  z-index:1000;} 
+
+.oulusQuestBox.active,
+.oulusRiftBox.active,
+.oulusGoBox.active
+{top:1000px;}
+
+.questSliderWrap,
+.riftSliderWrap,
+.goSliderWrap
+{width: 1245px; height: 100%; margin: 0 auto; position: relative;}
+
+.questSliderText,
+.riftSliderText,
+.goSliderText
+{position: absolute; top: 200px; right:0;}
+
+.oulusQuestBox h3,.oulusRiftBox h3,.oulusGoBox h3{font-size:1.6em;}
+.oulusQuestBox h2,.oulusRiftBox h2,.oulusGoBox h2{font-size:3.2em;}
+.oulusQuestBox p,.oulusRiftBox p,.oulusGoBox p{font-size:1.3em;}
+
+.oulusQuestBox img,.oulusRiftBox img,.oulusGoBox img{width: 700px;}
+
+/*--------slider close btn*/
+.questSliderWrap,.riftSliderWrap,.goSliderWrap{position:relative;}
+.questSliderWrap .fa-times-circle,
+.riftSliderWrap .fa-times-circle,
+.goSliderWrap .fa-times-circle{position: absolute; top: 30px; right:20px; color: #1c1e20; font-size:3.5em; cursor: pointer;  z-index: 9999;}
+.questSliderWrap .fa-times-circle{color:#fff;}
+.riftSliderWrap .fa-times-circle{color:#eee;}
+/*--------slider close btn*/
+.oulusQuestBox img{margin-top: 60px;}
+.questSliderWrap ul li:nth-child(3) img{width: 850px;transform: translate(-150px, 0);}
+.questSliderWrap ul li:nth-child(4) img{width: 1100px;}
+.questSliderText h3{color: #eeeeee;}
+.questSliderText h2{color: #fff;}
+.questSliderText p{color: #eaeaea;}
+
+.oulusRiftBox{background-color:#1c1e20;}
+.riftSliderText h3{color: #ebebeb;}
+.riftSliderText h2{color: #fff;}
+.riftSliderText p{color:  #aaaaaa;}
+
+.oulusGoBox{background-color:#eeeeee;}
+.goSliderText h3{color: #585858;}
+.goSliderText h2{color: #000;}
+.goSliderText p{color:  #000;}
+/*--------------------------------------------------------------------------------product slider*/
+
+.middle-atricle-content2{width: 1245px; height: 1335px; margin:0 auto; transition:1.3s;}
+.middle-atricle-content2.active{margin-top: 700px;}
+.middle-atricle-content2 > ul{}  
+.middle-atricle-content2 > ul > li{float: left; width: 830px; height: 450px;}
+.middle-atricle-content2 > ul > li:nth-child(1){}
+.middle-atricle-content2 > ul > li:nth-child(2){width: 415px; height:  435px;}
+.middle-atricle-content2 > ul > li:nth-child(3){width: 445px;}
+.middle-atricle-content2 > ul > li:nth-child(4){width: 800px;}
+.middle-atricle-content2 > ul > li:nth-child(4) video{width: 100%; height: 100%}
+.middle-atricle-content2 > ul > li:nth-child(5){ background-color: gray;}
+.middle-atricle-content2 > ul > li:nth-child(6){width: 415px;}
+
+
+
+/*--------------------------------------------------card1*/
+.developerSliderWrap{width: 100%; position: relative; cursor: pointer; z-index: 1;}
+.developerHoverBox{width: 100%; height: 100%; background: rgba(0,0,0,0.3); display: none; position: absolute; top: 0; left: 0;}
+.developerSliderWrap img{width: 100%;}
+.developerSliderWrap:hover .developerHoverBox{display: block;}
+.developerSliderWrap p{width: 80%; position: absolute; top: 100%; left: 50%; transform: translate(-50%, 0%); font-size:1.45em; color: #fff; font-weight:bold; transition: 0.5s;}
+.developerSliderWrap ul li:nth-child(2):hover p{transform: translate(-50%, -200%);}
+.developerSliderWrap ul li:nth-child(3):hover p{transform: translate(-50%, -200%);}
+
+
+
+/*--------------------------------------------------card1*/
+
+/*--------------------------------------------------card2*/
+.developerTextBox{padding: 30px; }
+.developerTextBox h2{font-size:2.6em; color: #000; margin-bottom: 20px;}
+.developerTextBox h3{font-size:1.7em; color:#1c1e20; margin-bottom: 5px; animation-delay:0.5s;}
+.developerTextBox p{font-size:1.2em; color:#585858; margin-bottom: 20px;  animation-delay:1s;}
+/*--------------------------------------------------card2*/
+
+/*--------------------------------------------------card2*/
+.unboxingBox{width: 100%; height: 100%; position: relative; text-align: center;}
+.unboxingBox h2{font-size:2.2em;  padding: 15px;}
+.unboxingBox .fa-play-circle{font-size: 4em; margin-right: 180px; color:#585858; transition: 0.3s;}
+.unboxingBox .fa-play-circle:hover{color:#000;}
+.unboxingBox img{position: absolute;}
+.unboxingBox:hover img{transform: scale(1.1);}
+.unboxingBox1 img{left: 500px; bottom: 0; width: 500px;height: 381px; animation:unboxing1_ani 3s 2.5s forwards linear; z-index: -1; transition: .5s;}
+@keyframes unboxing1_ani{
+    to{left:-70px;}
+}
+/*--------------------------------------------------card3*/
+
+/*--------------------------------------------------card5*/
+.KpopSliderWrap{width: 100%; height: 100%; position: relative; }
+.kpopHoverBox{width: 100%; height: 100%; background:rgba(0,0,0,0.3);position: absolute; top: 0; left: 0; display: none;}
+.KpopSliderWrap:hover .kpopHoverBox{display: block;}
+.kpopSlider .fa-play-circle{font-size:6em; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: rgba(255,255,255,0.7); cursor: pointer;}
+.kpopSlider .fa-play-circle:hover{color: rgba(255,255,255,1);}
+.kpopSlider img{width: 100%; height: 450px;}
+/*--------------------------------------------------card5*/
+
+/*--------------------------------------------------card6*/
+.questBuyBox{width: 100%; height: 100%; overflow: hidden; position: relative;}
+.questBuyBox img{width: 850px; height: 450px; animation:questBuy_ani 18s alternate infinite cubic-bezier(0.29, -0.1, 0.6, 1);; position: absolute; top: 0; left: -20px;}
+@keyframes questBuy_ani{
+	to{left: -435px;}
+}
+.questBuyText{color: #fff; text-align: center; position: absolute; top: 50px;left: 90px;}
+.questBuyText p{font-size:1.5em; margin-bottom: 20px; }
+.questBuyText h3{font-size:1.8em; padding:8px 10px; border: 2px solid #fff; transition: 0.6s; cursor: pointer;}
+.questBuyText h3:hover {color:#000; background: #fff;}
+/*--------------------------------------------------card6*/
+/*------------------------------------------------------------------------------article content end*/
+
+/*--------------------------------------------games card start */
+.gamesBlackBox{width: 100%;height: 900px; background: black; position: relative; overflow: hidden; margin-top: 100px;}
+.gamesBackBox{ width: 100%; height:100%; position:absolute; top: 0;left: 0; background:url(../images/oculus-quest-games.jpg); background-size: cover; transition: 1s;}
+.gamesBlackBox:hover .gamesBackBox{opacity: 0.15;}
+
+.gamesCardTextBox {color: #fff; text-align: center; position: absolute; top: 50px; left: 50%; transform:translate(-50%, 0); z-index: 999;}
+.gamesCardTextBox h2{font-size: 3.5em; margin-bottom: 10px;}
+.gamesCardTextBox h3{font-size: 1.6em;}
+
+.gamesSliderWrap{width: 100%;  height: 650px;  position: absolute; top: 200px; left: 50%; transform:translate(-50%, 0);}
+.oculusimagesBox{width: 100%; height: 650px; background-color:rgba(0,0,0,0.5); display: flex; justify-content: space-around;}
+.oculusimagesBox:hover img{opacity: 0.4;}
+.oculusimagesBox img{width:320px; height: 260px; transform:perspective(400px) rotateY(25deg); transition:all 0.4s; -webkit-box-reflect: below 1px linear-gradient(transparent,transparent,#0004);cursor: pointer; margin-top: 50px;}
+.oculusimagesBox img:hover{transform: rotateY(0deg) scale(1.3); width: 400px; height: 250px; opacity: 1; z-index: 100;}
+
+.oculusimagesBox img:nth-child(1):hover ~ .gameText1,
+.oculusimagesBox img:nth-child(2):hover ~ .gameText2,
+.oculusimagesBox img:nth-child(3):hover ~ .gameText3,
+.oculusimagesBox img:nth-child(4):hover ~ .gameText4,
+.oculusimagesBox img:nth-child(5):hover ~ .gameText5,
+.oculusimagesBox img:nth-child(6):hover ~ .gameText6{opacity:1}
+
+.gameText1,
+.gameText2,
+.gameText3,
+.gameText4,
+.gameText5,
+.gameText6{color: #fff; position: absolute; width: 950px; text-align: center; top: 75%; left: 50%; transform: translate(-50%, -50%); opacity: 0; transition: 0.7s; }
+
+.gameText1 h3,
+.gameText2 h3,
+.gameText3 h3,
+.gameText4 h3,
+.gameText5 h3,
+.gameText6 h3{font-size: 2.2em;margin-bottom: 10px;}
+
+.gameText1 p,
+.gameText2 p,
+.gameText3 p,
+.gameText4 p,
+.gameText5 p,
+.gameText6 p{font-size: 1.1em; margin-bottom: 10px;}
+
+.gameGuide p{font-size: 1em;}
+.GamePrice{display: inline-block; margin: 5px;}
+.GamePrice p{width: 130px; height: 30px; line-height: 30px; border: 1px solid skyblue;}
+/*--------------------------------------------games card end*/
+
+/*-------------------------------------------------------------------footer*/
+.footerBox{width: 100%; height: 550px; margin-top: 100px;}
+.footerTextBox{width: 100%; height: 150px;  border-top: 1px solid #585858; background: #f6f6f6;}
+.footerText1{width: 1245px;  height: 70px; margin: 0 auto; line-height: 70px;}
+.footerText2{width: 1245px;  height: 80px; margin: 0 auto;  border-top: 1px solid #585858;}
+.footerText2 p{margin-top: 20px;}
+
+.lastFooter{width: 100%; height: 400px; background: #1c1e20;}
+.lastFooter h3{color: #eee; font-size: 10em; text-align: center; line-height: 400px;}
+/*-------------------------------------------------------------------footer*/
+
+
+
+
+
+
+
+/*-------------------BxSlider */
+.bx-wrapper {
+    -moz-box-shadow: none;
+    -webkit-box-shadow:none; 
+    box-shadow: none;
+    border: none;
+    background: none;}
+
+.bx-wrapper .bx-pager.bx-default-pager a {
+    border:3px solid #fff;
+    background:transparent;
+    text-indent: -9999px;
+    display: block;
+    width: 20px;
+    height: 20px;
+    margin: 0 5px;
+    outline: 0;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 50%;}
+
+.bx-wrapper .bx-pager.bx-default-pager a:hover,
+.bx-wrapper .bx-pager.bx-default-pager a.active,
+.bx-wrapper .bx-pager.bx-default-pager a:focus {
+    background: #fff;}
+
+.KpopSliderWrap .bx-wrapper .bx-pager.bx-default-pager a:hover,
+.KpopSliderWrap .bx-wrapper .bx-pager.bx-default-pager a.active,
+.KpopSliderWrap .bx-wrapper .bx-pager.bx-default-pager a:focus {
+    background:#ff9ae7;}
+
+.goSliderWrap .bx-wrapper .bx-pager.bx-default-pager a:hover,
+.goSliderWrap .bx-wrapper .bx-pager.bx-default-pager a.active,
+.goSliderWrap .bx-wrapper .bx-pager.bx-default-pager a:focus {
+    background: #585858;}
+.goSliderWrap .bx-wrapper .bx-pager.bx-default-pager a {
+    border:3px solid #585858;}
+
+.bx-wrapper .bx-pager, .bx-wrapper .bx-controls-auto {
+    position: absolute;
+    bottom: 320px;
+    width: 100%;
+z-index: 9999;}
+
+
+.riftSliderWrap .bx-wrapper .bx-pager, .bx-wrapper .bx-controls-auto {
+position: absolute;
+bottom: 70px;
+width: 100%;}
+
+.goSliderWrap .bx-wrapper .bx-pager, .bx-wrapper .bx-controls-auto {
+position: absolute;
+bottom: 70px;
+width: 100%;}
+
+.questSliderWrap .bx-wrapper .bx-pager, .bx-wrapper .bx-controls-auto {
+position: absolute;
+bottom: 70px;
+width: 100%;}
+
+.developerSliderWrap .bx-wrapper .bx-pager, .bx-wrapper .bx-controls-auto {
+position: absolute;
+bottom: 30px;
+width: 100%;}
+
+.gamesSliderWrap .bx-wrapper .bx-pager, .bx-wrapper .bx-controls-auto {
+position: absolute;
+bottom: -35px;
+width: 100%;}
+
+.KpopSliderWrap .bx-wrapper .bx-pager, .bx-wrapper .bx-controls-auto {
+position: absolute;
+bottom: 30px;
+width: 100%;}
+
