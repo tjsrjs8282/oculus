@@ -12,9 +12,6 @@
 	<link rel="stylesheet" href="css/all.css">
 	<link rel="stylesheet" href="css/colorbox.css">
 	<link rel="stylesheet" href="css/oculus.css">
-	
-
-
 </head>
 
 <body>
@@ -39,7 +36,6 @@
 			</div>
 		</header>
 
-
 		<div class="main-sliderWrap">
 			<ul class="main-slider">
 				<li>
@@ -47,8 +43,10 @@
 					<div class="main-sliderTextBox">
 						<h1>OCULUS  VR  2019 ~ </h1>
 						<p><span>VR의 성장세는 놀라울 만큼 빠릅니다.</span> 
-							마치 10년 전엔 생소했던 SMART PHONE이 널리 쓰이는 장면을 연상케 할 정도입니다. </p>
-							<p>앞으로 얼마 남지 않은 VR 의 대중화 상용화 곧 다가올 미래입니다.</p>
+							마치 10년 전엔 생소했던 SMART PHONE이 널리 쓰이는 장면을 연상케 할 정도입니다. 
+						</p>
+						<p>앞으로 얼마 남지 않은 VR 의 대중화 상용화 곧 다가올 미래입니다.
+						</p>
 				</li>
 				<li>
 					<div class="handtrackingBack"></div>
@@ -72,7 +70,7 @@
 					<div class="main-sliderTextBox">
 						<h1>Oculus & Samsung </h1>
 						<p>VR 시대를 이끌어 갈 두 거장이 손을 잡았습니다. 앞으로의 VR시장이
-							<span>기대가 되는 PPT 현장속으로 여러분들을 초대합니다.</span></p>
+						<span>기대가 되는 PPT 현장속으로 여러분들을 초대합니다.</span></p>
 					</div>
 				</li>
 			</ul>
@@ -89,7 +87,6 @@
 		</div>
 	</div>
 	
-
 	<div class="riftContentListBox">
 		<ul class="clearfix">
 			<li>
@@ -106,8 +103,6 @@
 			</li>
 		</ul>
 	</div>
-
-
 
 	<div class="riftMainContentBox">
 		<ul class="clearfix">
@@ -292,7 +287,6 @@
 		</ul>
 	</div>
 
-
 	<div class="gamesSliderHoverBox">
 		<div class="gamesCardTextBoxWrap">
 			<div class="gamesCardTextBox">
@@ -319,10 +313,13 @@
 						<img src="images/gamecard4.jpg" alt="사람">
 						<img src="images/gamecard5.jpg" alt="사람">
 						<img src="images/gamecard6.jpg" alt="사람">
+						<img src="images/gamecard7.jpg" alt="사람" id="webNone">
+						<img src="images/gamecard8.jpg" alt="사람" id="webNone">
+						<img src="images/gamecard9.jpg" alt="사람" id="webNone">
 					</div>
 				</li>
 					
-				<li class="sliderHidden">
+				<li class="sliderHidden" id="mobileNone">
 					<div class="oculusimagesBox">
 						<img src="images/gamecard7.jpg" alt="사람">
 						<img src="images/gamecard8.jpg" alt="사람">
@@ -332,7 +329,7 @@
 						<img src="images/gamecard12.jpg" alt="사람">
 					</div>
 				</li>
-				<li class="sliderHidden">
+				<li class="sliderHidden" id="mobileNone">
 					<div class="oculusimagesBox">
 						<img src="images/gamecard13.jpg" alt="사람">
 						<img src="images/gamecard14.jpg" alt="사람">
@@ -375,7 +372,6 @@
 			</li>
 		</ul>
 	</div>
-
 	
 	<div id="news" class="newsMainVideoHoverBox">
 		<div class="newsTextBox">
@@ -389,6 +385,12 @@
 			<h2>&</h2>
 			<h2>SAMSUNG</h2>
 			<h2>GEAR VR</h2>
+			<div class="newsMainVideoBox_MobileTextBox">
+				<h3>OCULUS</h3>
+				<h3>&</h3>
+				<h3>SAMSUNG</h3>
+				<h3>GEAR VR</h3>
+			</div>
 			<video src="images/Vr - 7978.mp4" autoplay muted loop></video>
 		</div>
 	</div>
@@ -432,6 +434,8 @@
 					<a href="https://www.youtube.com/embed/2VkO-Kc3vks" class="youtube"><i class="far fa-play-circle"></i></a>
 				</div>
 			</div>
+		</li>
+		<li>
 			<div class="newsHandtrakingBox2">
 				<img src="images/maxresdefault.jpg" alt="">
 				<div class="HandtrakinghoverBox2">
@@ -487,10 +491,9 @@
 </div>
 
 
-
+<div id="footerQuestBack"></div>
 <div class="footerBox">
-	<div id="footerQuestBack">
-	</div>
+	
 	<div class="footerTextBox">
 		<div class="footerText1">
 			<p>1. 일부 콘텐츠와 기능은 특정 언어 또는 지역에서 지원되지 않을 수 있습니다.</p>
@@ -500,12 +503,9 @@
 		</div>
 	</div>
 	<div class="lastFooter">
-		<h3>footer</h3>
-		
+		<h3>footer</h3>	
 	</div>	
 </div>
-
-
 
 
 <script src="js/jquery-3.1.1.min.js"></script>
@@ -515,8 +515,6 @@
 <script src="js/jquery.colorbox.js"></script>
 
 <script>
-
-			
 
 		$(document).ready(function(){
 			var mainSlider = $(".main-slider").bxSlider({
@@ -601,22 +599,15 @@
 				innerHeight:"70%",
 			})
 			new WOW().init();
-
-
 		});
-
-
 
 		var footerback = document.getElementById('footerQuestBack');
 		window.onmousemove = function (e) {
-		    var x = - e.clientX/20,
-		        y = - e.clientY/20;
+		    var x = - e.clientX/50,
+		        y = - e.clientY/50;
 		    footerback.style.backgroundPositionX = x + 'px';
 		    footerback.style.backgroundPositionY = y + 'px';
 		};
-
-
-
 
 </script>
 </body>

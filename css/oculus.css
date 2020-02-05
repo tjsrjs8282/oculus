@@ -44,18 +44,22 @@ span{display: block;}
     .languege{display: none; transition: 0s;}
     .main-nav.reponsive .languege{display: none;}
     .main-navBox img{width: 120px; float: none; margin: 0;}
-    .main-nav ul li{float: none; display: none; transition: 0s;}
+    .main-nav ul{width: 100%; position: absolute; top: -300px; transition: 1s;}
+    .main-nav ul li{float: none; display: none;  transition: 0s;}
     .main-nav ul li a{transition: 0s;}
-    .main-nav.reponsive ul li{display: block; background:rgba(0,0,0,0.3);}
+    .main-nav.reponsive ul{top: 50px;}
+    .main-nav.reponsive ul li{display: block; background:rgba(0,0,0,1); top: 50px;}
+    .main-navBox.black .main-nav.reponsive ul li{background:rgba(0,0,0,0.5);}
     .hamberger{display:inline-block; position:fixed; top: 3px; right: 30px;}
-    .main-navBox{height: 50px; background:rgba(0,0,0,0.3);}
+    .main-navBox{height: 50px; background:rgba(0,0,0,1);}
+    .main-navBox.black{height: 50px; background:rgba(0,0,0,0.5);}
 }
 /*--------------------------------------------main slider */
 .main-sliderWrap{ width: 100%; height: 1000px; position: relative; z-index:3333;}
-.oculus_juckberg {width: 100%;  height:1000px; background: url(../images/oculus_display.jpg); background-size: cover;}
-.handtrackingBack {width: 100%;  height:1000px; background: url(../images/cameras-vr-hands-2.jpg); background-size: cover;}
-.oculusGamesBack {width: 100%;  height:1000px; background: url(../images/oculus-quest-games.jpg); background-size: cover;}
-.vrGamesBack {width: 100%;  height:1000px; background: url(../images/SS_GEARVR22.jpg); background-size: cover;}
+.oculus_juckberg {width: 100%;  height:1000px; background: url(../images/oculus_display.jpg); background-size: cover; background-position: center;}
+.handtrackingBack {width: 100%;  height:1000px; background: url(../images/cameras-vr-hands-2.jpg); background-size: cover;  background-position: center;}
+.oculusGamesBack {width: 100%;  height:1000px; background: url(../images/oculus-quest-games.jpg); background-size: cover;  background-position: center;}
+.vrGamesBack {width: 100%;  height:1000px; background: url(../images/SS_GEARVR22.jpg); background-size: cover;  background-position: center;}
 .main-sliderTextBox{position: absolute; top: 47%; left: 10%; color: #eeeeee; font-weight:bold; text-shadow: 2px 2px 10px black; background:rgba(0,0,0,0.3); padding: 20px;}
 .main-sliderTextBox h1{font-size:5em;}
 .main-sliderTextBox p{font-size:1.4em; margin-bottom: 10px;}
@@ -87,7 +91,11 @@ span{display: block;}
     to{left: 35px;}
 }
 @media screen and (max-width:560px){
-.main-sliderTextBox{top: 10%; right: 5%; left: 5%;}
+	.main-sliderWrap{height: 800px;}
+	.oculus_juckberg {height:800px;}
+.handtrackingBack { height:800px;}
+.oculusGamesBack  {height:800px;}
+.main-sliderTextBox{top: 7%; right: 5%; left: 5%;}
 .main-sliderTextBox h1{font-size: 4em;}
 .nextBtn,.prevBtn{display: none;}
 }
@@ -103,7 +111,7 @@ span{display: block;}
 .listBtn:hover{border:3px solid #585858; background: #ccc;}
 
 @media screen and (max-width:560px){
-.riftContentListBox{width: 100%;  top:760px; }
+.riftContentListBox{width: 100%;  top:560px; }
 .riftContentListBox ul li{width: 100%;}
 .riftContentListBox ul li:nth-child(1){ width: 100%}
 }
@@ -152,13 +160,24 @@ span{display: block;}
 
 /*------------------------------------------------------------------main card2*/
 .oculus_zuckerbergBox{width: 100%; height: 100%;}
-.zuckerbergWrap{color: #fff; position: absolute; top: 40px; right: 30px; width: 580px;}
+.zuckerbergWrap{color: #fff; position: absolute; top: 50%; right: 5%; transform: translate(0, -50%); width: 580px;}
 .zuckerbergTextBox h2{ font-size: 2.5em; margin-bottom: 30px;}
 .zuckerbergTextBox{margin-bottom: 50px;}
 .zuckerbergTextBox p{font-size: 1.2em; margin-bottom: 15px;}
 .zuckerbergTextBox p:nth-child(6){margin-bottom: 50px;}
 .zuckerbergWrap a{color: #fff; font-size: 1.6em; font-weight: bold;}
 .zuckerbergWrap a:hover{color:orange;}
+
+@media screen and (max-width:560px){
+.zuckerbergWrap{width: 90%}
+.zuckerbergTextBox h2{ font-size: 2em; margin-bottom: 10px;}
+.zuckerbergTextBox p:nth-child(2){display: none;}
+.zuckerbergTextBox p:nth-child(6){margin-bottom: 30px;}
+.zuckerbergWrap a{color: #fff; font-size: 1.3em; font-weight: bold;}
+.riftMainContentBox > ul > li:nth-child(2) {
+   background-position: -100px;
+}
+}
 /*------------------------------------------------------------------main card2*/
 
 /*------------------------------------------------------------------main card3*/
@@ -311,18 +330,22 @@ span{display: block;}
 .oculusimagesBox img{width:320px; height: 260px; transform:perspective(400px) rotateY(25deg); transition:all 0.4s; -webkit-box-reflect: below 1px linear-gradient(transparent,transparent,#0004);cursor: pointer; margin-top: 50px;}
 .oculusimagesBox img:hover{transform: rotateY(0deg) scale(1.3); width: 400px; height: 260px; opacity: 1; z-index: 9999;}
 
+#webNone{display: none;}
 
 @media screen and (max-width:560px){
     .oculusimagesBox img{transform: none;}
-
     .gamesSliderWrap .bx-wrapper .bx-pager, .bx-wrapper .bx-controls-auto {display: none;}
     .gamesMoreText {bottom: 280px;}
     .gamesSliderHoverBox {height: 700px;}
     .oculusimagesBox {height: 430px;}
-    .gamesCardTextBox h2 {
-    font-size:1.5em;
-    padding: 0 10px;}
+    .gamesCardTextBox h2 {font-size:1.5em;  padding: 0 10px;}
     .gamesCardTextBox{width: 100%;}
+    #mobileNone{display: none;}
+    #webNone{display:block;}
+    .oculusimagesBox{flex-wrap: wrap;}
+    .oculusimagesBox img{width: 130px; height: 80px; opacity: 1;}
+    .oculusimagesBox img:hover{transform:scale(1); width:130px; height:80px; opacity: 1;}
+
 }
 
 /*--------------------------------------------games card slider*/
@@ -367,17 +390,41 @@ span{display: block;}
 .newsMainVideoHoverBox.active .newsMainVideoBox h2:nth-child(4){bottom: 70px; font-size:8.5em; color:#fff;}
 .newsMainVideoHoverBox.active .newsMainVideoBox{width: 100%; height: 600px;}
 .newsMainVideoHoverBox.active .newsTextBox{width: 100%;}
+.newsMainVideoBox_MobileTextBox{position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);}
+
+@media screen and (max-width:560px){
+	.newsTextBox{width: 100%;}
+	.newsMainVideoBox{width: 100%; height:200px}
+	.newsMainVideoHoverBox.active .newsMainVideoBox{width: 100%; height: 200px;}
+	.newsMainVideoHoverBox.active .newsMainVideoBox h2{display: none;}
+	.newsMainVideoBox h2{display: none;}
+	.newsMainVideoBox_MobileTextBox{text-align: center;}
+	.newsMainVideoBox_MobileTextBox h3{font-size: 1.7em; color: #fff;}
+}
 /*-------------------------------------------------------------------------------new text / video hover*/
 
 /*----------------------------------------------------------------------------------news article box 틀*/
-.newsContentBox{width:1245px; height: 1340px; margin:0 auto; text-align: center;}
-.newsContentBox ul li{width: 100%; height: 440px; float: left; position:relative; overflow: hidden; border: 3px solid #585858; box-sizing: border-box;}
-.newsContentBox ul li:nth-child(1){width: 33.33%;}
-.newsContentBox ul li:nth-child(2){width: 66.66%;}
-.newsContentBox ul li:nth-child(3){width: 66.66%; height: 460px;}
-.newsContentBox ul li:nth-child(4){width: 33.33%; height: 460px;}
-.newsContentBox ul li:nth-child(5){width: 33.33%; background:gray;}
-.newsContentBox ul li:nth-child(6){width: 66.66%; background-color: salmon;}
+.newsContentBox{width:1245px; height: 1350px; margin:0 auto; text-align: center;}
+.newsContentBox > ul > li{width: 100%; height: 440px; float: left; position:relative; overflow: hidden; border: 3px solid #585858; box-sizing: border-box;}
+.newsContentBox > ul > li:nth-child(1){width: 33.33%;}
+.newsContentBox > ul > li:nth-child(2){width: 66.66%;}
+.newsContentBox > ul > li:nth-child(3){width: 66.66%; height: 460px;}
+.newsContentBox > ul > li:nth-child(4){width: 33.33%; }
+.newsContentBox > ul > li:nth-child(4){width: 33.33%; height: 230px;}
+.newsContentBox > ul > li:nth-child(5){width: 33.33%; height: 230px;}
+.newsContentBox > ul > li:nth-child(6){width: 33.33%;}
+.newsContentBox > ul > li:nth-child(7){width: 66.66%;}
+
+@media screen and (max-width:560px){
+	.newsContentBox{width: 100%;  height: 1900px;}
+	.newsContentBox > ul > li:nth-child(1){width: 100%;}
+	.newsContentBox > ul > li:nth-child(2){width: 100%; height:300px;}
+	.newsContentBox > ul > li:nth-child(3){width: 100%; height:300px;}
+	.newsContentBox > ul > li:nth-child(4){width: 100%;}
+	.newsContentBox > ul > li:nth-child(5){width: 100%;}
+	.newsContentBox > ul > li:nth-child(6){width:  100%;}
+	.newsContentBox > ul > li:nth-child(7){width:  100%; height: 280px;}
+}
 /*--------------------------------------------------------------------------------news article box 틀*/
 
 /*---------------------------------------------------------newsContentBox card 1*/
@@ -392,50 +439,81 @@ span{display: block;}
 .samsungNewsVideoWrap{width: 100%; height: 100%;}
 .samsungNewsVideoHoverBox{width: 100%; height: 100%; position: absolute; top: 0; left: 0; background: rgba(0,0,0,0.3); opacity: 0; transition: 0.6s; z-index: 1;}
 .samsungNewsVideoWrap:hover .samsungNewsVideoHoverBox{opacity: 1;}
-.samsungNewsVideoWrap img{width: 100%; height: 460px; transition: 1.2s;}
+.samsungNewsVideoWrap img{width: 100%;height:100%; transition: 1.2s;}
 .samsungNewsVideoWrap:hover img{transform: scale(2) translate(-130px, -30px)}
 .samsungNewsVideoWrap p{width: 400px; position: absolute; color: #eee; font-size: 1.3em; top: -100px; left: 50%; transform:translate(-50%, 0); transition: 1s; z-index: 1; }
 .samsungNewsVideoWrap:hover p{top: 80px;}
 .samsungNewsVideoWrap a{position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 6em;  color:rgba(255,255,255,0.7); z-index: 1;}
 .samsungNewsVideoWrap a:hover{color:#eee;}
+@media screen and (max-width:560px){
+	.samsungNewsVideoWrap img{width: 600px;}
+	.samsungNewsVideoWrap:hover img{transform: scale(1) translate(0, 0)}
+	.samsungNewsVideoWrap p{top: 10px; width: 90%; font-size: 1.1em;}
+	.samsungNewsVideoWrap:hover p{top: 10px;}
+	.samsungNewsVideoWrap a{}
+	.samsungNewsVideoWrap a{position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 4em;  color:rgba(255,255,255,0.7); z-index: 1;}
+	}
+}
 /*---------------------------------------------------------newsContentBox card 2*/
 
 /*---------------------------------------------------------newsContentBox card 3*/
 .zuckerberg_handtrakingWrap{width: 100%; height: 100%;}
 .handtrakingHoverBox{width: 100%; height: 100%; position: absolute; top: 0; left: 0; background: rgba(0,0,0,0.3); opacity: 0; z-index: 1; transition: 0.6s;}
 .zuckerberg_handtrakingWrap:hover .handtrakingHoverBox{opacity: 1;}
-.zuckerberg_handtrakingWrap img{width: 100%; height: 460px; transition: 1.2s;}
+.zuckerberg_handtrakingWrap img{width: 100%; height:100%; transition: 1.2s;}
 .zuckerberg_handtrakingWrap:hover img{transform: scale(2) translate(130px, -55px)}
 .zuckerberg_handtrakingWrap p{width: 400px; position: absolute; color: #eee; font-size: 1.3em; bottom: -100px; left: 50%; transform:translate(-50%, 0); transition: 1s; z-index:1; }
 .zuckerberg_handtrakingWrap:hover p{bottom: 80px;}
 .zuckerberg_handtrakingWrap a{position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 6em; color:rgba(255,255,255,0.7); z-index: 1; }
 .zuckerberg_handtrakingWrap a:hover{color:#eee;}
+@media screen and (max-width:560px){
+	.zuckerberg_handtrakingWrap img{width: 550px;}
+	.zuckerberg_handtrakingWrap:hover img{transform: scale(1) translate(0, 0)}
+	.zuckerberg_handtrakingWrap p{top: 10px; width: 90%; font-size: 1.1em;}
+	.zuckerberg_handtrakingWrap:hover p{top: 10px;}
+	.zuckerberg_handtrakingWrap a{position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 4em;  color:rgba(255,255,255,0.7); z-index: 1;}
+	}
+}
 /*---------------------------------------------------------newsContentBox card 3*/
 
 /*---------------------------------------------------------newsContentBox card 4*/
-.newsHandtrakingBox1,.newsHandtrakingBox2 {width: 100%; height: 50%; overflow: hidden;}
+.newsHandtrakingBox1,.newsHandtrakingBox2 {width: 100%; height:100%; overflow: hidden; box-sizing: border-box;}
 .newsHandtrakingBox1{border-bottom: 3px solid #585858;}
 .newsHandtrakingBox1 img,
 .newsHandtrakingBox2 img{width: 100%; height:100%; transition: 0.5s;}
 .newsHandtrakingBox1:hover img,
 .newsHandtrakingBox2:hover img{transform: scale(1.1);}
-.HandtrakinghoverBox1{width: 100%; height: 50%; background: rgba(0,0,0,0.3); opacity:0; transition: 0.6s; z-index: 1; position: relative; position: absolute; top: 0; left: 0; z-index: 99;}
-.HandtrakinghoverBox2{width: 100%; height: 50%; background: rgba(0,0,0,0.3); opacity:0; transition: 0.6s; z-index: 1; position: relative; position: absolute; bottom: 0; left: 0; z-index: 99;}
+.HandtrakinghoverBox1{width: 100%; height: 100%; background: rgba(0,0,0,0.3); opacity:0; transition: 0.6s; z-index: 1; position: relative; position: absolute; top: 0; left: 0; z-index: 99;}
+.HandtrakinghoverBox2{width: 100%; height: 100%; background: rgba(0,0,0,0.3); opacity:0; transition: 0.6s; z-index: 1; position: relative; position: absolute; bottom: 0; left: 0; z-index: 99;}
 .newsHandtrakingBox1:hover .HandtrakinghoverBox1,
 .newsHandtrakingBox2:hover .HandtrakinghoverBox2{opacity: 1;}
 .HandtrakinghoverBox1 a,.HandtrakinghoverBox2 a{position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size:5em; color:rgba(255,255,255,0.7); z-index: 1; }
 .HandtrakinghoverBox1 a:hover,.HandtrakinghoverBox2 a:hover{color:#eee;}
 
+@media screen and (max-width:560px){
+	.newsHandtrakingBox1 img,
+.newsHandtrakingBox2 img{min-height:230px; transition: 0.5s;}
+	.newsHandtrakingBox1:hover img,
+.newsHandtrakingBox2:hover img{transform: scale(1); }
+	.HandtrakinghoverBox1,.HandtrakinghoverBox2{opacity: 1;  background: rgba(0,0,0,0.1);}
+	.HandtrakinghoverBox1 a,.HandtrakinghoverBox2 a{font-size: 4em;}
+	}
+}
 /*---------------------------------------------------------newsContentBox card 4*/
 
 /*---------------------------------------------------------newsContentBox card 5*/
 .netflixBox{width: 100%; height: 100%; }
-.netflixBack img{width: 100%;}
-.netflixText{position: absolute; top: 168px; left:110px; z-index: 1; transition: 1s;cursor: pointer;}
+.netflixBack img{width: 100%; height: 100%;}
+.netflixText{position: absolute; top: 40%; left: 50%; transform:translate(-50%, 0); z-index: 1; transition: 1s;cursor: pointer;}
 .netflixText img{width: 200px;}
-.netflixBox:hover .netflixText{transform: scale(1.4); top: 155px;}
+.netflixBox:hover .netflixText{transform: scale(1.4) translate(-33%, 0) ; top: 37%;}
 .netflixBox p{width: 330px; position: absolute; top: 270px; left: 50%; transform: translate(-50%,0); color: rgba(255,255,255,0.7); z-index: 1; cursor: pointer;}
 .netflixBox:hover p{color: #eee;}
+@media screen and (max-width:560px){
+	.netflixBack img{min-height:460px;}
+	.netflixBox p{width: 90%;}
+	.netflixBox:hover .netflixText{transform: scale(1) translate(-50%, 0) ; top: 37%;}
+}
 /*---------------------------------------------------------newsContentBox card 5*/
 
 /*---------------------------------------------------------newsContentBox card 6*/
@@ -447,26 +525,31 @@ span{display: block;}
 .KpopSliderWrap:hover img{transform: scale(1.1);}
 .kpopSlider .fa-play-circle{font-size:6em; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: rgba(255,255,255,0.7); cursor: pointer;}
 .kpopSlider .fa-play-circle:hover{color: #eee;}
+@media screen and (max-width:560px){
+	.kpopSlider img {height:300px;}
+}
 /*---------------------------------------------------------newsContentBox card 6*/
 
 
 
-
-
-
-.footerBox{width: 100%; height: 1250px; position:relative; }
-#footerQuestBack{width: 100%; height: 1250px; position: absolute; top: -450px; z-index: -1; overflow: hidden; background: url(../images/footerquest.jpg); background-size: cover; background-repeat: no-repeat;}
-
-.footerTextBox{width: 100%; height: 70px;  border-top: 1px solid #585858; position:absolute; top: 700px;background: #f6f6f6;}
+#footerQuestBack{width: 100%; height: 800px;  z-index: -1; overflow: hidden; background: url(../images/footerquest.jpg); background-size: cover; background-repeat: no-repeat;  background-position: center; transform: translate(0, -40%); position: absolute;}
+.footerBox{width: 100%; height: 540px; margin-top: 400px;}
+.footerTextBox{width: 100%; height: 140px;  border-top: 1px solid #585858; background: #f6f6f6;}
+.footerText1,.footerText2{width: 1245px; height: 70px; margin: 0 auto;}
 .footerText2{border-top: 1px solid #585858;}
-.footerText1,.footerText2{width: 1245px; height: 100%; margin: 0 auto;}
-.footerText1{line-height: 70px;}
-.footerText2 p{margin-top: 20px;}
+.footerText1 p{padding: 25px 0 0 0;}
+.footerText2 p{padding: 25px 0 0 0;}
 
-.lastFooter{width: 100%; height: 400px; background: #1c1e20; position: absolute; bottom: 0;}
+.lastFooter{width: 100%; height: 400px; background: #1c1e20;}
 .lastFooter h3{color: #eee; font-size: 8em; text-align: center; line-height: 400px;}
 
-
+@media screen and (max-width:560px){
+	#footerQuestBack{display: none;}
+	.footerTextBox{width: 100%; height: 180px;}
+	.footerText1,.footerText2{width: 90%; font-size: 0.8em; border: none;}
+	.footerText2 p{padding: 0;}
+	}
+}
 /*-------------------BxSlider */
 .bx-wrapper {
     -moz-box-shadow: none;
@@ -515,22 +598,23 @@ top: 5px; left: 5px;
 width:180px;}
 
 @media screen and (max-width: 560px){
-.main-sliderWrap .bx-wrapper .bx-pager, .bx-wrapper .bx-controls-auto {
-    position: absolute;
-    bottom: 380px;
-    width: 100%;}
-.bx-wrapper .bx-pager.bx-default-pager a {
-    border:3px solid #fff;
-    background:transparent;
-    text-indent: -9999px;
-    display: block;
-    width: 30px;
-    height: 30px;
-    margin: 0 10px;
-    outline: 0;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    border-radius: 50%;}
+	.main-sliderWrap .bx-wrapper .bx-pager, .bx-wrapper .bx-controls-auto {
+	    position: absolute;
+	    bottom: 280px;
+	    width: 100%;}
+	.KpopSliderWrap .bx-wrapper .bx-pager, .bx-wrapper .bx-controls-auto {
+		display: none;}
+
+	.bx-wrapper .bx-pager.bx-default-pager a {
+	    width: 30px;
+	    height: 30px;
+	    margin: 0 10px;
+	}
+	.KpopSliderWrap .bx-wrapper .bx-pager.bx-default-pager a {
+	    width: 30px;
+	    height: 30px;
+	    margin: 0 10px;
+	}
 }
 
 
@@ -550,4 +634,7 @@ width:180px;}
     font-size:1.5em;
     padding: 0 10px;}
 
+	.newsTextBox h2 {
+    font-size:1.5em;
+    padding: 0 10px;}
 }
