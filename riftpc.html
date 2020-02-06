@@ -4,7 +4,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
 	<meta charset="UTF-8">
 	<title>문서 제목</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<link href="https://fonts.googleapis.com/css?family=Noto+Sans&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="css/reset.css">
 	<link rel="stylesheet" href="css/animate.css">
@@ -35,6 +35,10 @@
 					<li><a href="rift.html" class="navMenu">Quest</a></li>
 					<li><a href="oculus.html" class="navMenu">Oculus</a></li>
 				</ul>
+
+				<div class="hamberger">
+					<i class="fas fa-bars"></i>
+				</div>
 			</div>
 	</header>
 
@@ -344,6 +348,15 @@
 					<img src="images/safe_image.png" alt="">
 					<p>Oculus 지원 PC를 이용하여 문제해결에 신경 쓰는 시간은 절약하고 VR에서 더 많은 시간을 보내세요.</p>
 				</div>
+
+				<div class="desktopTestMobile">
+					<img src="images/desktopTest1.png" alt="">
+					<img src="images/desktopTest2.png" alt="">
+					<img src="images/desktopTest3.png" alt="">
+				</div>
+				<div class="desktopTestMobileLogo">
+					<img src="images/safe_image.png" alt="">
+				</div>
 			</li>
 		</ul>
 	</div>
@@ -352,9 +365,7 @@
 
 	<div class="lastFooter">
 		<p>*표시된 가격은 권장가(MSRP)입니다. 소매가는 변경될 수 있습니다.</p>
-
-		<h3>footer</h3>
-		
+		<h3>footer</h3>		
 	</div>	
 
 
@@ -416,6 +427,9 @@
 			$('.languege').click(function(){
 				$('.languege').removeClass('active');
 				$(this).addClass('active');
+			});
+			$('.hamberger').click(function(){
+				$(".main-nav").toggleClass('reponsive');
 			});			
 
 			$(window).on('scroll',function(){
@@ -439,14 +453,6 @@
 
 
 
-
-			var footerback = document.getElementById('footerQuestBack');
-			window.onmousemove = function (e) {
-			    var x = - e.clientX/80,
-			        y = - e.clientY/80;
-			    footerback.style.backgroundPositionX = x + 'px';
-			    footerback.style.backgroundPositionY = y + 'px';
-			};
 
 
 
