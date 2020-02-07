@@ -587,10 +587,116 @@
 			</ul>
 		</div>
 	</div>
-	
+
+	<div class="newArsgardBox">
+		<div class="bounceInLeft wow newArsgardTextbox">
+			<p>신이 되기 위한 용맹한 전사의 여정</p>
+			<h3>'Asgard's Wrath'가 출시되었습니다.</h3>
+			<div class="buyBtn">
+				<a href="">지금 구매하기</a>
+			</div>	
+			<a href="https://www.youtube.com/embed/kIt1_GOagiw" class="youtube"><i class="fas fa-play-circle"></i>트레일러보기</a>
+		</div>
+	</div>
+
+	<div class="productChoiceBoxWrap">
+		<ul class="clearfix">
+			<li>
+				<div class="productChoiceBox">
+					<img src="images/go_choice.jpg" alt="">
+					<div class="bounceInUp wow productTextBox">
+						<h2>OCULUS GO</h2>
+						<h3>엔터테인먼트에 최적화된 올인원 헤드셋입니다.</h3>
+						<a href="https://www.youtube.com/embed/v4eTJIbJYK4" class="youtube"><i class="far fa-play-circle"></i></a>
+					</div>
+				</div>
+			</li>
+			<!-- -------------------------------------------------------------8 -->
+			<li>
+				<div class="productChoiceBox">
+					<img src="images/quest_choice.jpg" alt="">
+					<div class="bounceInUp wow productTextBox">
+						<h2>OCULUS QUEST</h2>
+						<h3>Oculus 최초의 올인원 게이밍 헤드셋을 만나보세요.</h3>
+						<a href="https://www.youtube.com/embed/xwW-1mbemGc" class="youtube"><i class="far fa-play-circle"></i></a>
+					</div>
+				</div>
+			</li>
+			<!-- -------------------------------------------------------------9 -->
+			<li>
+				<div class="productChoiceBox">
+					<img src="images/rift_choice.jpg" alt="">
+					<div class="bounceInUp wow productTextBox">
+						<h2>OCULUS RIFT S</h2>
+						<h3>최고의 PC 기반의 VR 헤드셋입니다.</h3>
+						<a href="https://www.youtube.com/embed/fnCmUWqKo6g" class="youtube"><i class="far fa-play-circle"></i></a>
+					</div>
+				</div>
+			</li>	
+		</ul>	
+	</div>
+
+	<div class="zurkerberg_productContent_Box">
+		<div class="zurkerberg_questText">
+			<h2>Oculus Go</h2>
+			<a href="https://www.youtube.com/embed/2WTk4p1-Pp0" class="youtube"><i class="far fa-play-circle"></i></a>
+		</div>
+		<div class="zurkerberg_riftText">
+			<h2>Oculus Quest</h2>
+			<a href="https://www.youtube.com/embed/pVFcsedWsKE" class="youtube"><i class="far fa-play-circle"></i></a>
+		</div>
+		<div class="zurkerberg_goText">
+			<h2>Oculus Rift S</h2>
+			<a href="https://www.youtube.com/embed/kaS0tJapbEY" class="youtube"><i class="far fa-play-circle"></i></a>
+		</div>
+		<div class="zurkerberg_guideText">
+			<a href="https://www.youtube.com/embed/RCB_mfGmh9w" class="youtube">
+				<h3>Zuckerberg가 직접 소개하는 OCULUS 상품정보 보러가기</h3>
+			</a>
+		</div>
+		<div class="zurkerberg_product_HoverBox">
+			<img src="images/zurkerberg_product.jpg" alt="">
+		</div>
+		<div class="zurkerberg_bottom_Box">
+			<img src="images/zurkerberg_bottom.jpg" alt="">
+		</div>
+	</div>
+
+<div class="newsBox">
+	<ul class="clearfix">
+		<li>
+			<div class="newsTextBox">
+				<h3>-OCULUS 새로운 소식-</h3>
+			</div>
+		</li>
+		<li>
+			<div class="netflixBox">
+				<div class="netflixBack">
+					<img src="images/netflix.jpg" alt="">
+				</div>
+				<div class="netflixText">
+					<a href="https://www.youtube.com/embed/-Kz_KfLXrq0" class="youtube"><img src="images/netflixText.png" alt=""></a>
+				</div>
+				<p>이젠 VR에서 친구와 함께 NETFLIX를 시청하세요!</p>
+			</div>
+		</li>
+		<li>
+			<div class="zuckerberg_handtrakingWrap">
+				<img src="images/oc6_mark_keynote.jpg" alt="">
+				<div class="handtrakingHoverBox"></div>
+				<p>Oculus 모바일 플랫폼을 이용하면 GALAXY 스마트폰을 휴대용 VR 기기로
+				활용하여 언제 어디서나 VR 환경을 자유롭게 경험할 수 있습니다.</p>
+				<a href="https://www.youtube.com/embed/ybhYJ87U2Gs" class="youtube"><i class="far fa-play-circle"></i></a>
+			</div>
+		</li>
+	</ul>
+</div>
 
 
+
+<div id="footerQuestBack"></div>
 <div class="footerBox">
+	
 	<div class="footerTextBox">
 		<div class="footerText1">
 			<p>1. 일부 콘텐츠와 기능은 특정 언어 또는 지역에서 지원되지 않을 수 있습니다.</p>
@@ -600,10 +706,10 @@
 		</div>
 	</div>
 	<div class="lastFooter">
-		<h3>footer</h3>
-		
+		<h3>footer</h3>	
 	</div>	
 </div>
+
 
 
 
@@ -719,6 +825,23 @@
 				$(this).addClass('active');
 			});			
 
+			$('.zurkerberg_productContent_Box').mouseover(function(){
+				$(this).addClass('active');
+				$(".zurkerberg_questText").addClass('bounceIn','wow');
+				$(".zurkerberg_riftText").addClass('bounceIn','wow');
+				$(".zurkerberg_goText").addClass('bounceIn','wow');
+			});
+
+			var footerback = document.getElementById('footerQuestBack');
+			window.onmousemove = function (e) {
+			    var x = - e.clientX/50,
+			        y = - e.clientY/50;
+			    footerback.style.backgroundPositionX = x + 'px';
+			    footerback.style.backgroundPositionY = y + 'px';
+			};
+
+
+
 			$(window).on('scroll',function(){
 				if($(window).scrollTop()){
 					$('.main-navBox').addClass('black');
@@ -733,7 +856,9 @@
 				iframe:true,
 				innerWidth:"70%",
 				innerHeight:"70%",
-			})
+			});
+
+
 		});
 
 </script>
