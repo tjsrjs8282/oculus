@@ -4,7 +4,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
 	<meta charset="UTF-8">
 	<title>문서 제목</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<link href="https://fonts.googleapis.com/css?family=Noto+Sans&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="css/reset.css">
 	<link rel="stylesheet" href="css/animate.css">
@@ -12,7 +12,6 @@
 	<link rel="stylesheet" href="css/all.css">
 	<link rel="stylesheet" href="css/colorbox.css">
 	<link rel="stylesheet" href="css/style.css">
-	
 
 </head>
 
@@ -31,6 +30,9 @@
 					<li><a href="rift.html" class="navMenu">Quest</a></li>
 					<li><a href="oculus.html" class="navMenu">Oculus</a></li>
 				</ul>
+				<div class="hamberger">
+					<i class="fas fa-bars"></i>
+				</div>
 			</div>
 		</header>
 
@@ -589,7 +591,10 @@
 	</div>
 
 	<div class="newArsgardBox">
-		<div class="bounceInLeft wow newArsgardTextbox">
+		<div class="bounceInLeft wow arsgardLogoBox">
+			<img src="images/arsgardLogo.png" alt="게임로고">
+		</div>
+		<div class="bounceInRight wow newArsgardTextbox">
 			<p>신이 되기 위한 용맹한 전사의 여정</p>
 			<h3>'Asgard's Wrath'가 출시되었습니다.</h3>
 			<div class="buyBtn">
@@ -684,8 +689,7 @@
 			<div class="zuckerberg_handtrakingWrap">
 				<img src="images/oc6_mark_keynote.jpg" alt="">
 				<div class="handtrakingHoverBox"></div>
-				<p>Oculus 모바일 플랫폼을 이용하면 GALAXY 스마트폰을 휴대용 VR 기기로
-				활용하여 언제 어디서나 VR 환경을 자유롭게 경험할 수 있습니다.</p>
+				<p>Oclus Quest 핸드트레킹 신기술을 도입하였습니다. 최첨단 핸드트레킹 센서탑재로 더욱 섬세하고 놀라운 VR를 경험해보세요.</p>
 				<a href="https://www.youtube.com/embed/ybhYJ87U2Gs" class="youtube"><i class="far fa-play-circle"></i></a>
 			</div>
 		</li>
@@ -820,6 +824,11 @@
 				$('.navMenu').removeClass('active');
 				$(this).addClass('active');
 			});	
+
+			$('.hamberger').click(function(){
+				$(".main-nav").toggleClass('reponsive');
+			});		
+			
 			$('.languege').click(function(){
 				$('.languege').removeClass('active');
 				$(this).addClass('active');
