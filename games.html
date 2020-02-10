@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta charset="UTF-8">
+	<title>문서 제목</title>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<link href="https://fonts.googleapis.com/css?family=Noto+Sans&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/animate.css">
+	<link rel="stylesheet" href="css/all.css">
+	<link rel="stylesheet" href="css/jquery.bxslider.css">
+	<link rel="stylesheet" href="css/setting.css">
+	<link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.css">
+
+</head>
+
+<body>
+	<div id="main">
+		<header class="main-navBox">
+			<div class="main-nav">
+				<a href="index.html"><img src="images/oculusLogo.png" alt="오큘러스 로고"></a>
+				<ul class="clearfix">
+					<li class="languege">ENG</li>
+					<li class="languege active">KOR</li>
+					<li><a href="#" class="navMenuC">Community</a></li>
+					<li><a href="#" class="navMenu">Games</a></li>
+					<li><a href="rift.html" class="navMenu">Go</a></li>
+					<li><a href="#" class="navMenu active">Rift S</a></li>
+					<li><a href="rift.html" class="navMenu">Quest</a></li>
+					<li><a href="oculus.html" class="navMenu">Oculus</a></li>
+				</ul>
+				<div class="hamberger">
+					<i class="fas fa-bars"></i>
+				</div>
+			</div>
+	</header>
+
+	<div class="main-sliderWrap">
+			<ul class="main-slider">
+				<li>
+					<div class="vrGamesBack"></div>
+					<div class="main-sliderTextBox">
+						<h1>PC VR / RIFT S </h1>
+						<p><span>PC 기반으로 제작된 Oculus Rift S </span>
+							 놀라운 VR 게임을 통해서 마음껏 폭파하고 휘두르고 날아보세요.</p>
+						<p>동영상 보기</p> <a href="https://www.youtube.com/embed/kIt1_GOagiw" class="youtube"><i class="fas fa-play-circle"></i></a>
+					</div>
+				</li>
+				<li>
+					<div class="beatSaberBack"></div>
+					<div class="main-sliderTextBox">
+						<h1>BEAT SABER</h1>
+						<p>2018년 출시되어 뜨거운 인기를 끌었던 BEAT SAVER 가 리뉴얼되었습니다. 
+							<span>더욱 많아진 모드와 컨텐츠 심지어 전세계 사람들과 즐기는 실시간 대전모드 </span></p>
+						<p>지금 예약 구매하면 20% 할인</p>
+					</div>
+				</li>
+				<li>
+					<div class="blackfridayBack"></div>
+					<div class="main-sliderTextBox">
+						<h1>Oculus Black Friday </h1>
+						<p><span>2019년 11월 마지막주 목요일에 열리는 30% SALE 할인혜택 </span>
+							 오직 단 하루만 진행되는 이벤트 이 기회를 놓치지 마세요.</p>
+						<p>기간 한정 이벤트 : 2019년 11.28일 단 하루</p>
+					</div>
+				</li>
+				<li>
+					<div class="vaderimmortalWarp">
+						<div class="vaderimmortalBack"></div>
+						<div class="main-sliderTextBox">
+							<h1>Vader Immortal</h1>
+							<p>Oculus Quest를 구매하고 Vader Immortal: A Star Wars VR Series의 
+								<span>3가지 에피소드 모두와 Lightsaber Dojos를 무료로 받으세요.</span></p>
+							<p>기간 한정 이벤트 : 2020년 1월 31일 종료</p>
+						</div>
+					</div>
+				</li>
+			</ul>
+
+			<div class="nextBtn">
+				<img src="images/clickgridRight.png" alt="">
+				<img src="images/clickgridRight.png" alt="">
+			</div>
+
+			<div class="prevBtn">
+				<img src="images/clickgridLeft.png" alt="">
+				<img src="images/clickgridLeft.png" alt="">
+			</div>
+		</div>
+	</div>
+	
+
+	<div class="riftContentListBox">
+		<ul class="clearfix">
+			<li>
+				<h2>Oculus Rift S</h2>
+			</li>
+			<li class="listBtn">
+				<a href="rift.html"><h2>개요</h2></a>
+			</li>
+			<li class="listBtn active">
+				<a href="riftpc.html"><h2>지원 PC</h2></a>
+			</li>
+			<li class="listBtn active">
+				<a href="#"><h2>설정</h2></a>
+			</li>
+		</ul>
+	</div>
+		
+
+		<div class="setting"></div>
+
+
+
+
+	<div class="lastFooter">
+		<p>*표시된 가격은 권장가(MSRP)입니다. 소매가는 변경될 수 있습니다.</p>
+		<h3>footer</h3>		
+	</div>	
+
+
+<script src="js/jquery-3.1.1.min.js"></script>
+<script src="js/jquery.bxslider.js"></script>
+<script src="js/wow.js"></script>
+<script src="js/all.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://unpkg.com/swiper/js/swiper.js"></script>
+
+<script>
+
+			$(document).ready(function(){
+			var mainSlider = $(".main-slider").bxSlider({
+				stopAutoOnClick:true,
+				auto:true,
+				controls:false,
+				pager:true,
+				mode:'horizontal',
+				speed:700,
+			});
+			$(".nextBtn").click(function(){
+				mainSlider.goToNextSlide();
+			});
+
+			$(".prevBtn").click(function(){
+			   mainSlider.goToPrevSlide();
+			});
+
+
+			$('.navMenuC').click(function(){
+				alert("준비중입니다.");
+			});
+
+
+				
+			$('.navMenu').click(function(){
+				$('.navMenu').removeClass('active');
+				$(this).addClass('active');
+			});	
+
+			$('.languege').click(function(){
+				$('.languege').removeClass('active');
+				$(this).addClass('active');
+			});
+			$('.hamberger').click(function(){
+				$(".main-nav").toggleClass('reponsive');
+			});			
+
+			$(window).on('scroll',function(){
+				if($(window).scrollTop()){
+					$('.main-navBox').addClass('black');
+				}
+				else{
+					$('.main-navBox').removeClass('black');
+				}
+			});
+
+		});
+
+</script>
+</body>
+</html>

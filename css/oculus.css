@@ -274,7 +274,7 @@ span{display: block;}
 /*------------------------------------------------------------------main card12*/
 .zurkerberg_productContent_Box{width: 100%; height: 100%; background: #090a0c;}
 .zurkerberg_productContent_Box img{position: absolute;}
-.zurkerberg_product_HoverBox img{width: 100%; top: 0; left: -100%; transition: 1.2s;}
+.zurkerberg_product_HoverBox img{width: 100%; top: 0; left: -100%; transition:1s;}
 .zurkerberg_productContent_Box.active .zurkerberg_product_HoverBox img{left: 0;}
 .zurkerberg_bottom_Box img{width: 100%; height: 220px; bottom: 0; left: 0;}
 
@@ -323,7 +323,7 @@ span{display: block;}
 .gamesBackBox{width: 1245; height:100%; margin:0 auto; transition: 1s;  background:url(../images/oculus-quest-games.jpg); background-size: cover; z-index: 1; }
 .gamesSliderHoverBox.active .gamesBackBox{width: 100%; opacity: 0.15;}
 
-.gamesSliderWrap{ width: 100%; height: 600px;  position: absolute; top:-1000px; transition: 3s; z-index: 1;}
+.gamesSliderWrap{ width: 100%; height: 600px;  position: absolute; top:-1000px; transition:2s; z-index: 1;}
 .gamesSliderHoverBox.active .gamesSliderWrap{top: 120px;}
 
 .oculusimagesBox{width: 100%; height: 480px; background-color:rgba(0,0,0,0.7); display: flex; justify-content: space-around;}
@@ -534,7 +534,7 @@ span{display: block;}
 
 
 
-#footerQuestBack{width: 100%; height: 800px;  z-index: -1; overflow: hidden; background: url(../images/footerquest.jpg); background-size: cover; background-repeat: no-repeat;  background-position: center; transform: translate(0, -40%); position: absolute;}
+#footerQuestBack{width: 100%; height:1000px;  z-index: -1; overflow: hidden; background: url(../images/footerquest.jpg); background-size: cover; background-repeat: no-repeat;  background-position: center; transform: translate(0, -35%); position: absolute;}
 .footerBox{width: 100%; height: 550px; margin-top: 400px;}
 .footerTextBox{width: 100%; height: 150px;  border-top: 1px solid #585858; background: #f6f6f6;}
 .footerText1,.footerText2{width: 1245px; height: 70px; margin: 0 auto;}

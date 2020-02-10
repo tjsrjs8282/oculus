@@ -23,7 +23,7 @@
 				<ul class="clearfix">
 					<li class="languege">ENG</li>
 					<li class="languege active">KOR</li>
-					<li><a href="https://forums.oculusvr.com/community" class="navMenu">Cummunity</a></li>
+					<li><a href="#" class="navMenuC">Community</a></li>
 					<li><a href="#" class="navMenu">Games</a></li>
 					<li><a href="rift.html" class="navMenu">Go</a></li>
 					<li><a href="rift.html" class="navMenu">Rift S</a></li>
@@ -523,7 +523,7 @@
 				controls:false,
 				pager:true,
 				mode:'horizontal',
-				speed:2000,
+				speed:800,
 			});
 			$(".nextBtn").click(function(){
 				mainSlider.goToNextSlide();
@@ -537,7 +537,7 @@
 				controls:false,
 				pager:true,
 				mode:'horizontal',
-				speed:3000,
+				speed:1000,
 			});
 
 			var kpopSlider = $(".kpopSlider").bxSlider({
@@ -546,7 +546,7 @@
 				controls:false,
 				pager:true,
 				mode:'horizontal',
-				speed:1500,
+				speed:1000,
 			});
 
 				
@@ -578,6 +578,10 @@
 			$('.hamberger').click(function(){
 				$(".main-nav").toggleClass('reponsive');
 			});
+
+			$('.navMenuC').click(function(){
+				alert("준비중입니다.");
+			});	
 
 
 			$(window).on('scroll',function(){

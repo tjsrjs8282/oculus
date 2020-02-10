@@ -23,7 +23,7 @@
 				<ul class="clearfix">
 					<li class="languege">ENG</li>
 					<li class="languege active">KOR</li>
-					<li><a href="https://forums.oculusvr.com/community" class="navMenu">Cummunity</a></li>
+					<li><a href="#" class="navMenuC">Community</a></li>
 					<li><a href="#" class="navMenu">Games</a></li>
 					<li><a href="rift.html" class="navMenu">Go</a></li>
 					<li><a href="rift.html" class="navMenu">Rift S</a></li>
@@ -600,7 +600,7 @@
 			<div class="buyBtn">
 				<a href="">지금 구매하기</a>
 			</div>	
-			<a href="https://www.youtube.com/embed/kIt1_GOagiw" class="youtube"><i class="fas fa-play-circle"></i>트레일러보기</a>
+			<a href="https://www.youtube.com/embed/kIt1_GOagiw" class="youtube">트레일러보기<i class="fas fa-play-circle"></i></a>
 		</div>
 	</div>
 
@@ -682,7 +682,7 @@
 				<div class="netflixText">
 					<a href="https://www.youtube.com/embed/-Kz_KfLXrq0" class="youtube"><img src="images/netflixText.png" alt=""></a>
 				</div>
-				<p>이젠 VR에서 친구와 함께 NETFLIX를 시청하세요!</p>
+				<p>이젠 VR에서 NETFLIX를 시청하세요!</p>
 			</div>
 		</li>
 		<li>
@@ -735,7 +735,7 @@
 				controls:false,
 				pager:true,
 				mode:'horizontal',
-				speed:2000,
+				speed:800,
 			});
 			$(".nextBtn").click(function(){
 				mainSlider.goToNextSlide();
@@ -750,21 +750,21 @@
 				controls:false,
 				pager:true,
 				mode:'horizontal',
-				speed:1500,
+				speed:1200,
 			});	
 
 			var riftSlider = $(".riftSlider").bxSlider({
 				controls:false,
 				pager:true,
 				mode:'horizontal',
-				speed:1500,
+				speed:1200,
 			});
 
 			var gpSlider = $(".goSlider").bxSlider({
 				controls:false,
 				pager:true,
 				mode:'horizontal',
-				speed:1500,
+				speed:1200,
 			});
 
 			var gpSlider = $(".developerSlider").bxSlider({
@@ -773,14 +773,14 @@
 				controls:false,
 				pager:true,
 				mode:'horizontal',
-				speed:1000,
+				speed:700,
 			});
 
 			var gamesSlider = $(".gamesSlider").bxSlider({
 				controls:false,
 				pager:true,
 				mode:'horizontal',
-				speed:3000,
+				speed:1000,
 			});
 
 			var kpopSlider = $(".kpopSlider").bxSlider({
@@ -789,7 +789,7 @@
 				controls:false,
 				pager:true,
 				mode:'horizontal',
-				speed:1600,
+				speed:1000,
 			});
 
 			$('.card').click(function(){
@@ -832,7 +832,10 @@
 			$('.languege').click(function(){
 				$('.languege').removeClass('active');
 				$(this).addClass('active');
-			});			
+			});	
+			$('.navMenuC').click(function(){
+				alert("준비중입니다.");
+			});	
 
 			$('.zurkerberg_productContent_Box').mouseover(function(){
 				$(this).addClass('active');

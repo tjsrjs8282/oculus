@@ -24,7 +24,7 @@
 				<ul class="clearfix">
 					<li class="languege">ENG</li>
 					<li class="languege active">KOR</li>
-					<li><a href="https://forums.oculusvr.com/community" class="navMenu">Cummunity</a></li>
+					<li><a href="#" class="navMenuC">Community</a></li>
 					<li><a href="#" class="navMenu">Games</a></li>
 					<li><a href="rift.html" class="navMenu">Go</a></li>
 					<li><a href="#" class="navMenu active">Rift S</a></li>
@@ -104,7 +104,7 @@
 				<a href="#"><h2>지원 PC</h2></a>
 			</li>
 			<li class="listBtn">
-				<h2>설정</h2>
+				<a href="oculusSetting.html"><h2>설정</h2></a>
 			</li>
 		</ul>
 	</div>
@@ -369,7 +369,7 @@
 				controls:false,
 				pager:true,
 				mode:'horizontal',
-				speed:2000,
+				speed:700,
 			});
 			$(".nextBtn").click(function(){
 				mainSlider.goToNextSlide();
@@ -384,7 +384,7 @@
 				controls:false,
 				pager:true,
 				mode:'horizontal',
-				speed:3000,
+				speed:1000,
 			});
 
 			var testSlider = $(".TestSlider").bxSlider({
@@ -410,6 +410,10 @@
 				$(".main-nav").toggleClass('reponsive');
 			});			
 
+			$('.navMenuC').click(function(){
+				alert("준비중입니다.");
+			});
+
 			$(window).on('scroll',function(){
 				if($(window).scrollTop()){
 					$('.main-navBox').addClass('black');
@@ -418,6 +422,7 @@
 					$('.main-navBox').removeClass('black');
 				}
 			});
+			
 			$('.modal').colorbox({
 				rel:"modal"
 				});

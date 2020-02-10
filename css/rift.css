@@ -1,5 +1,5 @@
-body{font-family: 'Noto Sans', sans-serif; background: #f6f6f6;}
-html{font-size:14px; scroll-behavior: smooth;}
+body{font-size:14px; font-family: 'Noto Sans', sans-serif; background: #f6f6f6;}
+html{ scroll-behavior: smooth;}
 span{display: block;}
 .sliderHidden{overflow: hidden;}
 ::-webkit-scrollbar{width:20px;}
@@ -34,12 +34,30 @@ span{display: block;}
 .main-nav ul li:nth-child(2):hover,
 .languege.active{background:#fff; color: #000;}
 
+.hamberger{display: none;}
+.hamberger .fa-bars{color: #fff; font-size:3em; line-height: 80px; cursor: pointer;}
+
+@media screen and (max-width:1000px){
+    .languege{display: none; transition: 0s;}
+    .main-nav.reponsive .languege{display: none;}
+    .main-navBox img{width: 120px; float: none; margin: 0;}
+    .main-nav ul{width: 100%; position: absolute; top: -800px; }
+    .main-nav ul li{float: none; display: none;  transition: 0s;}
+    .main-nav ul li a{transition: 0s;}
+    .main-nav.reponsive ul{top: 50px; height: 500px; transition: 0.7s;}
+    .main-nav.reponsive ul li{display: block; background:rgba(0,0,0,1);}
+    .main-navBox.black .main-nav.reponsive ul{height: 500px;}
+    .main-navBox.black .main-nav.reponsive ul li{background:rgba(0,0,0,0.5);}
+    .hamberger{display:inline-block; position:fixed; top: 3px; right: 30px;}
+    .main-navBox{height: 50px; background:rgba(0,0,0,1);}
+    .main-navBox.black{height: 50px; background:rgba(0,0,0,0.5);}
+}
 /*--------------------------------------------main slider */
 .main-sliderWrap{ width: 100%; height: 1000px; position: relative; z-index:3333;}
-.main-slider .vaderimmortalBack {width: 100%;  height:1000px; background: url(../images/oculus-quest-black-friday.jpg); background-size: cover;}
-.main-slider .beatSaberBack {width: 100%;  height:1000px; background: url(../images/OculusQuest-BeatSaber.png); background-size: cover;}
-.main-slider .blackfridayBack {width: 100%;  height:1000px; background: url(../images/black-friday-2019-vr-deals_feature1.jpg); background-size: cover;}
-.vrGamesBack {width: 100%;  height:1000px; background: url(../images/vr_games.jpg); background-size: cover;}
+.vaderimmortalBack {width: 100%;  height:1000px; background: url(../images/oculus-quest-black-friday.jpg); background-size: cover; background-position: center;}
+.beatSaberBack {width: 100%;  height:1000px; background: url(../images/OculusQuest-BeatSaber.png); background-size: cover;  background-position: center;}
+.blackfridayBack {width: 100%;  height:1000px; background: url(../images/black-friday-2019-vr-deals_feature1.jpg); background-size: cover;  background-position: center;}
+.vrGamesBack {width: 100%;  height:1000px; background: url(../images/vr_games.jpg); background-size: cover;  background-position: center;}
 .main-sliderTextBox{position: absolute; top: 50%; left: 10%; color: #eeeeee; font-weight:bold;  text-shadow: 2px 2px 10px black; background:rgba(0,0,0,0.3); padding: 20px; }
 .main-sliderTextBox h1{font-size:5em;}
 .main-sliderTextBox p{font-size:1.4em; margin-bottom: 10px;}
@@ -70,6 +88,16 @@ span{display: block;}
 @keyframes mainSliderGirdLeft2{
     to{left: 35px;}
 }
+@media screen and (max-width:560px){
+.main-sliderWrap{height: 800px;}
+.vrGamesBack {height:800px;}
+.beatSaberBack { height:800px;}
+.blackfridayBack  {height:800px;}
+.vaderimmortalBack{height: 800px;}
+.main-sliderTextBox{top: 7%; right: 5%; left: 5%;}
+.main-sliderTextBox h1{font-size: 4em;}
+.nextBtn,.prevBtn{display: none;}
+}
 /*-------------------------------------------------------------------main header nav end*/
 
 /*-------------------------------------------------------------------quest list box*/
@@ -79,10 +107,15 @@ span{display: block;}
 
 .listBtn.active,
 .listBtn:hover{border:3px solid #585858; background: #ccc;}
+@media screen and (max-width:560px){
+.riftContentListBox{width: 100%;  top:560px; }
+.riftContentListBox ul li{width: 100%;}
+.riftContentListBox ul li:nth-child(1){ width: 100%}
+}
 /*-------------------------------------------------------------------quest list box*/
 
 /*-------------------------------------------------------------------main article box*/
-.riftMainContentBox{width: 1245px; height: 1350px; margin:0 auto; transition:1.3s;}
+.riftMainContentBox{width: 1245px; height: 1350px; margin:0 auto; transition:1s;}
 .riftMainContentBox > ul > li{float: left; height: 450px; position: relative; text-align: center; }
 .riftMainContentBox > ul > li:nth-child(1){ width:100%; background:url(../images/riftmain.jpg); background-size: cover;overflow: hidden; }
 .riftMainContentBox > ul > li:nth-child(2){width: 445px; }
@@ -90,6 +123,16 @@ span{display: block;}
 .riftMainContentBox > ul > li:nth-child(3) video{width: 100%; height: 100%}
 .riftMainContentBox > ul > li:nth-child(4){width: 445px;}
 .riftMainContentBox > ul > li:nth-child(5){width: 800px; background-color:#1c1e20; overflow: hidden;}
+
+@media screen and (max-width:560px){
+.riftMainContentBox{width: 100%; height: 1350px;}
+.riftMainContentBox > ul > li{float: left; height: 450px; position: relative; text-align: center; }
+.riftMainContentBox > ul > li:nth-child(1){ width:100%;}
+.riftMainContentBox > ul > li:nth-child(2){width: 100%; overflow: hidden; }
+.riftMainContentBox > ul > li:nth-child(3){display: none; }
+.riftMainContentBox > ul > li:nth-child(4){width: 100%;}
+.riftMainContentBox > ul > li:nth-child(5){width: 100%;}
+}
 /*-------------------------------------------------------------------main article box*/
 
 /*------------------------------------------------------------------main card1*/
@@ -108,10 +151,26 @@ span{display: block;}
 .rift_buyTextBox a{padding: 10px 25px; border: 1px solid #0c68ff; font-size: 1.3em; font-weight: bold; background-color: #0c68ff; color: #fff; border-radius: 8px; }
 .rift_buyTextBox a:hover{background: #148aff;}
 .rift_buyTextBox p{padding: 10px 25px; font-size: 1.5em; color:#fff;}
+
 .rift_buyTextBox p:nth-child(2):after{content: ""; display: inline-block; width: 1px; height: 25px; background-color: #eeee; position: absolute; left: 330px;}
 .rift_buyTextBox p:nth-child(3):hover{color:blue; cursor: pointer; font-weight: bold;}
 .rift_buyTextBox p:nth-child(4){padding: 0; margin-top: 30px;}
 .rift_buyTextBox p:nth-child(4):before{content: ""; display: inline-block; width: 540px; height: 1px; background-color: #eeee; position: absolute; bottom:60px; left:14px;}
+
+@media screen and (max-width:560px){
+body{font-size: 13px;}
+.riftMainContentBox h2{font-size: 3.1em; margin-left: 20px; }
+.rift_iconTextBox{width: 100%; height:380px; margin: 0;}
+.rift_iconBox img{display: none;}
+.riftLogo img {display: none;}
+.rift_iconBox{display: none;}
+.rift_buyTextBox{width:100%; position: absolute; padding: 0; bottom:0px;left: 20px; padding-bottom: 10px; }
+.rift_buyTextBox p{padding-left: 40px;}
+.rift_buyTextBox p:nth-child(2):after{left:180px;}
+.rift_buyTextBox p:nth-child(3){display: none; }
+.rift_buyTextBox p:nth-child(4){display: none;}
+.rift_buyTextBox{background: none;}
+}
 /*------------------------------------------------------------------main card1*/
 
 /*------------------------------------------------------------------main card2*/
@@ -147,11 +206,16 @@ span{display: block;}
 .riftHandBox img{width: 300px; position:absolute; top: 60px; transition: 0.8s;}
 .riftLeftHand img{ transform: rotate(15deg); left: -50px;}
 .riftRightHand img{transform: rotate(-15deg); right: -50px;}
+
+@media screen and (max-width:560px){
+body{font-size: 13px;}
+.riftHandBox img{width: 150px;}
+.riftHandTextBox{width: 90%; left: 50%; transform: translate(-50%, 0); animation:none;}
+.riftHandTextBox h3{padding-bottom: 80px;}
+.riftHandBox:hover .riftHandTextBox{transform: scale(1); transform: translate(-50%, 0);}
+
+}
 /*------------------------------------------------------------------main card5*/
-
-
-
-
 
 /*------------------------------------------------------------------rift slider*/
 .riftSliderBox{width: 100%; background-color:#1c1e20; margin-top: 100px;}
@@ -166,6 +230,14 @@ span{display: block;}
 .riftSliderText.two{left: 50%;}
 .riftSliderText.three{left: 42%;}
 .riftSliderText.four{left: 50%;}
+
+@media screen and (max-width:560px){
+.riftSliderText h2{font-size:2.8em; color: #fff; margin-bottom: 10px;}
+.riftSliderWrap
+{width: 100%; height:740px;}
+.riftSliderWrap img{width: 100%; min-height:350px; padding-top: 0px; padding-bottom:380px;}
+.riftSliderText{width: 90%; top: 330px; left:5% !important;}
+}
 /*------------------------------------------------------------------rift slider*/
 
 
@@ -216,11 +288,17 @@ span{display: block;}
 .gameGuide p{font-size: 1em;}
 .GamePrice{display: inline-block; margin: 5px;}
 .GamePrice p{width: 130px; height: 30px; line-height: 30px; border: 1px solid skyblue;}
+
+@media screen and (max-width:560px){
+.gamesBlackBox{display: none;}
+}
 /*--------------------------------------------games card end*/
 
 .newArsgardBox{width: 1245px; height: 400px; margin:0 auto; overflow: hidden;  margin-top: 100px; background: url(../images/newnew.jpg); background-position: center; background-repeat: no-repeat; background-size: cover;
-display: flex; justify-content: flex-end; align-items: center;}
-.newArsgardTextbox{width: 500px; height: 300px; color: #eee;}
+display: flex; justify-content:space-around; align-items: center;}
+.arsgardLogoBox{padding-right: 320px; padding-bottom: 230px;}
+.arsgardLogoBox img{width: 200px;}
+.newArsgardTextbox{width: 500px; height: 300px; color: #eee; padding-left: 50px;}
 .newArsgardTextbox h3{font-size: 2em; padding-bottom: 40px;}
 .newArsgardTextbox p{font-size: 1.4em; padding-bottom: 20px; padding-top: 20px;}
 .buyBtn{display: inline-block; }
@@ -228,6 +306,12 @@ display: flex; justify-content: flex-end; align-items: center;}
 .buyBtn a:hover{background: #148aff;}
 .newArsgardTextbox >a:last-child{font-size: 1.6em; color: #eee; padding-left: 20px;}
 .newArsgardTextbox >a:last-child:hover{color: #0c68ff; }
+@media screen and (max-width:560px){
+       .newArsgardBox{width: 100%; flex-wrap: wrap;}
+       .arsgardLogoBox{padding-right: 0; padding-bottom: 0; display: block; padding-top: 20px;}
+       .newArsgardTextbox{padding: 20px; margin: 0 auto;}
+       .newArsgardTextbox >a:last-child{font-size: 1.4em; }
+}
 /*-----------------------------------------------------------------newArsgardBox end*/
 
 .deliveryBox{width: 1245px; height: 300px; margin:0 auto;margin-top: 50px;
@@ -237,6 +321,10 @@ display: flex; text-align: center; justify-content: space-between; align-items:c
 .deliveryBox img{width: 130px;}
 .freeDelivery{width: 50%; border-right: 1px solid #999999;}
 .guarantee{width: 50%;}
+@media screen and (max-width:560px){
+       .deliveryBox{width: 100%;}
+       .deliveryBox p{font-size: 1.3em; padding: 5px;}
+}
 /*-----------------------------------------------------------------deliveryBox end*/
 
 .componentBoxWrap{width: 100%; height: 950px; background: #1c1e20; margin-top: 50px;}
@@ -249,18 +337,36 @@ display: flex; text-align: center; justify-content: space-between; align-items:c
 .componentTextBox img{width: 80px;}
 .componentTextBox p {color: #eee; font-size: 1.3em; padding-top: 20px;}
 .componentHead p{padding-top: 25px;}
+@media screen and (max-width:560px){
+     .componentBoxWrap{height: 1200px;}
+       .componentBox{width: 100%;}
+       .componentTextBox{height:900px; justify-content:center; flex-direction: column;}
+       .componentBox h2{font-size: 3em;margin-bottom: 20px;}
+       .componentTextBox div{width:150px;}
+       .componentTextBox p {font-size: 1.5em; padding-bottom: 30px;}
+       .componentTextBox img{width:80px;}
+}
 /*-----------------------------------------------------------------componentBox end*/
 
 
 /*-------------------------------------------------------------------footer*/
 .footerBox{width: 100%; height: 550px; margin-top: 100px;}
 .footerTextBox{width: 100%; height: 150px;  border-top: 1px solid #585858; background: #f6f6f6;}
-.footerText1{width: 1245px;  height: 70px; margin: 0 auto; line-height: 70px;}
-.footerText2{width: 1245px;  height: 80px; margin: 0 auto;  border-top: 1px solid #585858;}
+.footerText1{width: 1245px;  margin: 0 auto; line-height: 70px;}
+.footerText2{width: 1245px;  margin: 0 auto;  border-top: 1px solid #585858;}
 .footerText2 p{margin-top: 20px;}
 
 .lastFooter{width: 100%; height: 400px; background: #1c1e20;}
 .lastFooter h3{color: #eee; font-size: 10em; text-align: center; line-height: 400px;}
+
+@media screen and (max-width:560px){
+    .footerBox{ margin-top: 50px;}
+    .footerTextBox{width: 100%; height: 260px;}
+     .footerText1{line-height: 20px; padding: 20px;}
+    .footerText1,.footerText2{width: 90%;}
+    .footerText2 p{padding: 0;}
+    }
+}
 /*-------------------------------------------------------------------footer*/
 
 
@@ -309,3 +415,16 @@ width: 100%;}
 position: absolute;
 bottom: -35px;
 width: 100%;}
+
+@media screen and (max-width: 560px){
+  .main-sliderWrap .bx-wrapper .bx-pager, .bx-wrapper .bx-controls-auto {
+      position: absolute;
+      bottom: 250px;
+      width: 100%;}
+  
+  .bx-wrapper .bx-pager.bx-default-pager a {
+      width: 30px;
+      height: 30px;
+      margin: 0 10px;
+  }
+}
