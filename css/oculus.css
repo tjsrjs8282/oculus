@@ -8,13 +8,13 @@ span{display: block;}
 /*---------------------------------window setting*/
 #main{width: 100%;}
 .main-navBox{width: 100%; height: 80px;  background:rgba(0,0,0,0.6); position: absolute; top: 0; z-index: 9999; position: fixed; transition: 0.4s;}
-.main-navBox.black{height: 50px; background:rgba(0,0,0,0.4); }
+.main-navBox.black{height: 50px;  background:rgba(0,0,0,1); }
 
 .main-nav{width: 1245px; height: 100%; margin:0 auto; }
 .main-nav img{float: left; width: 160px; margin-top: 6px; cursor: pointer; transition: 0.4s;}
 .main-navBox.black img{width: 120px; margin-top: 0px;}
 
-.main-nav ul li{float: right; padding:0 35px; font-size: 1.8em; line-height: 80px; transition:0.4s; text-align: center;  font-weight: bold; color: #fff;}
+.main-nav ul li{float: right; padding:0 35px; font-size: 1.8em; color: #fff;  text-align: center; font-weight: bold; line-height: 80px; transition:0.4s;  }
 .main-navBox.black ul li{font-size: 1.5em; line-height: 50px;}
 
 .main-nav ul li a{color: #fff;  transition:0.4s; }
@@ -36,10 +36,7 @@ span{display: block;}
 .hamberger{display: none;}
 .hamberger .fa-bars{color: #fff; font-size:3em; line-height: 80px; cursor: pointer;}
 
-
-
 @media screen and (max-width:1000px){
-    .html{font-size:12px;}
     .languege{display: none; transition: 0s;}
     .main-nav.reponsive .languege{display: none;}
     .main-navBox img{width: 120px; float: none; margin: 0;}
@@ -49,10 +46,10 @@ span{display: block;}
     .main-nav.reponsive ul{top: 50px; height: 500px; transition: 0.7s;}
     .main-nav.reponsive ul li{display: block; background:rgba(0,0,0,1);}
     .main-navBox.black .main-nav.reponsive ul{height: 500px;}
-    .main-navBox.black .main-nav.reponsive ul li{background:rgba(0,0,0,0.5);}
+    .main-navBox.black .main-nav.reponsive ul li{background:rgba(0,0,0,1); height:80px; font-size: 2em;}
     .hamberger{display:inline-block; position:fixed; top: 3px; right: 30px;}
     .main-navBox{height: 50px; background:rgba(0,0,0,1);}
-    .main-navBox.black{height: 50px; background:rgba(0,0,0,0.5);}
+    .main-navBox.black{height: 50px; background:rgba(0,0,0,1);}
 }
 /*--------------------------------------------main slider */
 .main-sliderWrap{ width: 100%; height: 1000px; position: relative; z-index:3333;}
@@ -109,7 +106,7 @@ span{display: block;}
 .riftContentListBox ul li:nth-child(1){ width: 1245px; border: none; background: #1c1e20; color: #fff; letter-spacing: 1px;}
 
 .listBtn.active,
-.listBtn:hover{border:3px solid #585858; background: #ccc;}
+.listBtn:hover{border:6px solid #222; background: #ccc; border-bottom: none;}
 
 @media screen and (max-width:560px){
 .riftContentListBox{width: 100%;  top:560px; }

@@ -1,0 +1,289 @@
+body{font-size:14px; font-family: 'Noto Sans', sans-serif; background: #1c1e20;}
+html{ scroll-behavior: smooth;}
+span{display: block;}
+.sliderHidden{overflow: hidden;}
+::-webkit-scrollbar{width:20px;}
+::-webkit-scrollbar-thumb{background: linear-gradient(transparent,#606060,#fff); border-radius: 15px;}
+::-webkit-scrollbar-thumb:hover{background: linear-gradient(transparent,#606060,#eee,#fff);}
+/*---------------------------------window setting*/
+#main{width: 100%;}
+.main-navBox{width: 100%; height: 80px;  background:rgba(0,0,0,0.6); position: absolute; top: 0; z-index: 9999; position: fixed; transition: 0.4s;}
+.main-navBox.black{height: 50px;  background:rgba(0,0,0,1); }
+
+.main-nav{width: 1245px; height: 100%; margin:0 auto; }
+.main-nav img{float: left; width: 160px; margin-top: 6px; cursor: pointer; transition: 0.4s;}
+.main-navBox.black img{width: 120px; margin-top: 0px;}
+
+.main-nav ul li{float: right; padding:0 35px; font-size: 1.8em; color: #fff;  text-align: center; font-weight: bold; line-height: 80px; transition:0.4s;  }
+.main-navBox.black ul li{font-size: 1.5em; line-height: 50px;}
+
+.main-nav ul li a{color: #fff;  transition:0.4s; }
+.main-nav ul li a:hover,
+.navMenu.active{border-bottom: 3px solid orange; color: orange;}
+
+.main-nav ul li:nth-child(1),
+.main-nav ul li:nth-child(2){margin-right:0; font-size:1.3em; width: 50px; height: 45px; padding: 0px; border: 2px solid #fff; margin-top: 17px; line-height:45px;  cursor: pointer; }
+.main-nav ul li:nth-child(2){margin-left:60px;}
+
+.main-navBox.black ul li:nth-child(1),
+.main-navBox.black ul li:nth-child(2){ font-size:1.1em; width: 40px; height:35px; margin-top: 5px; line-height:35px;}
+.main-navBox.black ul li:nth-child(2){margin-left:120px;}
+
+.main-nav ul li:nth-child(1):hover,
+.main-nav ul li:nth-child(2):hover,
+.languege.active{background:#fff; color: #000;}
+
+.hamberger{display: none;}
+.hamberger .fa-bars{color: #fff; font-size:3em; line-height: 80px; cursor: pointer;}
+
+@media screen and (max-width:1000px){
+    .languege{display: none; transition: 0s;}
+    .main-nav.reponsive .languege{display: none;}
+    .main-navBox img{width: 120px; float: none; margin: 0;}
+    .main-nav ul{width: 100%; position: absolute; top: -800px; }
+    .main-nav ul li{float: none; display: none;  transition: 0s;}
+    .main-nav ul li a{transition: 0s;}
+    .main-nav.reponsive ul{top: 50px; height: 500px; transition: 0.7s;}
+    .main-nav.reponsive ul li{display: block; background:rgba(0,0,0,1);}
+    .main-navBox.black .main-nav.reponsive ul{height: 500px;}
+    .main-navBox.black .main-nav.reponsive ul li{background:rgba(0,0,0,1); height:80px; font-size: 2em;}
+    .hamberger{display:inline-block; position:fixed; top: 3px; right: 30px;}
+    .main-navBox{height: 50px; background:rgba(0,0,0,1);}
+    .main-navBox.black{height: 50px; background:rgba(0,0,0,1);}
+}
+/*--------------------------------------------main slider */
+.main-sliderWrap{ width: 100%; height: 1000px; position: relative; z-index:3333;}
+.vaderimmortalBack {width: 100%;  height:1000px; background: url(../images/oculus-quest-black-friday.jpg); background-size: cover;background-position:center;}
+.beatSaberBack {width: 100%;  height:1000px; background: url(../images/OculusQuest-BeatSaber.png); background-size: cover; background-position:center;}
+.blackfridayBack {width: 100%;  height:1000px; background: url(../images/black-friday-2019-vr-deals_feature1.jpg); background-size: cover; background-position:center;}
+.vrGamesBack {width: 100%;  height:1000px; background: url(../images/vr_games.jpg); background-size: cover; background-position:center;}
+.main-sliderTextBox{position: absolute; top: 55%; left: 10%; color: #eeeeee; font-weight:bold;  text-shadow: 2px 2px 10px black; background:rgba(0,0,0,0.3); padding: 20px; }
+.main-sliderTextBox h1{font-size:5em;}
+.main-sliderTextBox p{font-size:1.4em; margin-bottom: 10px;}
+
+.main-sliderTextBox .fa-play-circle{font-size: 2.2em; color:#fff; margin-left: 35px; transition: 0.4s;}
+.main-sliderTextBox .fa-play-circle:hover{color:orange;}
+
+.nextBtn,
+.prevBtn{width: 75px; height: 150px; position: absolute; top:300px; cursor: pointer; background: rgba(0,0,0,0); transition: 0.2s; z-index: 8888;}
+.prevBtn{left:0;}
+.nextBtn{right: 0;}
+.nextBtn:hover,
+.prevBtn:hover
+{background: rgba(0,0,0,0.8); }
+.nextBtn img:nth-child(1){width: 50px; height: 100px; position:absolute; top:25px; right: 0; animation:mainSliderGirdRight1 1s alternate infinite;} 
+@keyframes mainSliderGirdRight1{
+    to{right:10px;}
+}
+.nextBtn img:nth-child(2){width: 30px; height: 70px; position:absolute; top:40px; right: 25px; animation:mainSliderGirdRight2 1s .2s alternate infinite;}
+@keyframes mainSliderGirdRight2{
+    to{right: 35px;}
+}
+.prevBtn img:nth-child(1){width: 50px; height: 100px; position:absolute; top:25px;left: 0; animation:mainSliderGirdLeft1 1s alternate infinite; } 
+@keyframes mainSliderGirdLeft1{
+    to{left:10px;}
+}
+.prevBtn img:nth-child(2){width: 30px; height: 70px; position:absolute; top:40px; left: 25px;animation:mainSliderGirdLeft2 1s .2s alternate infinite;}
+@keyframes mainSliderGirdLeft2{
+    to{left: 35px;}
+}
+
+@media screen and (max-width:560px){
+.main-sliderWrap{height: 800px;}
+.vaderimmortalBack {height:800px;}
+.beatSaberBack { height:800px;}
+.blackfridayBack  {height:800px;}
+.vrGamesBack{height: 800px;}
+.main-sliderTextBox{top: 7%; right: 5%; left: 5%;}
+.main-sliderTextBox h1{font-size: 4em;}
+.nextBtn,.prevBtn{display: none;}
+}
+/*-------------------------------------------------------------------main header nav end*/
+
+/*-------------------------------------------------------------------quest list box*/
+.riftContentListBox{width: 93%; height: 120px; position: absolute; top:880px; left: 50%; transform: translate(-50%, 0); z-index: 5000;}
+.riftContentListBox ul li{float: left;background: #eee; width: 33.3%; height: 60px; text-align: center; line-height: 60px;font-size: 1.2em;  box-sizing: border-box; border: 3px solid #585858; transition: 0.3s; cursor: pointer;}
+.riftContentListBox ul li:nth-child(1){ width:100%; border: none; background: #1c1e20; color: #fff; letter-spacing: 1px;}
+.listBtn a{display: block;}
+.listBtn.active{border: none;}
+.listBtn.active a{background: #1c1e20; color: #eee;}
+.listBtn:hover{border:2px solid #1c1e20; background:  #1c1e20;}
+.listBtn:hover a{color: #eee;} 
+
+@media screen and (max-width:560px){
+.riftContentListBox{width: 100%;  top:560px; }
+.riftContentListBox ul li{width: 100%;}
+.riftContentListBox ul li:nth-child(1){ width: 100%}
+}
+/*-------------------------------------------------------------------quest list box*/
+
+
+/*-------------------------------------------------------------------games slider box*/
+.gamesTopText{width: 90%; height: 150px; margin: 0 auto; color: #eee; display: flex; justify-content:center; align-items: center; flex-direction: column;}
+.gamesTopText h2{font-size: 3em; margin-bottom: 10px;}
+.gamesTopText p{font-size: 1.5em;}
+
+    .swiper-container {
+      width: 100%;
+      height: 550px;
+    }
+    .swiper-slide {
+      text-align: center;
+      font-size: 18px;
+      background: #fff;}
+
+      .swiper-pagination{color: #fff; font-size: 3em;}
+       .swiper-pagination span {display: inline-block;}
+       .swiper-button-next{transform: scale(1.5);}
+       .swiper-button-prev{transform: scale(1.5);}
+
+.sliderImg1{background: url(../images/game/gameSlider1.jpg); background-size: cover; background-position: center; background-repeat: no-repeat;}
+.sliderImg2{background: url(../images/game/gameSlider2.jpg); background-size: cover; background-position: center; background-repeat: no-repeat;}
+.sliderImg3{background: url(../images/game/gameSlider3.jpg); background-size: cover; background-position: center; background-repeat: no-repeat;}
+.sliderImg4{background: url(../images/game/gameSlider4.jpg); background-size: cover; background-position: center; background-repeat: no-repeat;}
+.sliderImg5{background: url(../images/game/gameSlider5.jpg); background-size: cover; background-position: center; background-repeat: no-repeat;}
+.sliderImg6{background: url(../images/game/gameSlider6.jpg); background-size: cover; background-position: center; background-repeat: no-repeat;}
+.sliderImg7{background: url(../images/game/gameSlider7.jpg); background-size: cover; background-position: center; background-repeat: no-repeat;}
+/*-------------------------------------------------------------------games slider box*/
+
+/*-------------------------------------------------------------------game card list box*/
+.gameCardListBox{width: 100%; height: 100%; margin-top: 30px;}
+.cardcontentWrap{width: 100%; height: 100%;}
+.gameCardsTopText{width: 96%; margin:0 auto; display: flex; justify-content: space-between;}
+.gameCardsBoxWrap{width: 96%; height:300px; margin: 0 auto; margin-bottom: 20px; display: flex; justify-content: space-around;}
+
+.gameCardsTopText{margin-bottom: 10px;}
+.gameCardsTopText a{color: #fff; font-size: }
+.gameCardsTopText a:nth-child(1){margin-left:15px; font-size: 1.6em; font-weight: bold;}
+.gameCardsTopText a:nth-child(2){margin-right:15px; font-size: 1.2em; line-height: 30px; }
+.gameCardsTopText a:nth-child(2):hover {color:skyblue;}
+
+.cardbox{width: 32%; height: 100%;}
+.cardbox h3{color:#fff}
+.cardbox p{color:#999;}
+
+.gameCardsBox{width: 100%; height: 250px;}
+
+.image1{display: block; background: url(../images/game/gameCards2.jpg);  background-size: cover; background-repeat: no-repeat; background-position: center;}
+.image2{display: block; background: url(../images/game/gameCards3.jpg);  background-size: cover; background-repeat: no-repeat; background-position: center;}
+.image3{display: block; background: url(../images/game/gameCards4.jpg);  background-size: cover; background-repeat: no-repeat; background-position: center;}
+.image4{display: block; background: url(../images/game/gameCards5.jpg);  background-size: cover; background-repeat: no-repeat; background-position: center;}
+.image5{display: block; background: url(../images/game/gameCards6.jpg);  background-size: cover; background-repeat: no-repeat; background-position: center;}
+.image6{display: block; background: url(../images/game/gameCards7.jpg);  background-size: cover; background-repeat: no-repeat; background-position: center;}
+.image7{display: block; background: url(../images/game/gameCards8.jpg);  background-size: cover; background-repeat: no-repeat; background-position: center;}
+.image8{display: block; background: url(../images/game/gameCards9.jpg);  background-size: cover; background-repeat: no-repeat; background-position: center;}
+.image9{display: block; background: url(../images/game/gameCards10.jpg);  background-size: cover; background-repeat: no-repeat; background-position: center;}
+.image10{display: block; background: url(../images/game/gameCards11.jpg);  background-size: cover; background-repeat: no-repeat; background-position: center;}
+.image11{display: block; background: url(../images/game/gameCards12.jpg);  background-size: cover; background-repeat: no-repeat; background-position: center;}
+.image12{display: block; background: url(../images/game/gameCards13.jpg);  background-size: cover; background-repeat: no-repeat; background-position: center;}
+.image13{display: block; background: url(../images/game/gameCards14.jpg);  background-size: cover; background-repeat: no-repeat; background-position: center;}
+.image14{display: block; background: url(../images/game/gameCards15.jpg);  background-size: cover; background-repeat: no-repeat; background-position: center;}
+.image15{display: block; background: url(../images/game/gameCards16.jpg);  background-size: cover; background-repeat: no-repeat; background-position: center;}
+.image16{display: block; background: url(../images/game/gameCards17.jpg);  background-size: cover; background-repeat: no-repeat; background-position: center;}
+.image17{display: block; background: url(../images/game/gameCards18.jpg);  background-size: cover; background-repeat: no-repeat; background-position: center;}
+.image18{display: block; background: url(../images/game/gameCards19.jpg);  background-size: cover; background-repeat: no-repeat; background-position: center;}
+.image19{display: block; background: url(../images/game/gameCards20.jpg);  background-size: cover; background-repeat: no-repeat; background-position: center;}
+.image20{display: block; background: url(../images/game/gameCards21.jpg);  background-size: cover; background-repeat: no-repeat; background-position: center;}
+.image21{display: block; background: url(../images/game/gameCards22.jpg);  background-size: cover; background-repeat: no-repeat; background-position: center;}
+.image22{display: block; background: url(../images/game/gameCards23.jpg);  background-size: cover; background-repeat: no-repeat; background-position: center;}
+.image23{display: block; background: url(../images/game/gameCards24.jpg);  background-size: cover; background-repeat: no-repeat; background-position: center;}
+.image24{display: block; background: url(../images/game/gameCards25.jpg);  background-size: cover; background-repeat: no-repeat; background-position: center;}
+.image25{display: block; background: url(../images/game/gameCards26.jpg);  background-size: cover; background-repeat: no-repeat; background-position: center;}
+.image26{display: block; background: url(../images/game/gameCards27.jpg);  background-size: cover; background-repeat: no-repeat; background-position: center;}
+.image27{display: block; background: url(../images/game/gameCards28.jpg);  background-size: cover; background-repeat: no-repeat; background-position: center;}
+.image28{display: block; background: url(../images/game/gameCards29.jpg);  background-size: cover; background-repeat: no-repeat; background-position: center;}
+.image29{display: block; background: url(../images/game/gameCards30.jpg);  background-size: cover; background-repeat: no-repeat; background-position: center;}
+.image30{display: block; background: url(../images/game/gameCards31.jpg);  background-size: cover; background-repeat: no-repeat; background-position: center;}
+.image31{display: block; background: url(../images/game/gameCards32.jpg);  background-size: cover; background-repeat: no-repeat; background-position: center;}
+.image32{display: block; background: url(../images/game/gameCards33.jpg);  background-size: cover; background-repeat: no-repeat; background-position: center;}
+.image33{display: block; background: url(../images/game/gameCards34.jpg);  background-size: cover; background-repeat: no-repeat; background-position: center;}
+.image34{display: block; background: url(../images/game/gameCards35.jpg);  background-size: cover; background-repeat: no-repeat; background-position: center;}
+.image35{display: block; background: url(../images/game/gameCards36.jpg);  background-size: cover; background-repeat: no-repeat; background-position: center;}
+.image36{display: block; background: url(../images/game/gameCards2.jpg);  background-size: cover; background-repeat: no-repeat; background-position: center;}
+
+@media screen and (min-width: 1500px){
+ .gameCardsBoxWrap{height: 350px;}
+ .gameCardsBox{height: 300px;}
+}
+@media screen and (max-width: 1200px){
+ .gameCardsBoxWrap{height: 250px;}
+ .gameCardsBox{height: 200px;}
+}
+@media screen and (max-width: 860px){
+ .gameCardsBoxWrap{height: 200px;}
+ .gameCardsBox{height: 150px;}
+}
+@media screen and (max-width: 560px){
+.gameCardsTopText{flex-direction: column;}
+.gameCardsTopText a:nth-child(2){margin-left:15px;}
+.gameCardsBoxWrap{flex-direction: column; align-items: center;}
+ .gameCardsBoxWrap{height:750px;}
+ .gameCardsBox{height: 200px;}
+ .cardbox{width: 90%; height: 100%;}
+}
+/*-------------------------------------------------------------------game card list box*/
+
+/*-------------------------------------------------------------------footer*/
+.lastFooter{width: 100%; height: 500px; background: #1c1e20;  text-align: center;}
+.lastFooter h3{color: #eee; font-size: 10em;  line-height: 400px;}
+.lastFooter p:nth-child(1){color:#888888; border-bottom:1px solid #888888; padding: 20px 0;}
+
+@media screen and (max-width:560px){
+    .lastFooter p:nth-child(1){padding:20px 20px;}
+
+}
+/*-------------------------------------------------------------------footer*/
+
+/*-------------------BxSlider */
+.bx-wrapper {
+    -moz-box-shadow: none;
+    -webkit-box-shadow:none; 
+    box-shadow: none;
+    border: none;
+    background: none;}
+
+.bx-wrapper .bx-pager.bx-default-pager a {
+    border:3px solid #fff;
+    background:transparent;
+    text-indent: -9999px;
+    display: block;
+    width: 20px;
+    height: 20px;
+    margin: 0 5px;
+    outline: 0;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 50%;}
+
+.bx-wrapper .bx-pager.bx-default-pager a:hover,
+.bx-wrapper .bx-pager.bx-default-pager a.active,
+.bx-wrapper .bx-pager.bx-default-pager a:focus {
+    background: #fff;}
+
+
+.main-sliderWrap .bx-wrapper .bx-pager, .bx-wrapper .bx-controls-auto {
+position: absolute;
+bottom: 150px;
+width: 100%;}
+
+
+.riftSliderWrap .bx-wrapper .bx-pager, .bx-wrapper .bx-controls-auto {
+position: absolute;
+bottom: 50px;
+width: 100%;}
+
+
+
+@media screen and (max-width: 560px){
+  .main-sliderWrap .bx-wrapper .bx-pager, .bx-wrapper .bx-controls-auto {
+      position: absolute;
+      bottom: 250px;
+      width: 100%;}
+  
+  .bx-wrapper .bx-pager.bx-default-pager a {
+      width: 30px;
+      height: 30px;
+      margin: 0 10px;
+  }
+}
+
