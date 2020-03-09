@@ -25,10 +25,10 @@
 					<li class="languege active">KOR</li>
 					<li><a href="#" class="navMenuC">Community</a></li>
 					<li><a href="#" class="navMenu active">Games</a></li>
-					<li><a href="rift.html" class="navMenu">Go</a></li>
+					<li><a href="riftpc.html" class="navMenu">Oculus PC</a></li>
 					<li><a href="rift.html" class="navMenu">Rift S</a></li>
-					<li><a href="rift.html" class="navMenu">Quest</a></li>
-					<li><a href="oculus.html" class="navMenu">Oculus</a></li>
+					<li><a href="oculus.html" class="navMenu">About</a></li>
+					<li><a href="index.html" class="navMenu">Home</a></li>
 				</ul>
 				<div class="hamberger">
 					<i class="fas fa-bars"></i>
@@ -99,10 +99,10 @@
 			<li class="listBtn active">
 				<a href="#"><h2>Quest</h2></a>
 			</li>
-			<li class="listBtn">
+			<li class="listBtn alert">
 				<a href="#"><h2>Rift S</h2></a>
 			</li>
-			<li class="listBtn">
+			<li class="listBtn alert">
 				<a href="#"><h2>Go</h2></a>
 			</li>
 		</ul>
@@ -427,6 +427,14 @@
 <script src="https://unpkg.com/swiper/js/swiper.js"></script>
 
 <script>
+			
+			$(".alert").click(function(){
+				alert("Rift S, Go 는 현재 준비중입니다:)")
+			});
+
+			$(".gameCardsTopText > a").click(function(){
+				alert("포트폴리오 사이트입니다. 공식 사이트를 이용해주세요:)")
+			});
 
 			$(document).ready(function(){
 			var mainSlider = $(".main-slider").bxSlider({
