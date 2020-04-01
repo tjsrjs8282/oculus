@@ -3,7 +3,7 @@
 <head>
 	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
 	<meta charset="UTF-8">
-	<title>문서 제목</title>
+	<title>:: oculus ::</title>
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<link href="https://fonts.googleapis.com/css?family=Noto+Sans&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="css/reset.css">
@@ -351,7 +351,6 @@
 		<h3>footer</h3>		
 	</div>	
 
-
 <script src="js/jquery-3.1.1.min.js"></script>
 <script src="js/jquery.bxslider.js"></script>
 <script src="js/wow.js"></script>
@@ -359,108 +358,7 @@
 <script src="js/jquery.colorbox.js"></script>
 <script src="https://unpkg.com/swiper/js/swiper.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="js/main.js"></script>
 
-<script>
-
-			$(document).ready(function(){
-			var mainSlider = $(".main-slider").bxSlider({
-				stopAutoOnClick:true,
-				auto:true,
-				controls:false,
-				pager:true,
-				mode:'horizontal',
-				speed:700,
-			});
-			$(".nextBtn").click(function(){
-				mainSlider.goToNextSlide();
-			});
-
-			$(".prevBtn").click(function(){
-			   mainSlider.goToPrevSlide();
-			});
-
-
-			var gamesSlider = $(".gamesSlider").bxSlider({
-				controls:false,
-				pager:true,
-				mode:'horizontal',
-				speed:1000,
-			});
-
-			var testSlider = $(".TestSlider").bxSlider({
-				auto:true,
-				controls:false,
-				pager:true,
-				mode:'horizontal',
-				speed:1500,
-			});
-
-
-				
-			$('.navMenu').click(function(){
-				$('.navMenu').removeClass('active');
-				$(this).addClass('active');
-			});	
-
-			$('.languege').click(function(){
-				$('.languege').removeClass('active');
-				$(this).addClass('active');
-			});
-			$('.hamberger').click(function(){
-				$(".main-nav").toggleClass('reponsive');
-			});			
-
-			$('.navMenuC').click(function(){
-				alert("준비중입니다.");
-			});
-
-			$(window).on('scroll',function(){
-				if($(window).scrollTop()){
-					$('.main-navBox').addClass('black');
-				}
-				else{
-					$('.main-navBox').removeClass('black');
-				}
-			});
-			
-			$('.modal').colorbox({
-				rel:"modal"
-				});
-
-			$(".youtube").colorbox({
-				iframe:true,
-				innerWidth:"70%",
-				innerHeight:"70%",
-			})
-			new WOW().init();
-
-
-
-
-
-
-
-			var swiper = new Swiper('.swiper-container', {
-		      effect: 'coverflow',
-		      grabCursor: true,
-		      centeredSlides: true,
-		      slidesPerView: 'auto',
-		      coverflowEffect: {
-		        rotate:50,
-		        stretch: 0,
-		        depth: 100,
-		        modifier: 1,
-		        slideShadows : true,
-		      },
-		      pagination: {
-		        el: '.swiper-pagination',
-		      },
-		    });
-		    
-			$(".gooey span").draggable();
-			
-		});
-
-</script>
 </body>
 </html>

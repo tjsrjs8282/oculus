@@ -133,10 +133,10 @@ span{display: block;}
       background: #fff;
       cursor: pointer;}
 
-      .swiper-pagination{color: #fff; font-size: 3em;}
-       .swiper-pagination span {display: inline-block;}
-       .swiper-button-next{transform: scale(1.5);}
-       .swiper-button-prev{transform: scale(1.5);}
+      .swiper-game-container .swiper-pagination{color: #fff; font-size: 3em;}
+       .swiper-game-container .swiper-pagination span {display: inline-block;}
+       .swiper-game-container .swiper-button-next{transform: scale(1.5);}
+       .swiper-game-container .swiper-button-prev{transform: scale(1.5);}
 
 .sliderImg1{background: url(../images/game/gameSlider1.jpg); background-size: cover; background-position: center; background-repeat: no-repeat;}
 .sliderImg2{background: url(../images/game/gameSlider2.jpg); background-size: cover; background-position: center; background-repeat: no-repeat;}
