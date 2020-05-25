@@ -59,8 +59,8 @@ span{display: block;}
 .blackfridayBack {width: 100%;  height:1000px; background: url(../images/black-friday-2019-vr-deals_feature1.jpg); background-size: cover;  background-position: center;}
 .vrGamesBack {width: 100%;  height:1000px; background: url(../images/vr_games.jpg); background-size: cover;  background-position: center;}
 .main-sliderTextBox{position: absolute; top: 50%; left: 10%; color: #eeeeee; font-weight:bold;  text-shadow: 2px 2px 10px black; background:rgba(0,0,0,0.3); padding: 20px; }
-.main-sliderTextBox h1{font-size:5em;}
-.main-sliderTextBox p{font-size:1.4em; margin-bottom: 10px;}
+.main-sliderTextBox h1{font-size:3em;}
+.main-sliderTextBox p{font-size:1em; margin-bottom: 10px;}
 
 .main-sliderTextBox .fa-play-circle{font-size: 2.2em; color:#fff; margin-left: 35px; transition: 0.4s;}
 .main-sliderTextBox .fa-play-circle:hover{color:orange;}
@@ -94,8 +94,9 @@ span{display: block;}
 .beatSaberBack { height:800px;}
 .blackfridayBack  {height:800px;}
 .vaderimmortalBack{height: 800px;}
-.main-sliderTextBox{top: 7%; right: 5%; left: 5%;}
-.main-sliderTextBox h1{font-size: 4em;}
+.main-sliderTextBox{top: 12%; right: 5%; left: 5%;}
+.main-sliderTextBox h1{font-size: 3em;}
+.main-sliderTextBox p{font-size:1.2em;}
 .nextBtn,.prevBtn{display: none;}
 }
 /*-------------------------------------------------------------------main header nav end*/
@@ -140,9 +141,9 @@ span{display: block;}
 /*------------------------------------------------------------------main card1*/
 .rift_iconTextBox{text-align:left; color:#eee; width: 550px; height:420px; display: flex; flex-wrap: wrap; margin: 15px; background: rgba(0,0,0,0.3);}
 .rift_TextBox{ margin-left: 20px;}
-.riftMainContentBox h2{font-size: 4.4em; margin-left: 20px; }
+.riftMainContentBox h2{font-size: 4em; margin-left: 20px; }
 .rift_iconTextBox h3{font-size: 1.5em; margin-bottom: 5px; }
-.rift_iconTextBox p{font-size: 1.1em;}
+.rift_iconTextBox p{font-size: 1em;}
 .rift_iconBox{width: 80px; margin-left: 20px; height: 80px; border-radius: 50%; border: 3px solid #ccc; position: relative;}
 .rift_iconBox img{width: 60px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);}
 
@@ -152,7 +153,7 @@ span{display: block;}
 .rift_buyTextBox{width: 530px; position: absolute;bottom: 50px; right: 20px; display: flex; padding-bottom: 20px; flex-wrap: wrap;  background: rgba(0,0,0,0.3); padding: 20px;}
 .rift_buyTextBox a{padding: 10px 25px; border: 1px solid #0c68ff; font-size: 1.3em; font-weight: bold; background-color: #0c68ff; color: #fff; border-radius: 8px; }
 .rift_buyTextBox a:hover{background: #148aff;}
-.rift_buyTextBox p{padding: 10px 25px; font-size: 1.5em; color:#fff;}
+.rift_buyTextBox p{padding: 10px 25px; font-size: 1.2em; color:#fff;}
 
 .rift_buyTextBox p:nth-child(2):after{content: ""; display: inline-block; width: 1px; height: 25px; background-color: #eeee; position: absolute; left: 330px;}
 .rift_buyTextBox p:nth-child(3):hover{color:blue; cursor: pointer; font-weight: bold;}
@@ -177,7 +178,7 @@ body{font-size: 13px;}
 
 /*------------------------------------------------------------------main card2*/
 .unboxingBox{width: 100%; height: 100%;}
-.unboxingBox h2{font-size:2.2em;  padding: 15px;}
+.unboxingBox h2{font-size:2em;  padding: 15px;}
 .unboxingBox .fa-play-circle{font-size: 4em; margin-right: 180px; color:#585858; transition: 0.3s;}
 .unboxingBox .fa-play-circle:hover{color:#000;}
 .unboxingBox img{position: absolute;}
@@ -194,7 +195,7 @@ body{font-size: 13px;}
 /*------------------------------------------------------------------main card4*/
 
 /*------------------------------------------------------------------main card5*/
-.riftHandTextBox{color: #eee; text-align: center; margin-top: 50px;position: absolute; left: 65px; z-index: 9999; transition: 0.5s; }
+.riftHandTextBox{color: #eee; text-align: center; margin-top: 50px;position: absolute; left:75px; z-index: 9999; transition: 0.5s; }
 .riftHandTextBox p:nth-child(1){font-weight:bold; padding-bottom: 5px;}
 .riftHandTextBox p:nth-child(3){font-size: 1.2em; padding-bottom: 100px;}
 .riftHandBuyBox p{font-size: 1.6em; color: #eee; text-align: center; position: absolute; top: 72%; left: 50%; transform: translate(-50%, 0); border:2px solid #eee;  padding:5px 15px; cursor: pointer; transition: 0.4s;}
@@ -224,9 +225,9 @@ body{font-size: 13px;}
 .riftSliderWrap{width: 1400px; height: 700px; margin:0 auto; overflow: hidden;  position: relative;}
 .riftSliderWrap img{width: 700px;}
 .riftSliderText{position: absolute; top: 200px;}
-.riftSliderText h3{font-size:1.6em; color: #ebebeb;}
-.riftSliderText h2{font-size:3.2em; color: #fff; margin-bottom: 10px;}
-.riftSliderText p{font-size:1.3em; color:  #aaaaaa;}
+.riftSliderText h3{font-size:1.5em; color: #ebebeb;}
+.riftSliderText h2{font-size:3em; color: #fff; margin-bottom: 10px;}
+.riftSliderText p{font-size:1.1em; color:  #aaaaaa;}
 
 .riftSliderText.one{left: 47%;}
 .riftSliderText.two{left: 50%;}

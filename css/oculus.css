@@ -51,8 +51,8 @@ span{display: block;}
 .oculusGamesBack {width: 100%;  height:1000px; background: url(../images/oculus-quest-games.jpg); background-size: cover;  background-position: center;}
 .vrGamesBack {width: 100%;  height:1000px; background: url(../images/SS_GEARVR22.jpg); background-size: cover;  background-position: center;}
 .main-sliderTextBox{position: absolute; top: 47%; left: 10%; color: #eeeeee; font-weight:bold; text-shadow: 2px 2px 10px black; background:rgba(0,0,0,0.3); padding: 20px;}
-.main-sliderTextBox h1{font-size:5em;}
-.main-sliderTextBox p{font-size:1.4em; margin-bottom: 10px;}
+.main-sliderTextBox h1{font-size:3em;}
+.main-sliderTextBox p{font-size:1.1em; margin-bottom: 10px;}
 .main-sliderTextBox .fa-play-circle{font-size: 2.2em; color:#fff; margin-left: 35px; transition: 0.4s;}
 .main-sliderTextBox .fa-play-circle:hover{color:orange;}
 .nextBtn,
@@ -84,8 +84,9 @@ span{display: block;}
 .handtrackingBack { height:800px;}
 .oculusGamesBack  {height:800px;}
 .vrGamesBack{height: 800px;}
-.main-sliderTextBox{top: 7%; right: 5%; left: 5%;}
-.main-sliderTextBox h1{font-size: 4em;}
+.main-sliderTextBox{top: 12%; right: 5%; left: 5%;}
+.main-sliderTextBox h1{font-size: 3em;}
+.main-sliderTextBox p{font-size:1.2em;}
 .nextBtn,.prevBtn{display: none;}
 }
 
@@ -152,7 +153,7 @@ span{display: block;}
 .zuckerbergWrap{color: #fff; position: absolute; top: 50%; right: 5%; transform: translate(0, -50%); width: 580px;}
 .zuckerbergTextBox h2{ font-size: 2.5em; margin-bottom: 30px;}
 .zuckerbergTextBox{margin-bottom: 50px;}
-.zuckerbergTextBox p{font-size: 1.2em; margin-bottom: 15px;}
+.zuckerbergTextBox p{font-size: 1.1em; margin-bottom: 15px;}
 .zuckerbergTextBox p:nth-child(6){margin-bottom: 50px;}
 .zuckerbergWrap a{color: #fff; font-size: 1.6em; font-weight: bold;}
 .zuckerbergWrap a:hover{color:orange;}
@@ -181,7 +182,7 @@ span{display: block;}
 .choiceImg img{width: 100%; height: 250px;}
 .choiceTextBox {padding:25px;}
 .choiceTextBox h3{font-size:1.8em; margin-bottom: 20px;}
-.choiceTextBox p{font-size: 1.1em;}
+.choiceTextBox p{font-size: 1.1em; color: #444}
 .choiceBox1 a,
 .choiceBox2 a,
 .choiceBox3 a
@@ -205,7 +206,7 @@ span{display: block;}
 .riftMainContentBox > ul > li:nth-child(10):hover img{transform: scale(1.1);}
 .productTextBox{width: 380px; margin-left: 20px; position: absolute; bottom: 20px; text-align: left;  text-shadow: 2px 2px 10px #000;}
 .productTextBox h2{font-size: 1em; color: #eee;}
-.productTextBox h3{font-size:2em; color: #fff; margin-bottom: 5px;}
+.productTextBox h3{font-size:1.4em; color: #fff; margin-bottom: 5px;}
 .productTextBox .fa-play-circle{color: #fff; font-size:2em; transition: 0.3s;}
 .productTextBox .fa-play-circle:hover{color: orange;}
 
@@ -347,7 +348,7 @@ span{display: block;}
 .newGamesBox ul li:nth-child(2){height: 500px;}
 .newGamesBox ul li:nth-child(3){height: 500px;}
 .newGamesBox h3{ font-size: 1.3em; color: #0c68ff;}
-.newGamesBox p{padding: 20px; padding-top: 10px; font-weight: bold; font-size: 1.1em;}
+.newGamesBox p{padding: 20px; padding-top: 10px; font-weight: bold; font-size: 1em;}
 .newGamesBox ul li:nth-child(1) h3,
 .newGamesBox ul li:nth-child(2) h3{padding: 20px;}
 .newGamesBox ul li:nth-child(3) h3{padding: 20px; padding-bottom: 44px;}
@@ -422,7 +423,7 @@ span{display: block;}
 .samsungNewsWrap:hover img:first-child{transform: scale(1.1);}
 .samsungNewsWrap img:first-child{width: 100%; transition:0.6s;}
 .samsungNewsWrap img:last-child{position: absolute; bottom: 10px;left: 20px; width: 220px;}
-.samsungNewsWrap h3{position: absolute; font-size: 1.6em; bottom: 80px; text-align:left; left: 20px; color: #eee; text-shadow: 2px 2px 10px #000; z-index: 1;}
+.samsungNewsWrap h3{position: absolute; font-size: 1.2em; bottom: 80px; text-align:left; left: 20px; color: #eee; text-shadow: 2px 2px 10px #000; z-index: 1;}
 /*---------------------------------------------------------newsContentBox card 1*/
 
 /*---------------------------------------------------------newsContentBox card 2*/
