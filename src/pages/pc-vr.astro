@@ -21,7 +21,7 @@ import pcvrImage from '@/assets/gen/pc-vr.jpg';
     image={pcvrImage}
     eyebrow="PC VR"
     title={'PC 게임까지,\n*선 하나로* 혹은 선 없이'}
-    lead="Meta Quest 3·3S는 PC에 연결하는 순간 고사양 PC VR 헤드셋이 돼요. 2019년의 ‘Oculus Ready PC’ 인증 대신, 지금 쓰는 PC로 바로 확인해 보세요."
+    lead="Meta Quest 3·3S는 PC에 연결하는 순간 고사양 PC VR 헤드셋이 돼요. 지금 쓰는 PC로 되는지 바로 확인해 보세요."
   >
     <Button slot="actions" href="#checker" variant="primary" icon="arrow-right">
       내 PC 확인하기
@@ -156,23 +156,6 @@ import pcvrImage from '@/assets/gen/pc-vr.jpg';
           </li>
         ))}
       </ol>
-    </div>
-  </section>
-
-  <!-- ============ 2019 → 2026 ============ -->
-  <section class="section--tight" aria-labelledby="legacy-title">
-    <div class="container container--narrow">
-      <aside class="legacy" data-reveal>
-        <Icon name="info" />
-        <div>
-          <h2 id="legacy-title">2019년의 ‘Oculus Ready PC’는 어디 갔나요?</h2>
-          <p>
-            2020년 버전의 이 페이지는 Rift S용 인증 PC(Alienware Aurora, Falcon Northwest Tiki,
-            Lenovo Legion 등)를 소개했어요. 지금은 인증 프로그램 대신 위의 최소 사양과 호환 목록으로
-            확인하면 되고, 대부분의 게이밍 PC와 노트북에서 Quest Link를 쓸 수 있어요.
-          </p>
-        </div>
-      </aside>
     </div>
   </section>
 
@@ -529,30 +512,5 @@ import pcvrImage from '@/assets/gen/pc-vr.jpg';
     .steps {
       grid-template-columns: 1fr;
     }
-  }
-
-  /* ---------- legacy note ---------- */
-  .legacy {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 1rem;
-    padding: 1.75rem;
-    border: 1px dashed var(--c-border-2);
-    border-radius: var(--r-lg);
-    color: var(--c-text-2);
-  }
-
-  .legacy :global(svg) {
-    color: var(--c-blue);
-  }
-
-  .legacy h2 {
-    margin-block-end: 0.5rem;
-    font-size: var(--fs-lg);
-    color: var(--c-text);
-  }
-
-  .legacy p {
-    font-size: var(--fs-sm);
   }
 </style>

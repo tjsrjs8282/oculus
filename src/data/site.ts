@@ -2,7 +2,7 @@ export const site = {
   name: 'oculus',
   title: 'Oculus — Meta Quest 3 · 3S',
   description:
-    'Oculus에서 Meta Quest까지. 풀 컬러 혼합현실의 Meta Quest 3·3S와 게임, PC VR 연결, 설정 가이드를 한곳에서 만나보세요. (비공식 팬 포트폴리오 사이트)',
+    '풀 컬러 혼합현실의 Meta Quest 3·3S와 게임, PC VR 연결, 설정 가이드를 한곳에서 만나보세요. (비공식 팬 사이트)',
   repo: 'https://github.com/tjsrjs8282/oculus',
   author: 'tjsrjs8282',
   /** 가격·사양·뉴스를 마지막으로 확인한 시점 */
@@ -19,7 +19,7 @@ export const nav: NavItem[] = [
   { href: 'pc-vr.html', label: 'PC VR' },
   { href: 'setup.html', label: '설정 가이드' },
   { href: 'games.html', label: '게임' },
-  { href: 'oculus.html', label: 'Oculus 이야기' },
+  { href: 'oculus.html', label: '소개' },
 ];
 
 /** 2020년 버전의 'Rift S 개요 / 지원 PC / 설정' 탭을 잇는 제품 하위 메뉴 */
