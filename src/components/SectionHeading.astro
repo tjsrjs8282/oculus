@@ -1,0 +1,57 @@
+---
+/**
+ * 섹션 제목. title 안의 `*강조*` 구간은 브랜드 그라데이션으로, 줄바꿈(\n)은 <br>로 바뀐다.
+ */
+interface Props {
+  eyebrow?: string;
+  title: string;
+  lead?: string;
+  align?: 'start' | 'center';
+  level?: 1 | 2;
+  id?: string;
+  class?: string;
+}
+
+const { eyebrow, title, lead, align = 'start', level = 2, id, class: className } = Astro.props;
+const Tag = level === 1 ? 'h1' : 'h2';
+const lines = title.split('\n').map((line) => line.split('*'));
+---
+
+<div class:list={['section-heading', `section-heading--${align}`, className]} data-reveal>
+  {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+  <Tag id={id} class="section-heading__title">
+    {lines.map((parts, i) => (
+      <>
+        {i > 0 && <br />}
+        {parts.map((part, j) => (j % 2 === 1 ? <span class="text-gradient">{part}</span> : part))}
+      </>
+    ))}
+  </Tag>
+  {lead && <p class="lead">{lead}</p>}
+  <slot />
+</div>
+
+<style>
+  .section-heading {
+    display: grid;
+    gap: 1.1rem;
+    max-inline-size: 46rem;
+    margin-block-end: clamp(2.5rem, 1.6rem + 3vw, 4.5rem);
+  }
+
+  .section-heading--center {
+    margin-inline: auto;
+    justify-items: center;
+    text-align: center;
+  }
+
+  .section-heading__title {
+    font-size: var(--fs-3xl);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+  }
+
+  .section-heading .lead {
+    max-inline-size: 38rem;
+  }
+</style>

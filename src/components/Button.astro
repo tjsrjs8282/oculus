@@ -1,0 +1,56 @@
+---
+import Icon from './Icon.astro';
+import type { IconName } from '@/lib/icons';
+
+interface Props {
+  href?: string;
+  variant?: 'primary' | 'accent' | 'ghost';
+  size?: 'sm' | 'md' | 'lg';
+  /** 텍스트 뒤 아이콘 */
+  icon?: IconName;
+  /** 텍스트 앞 아이콘 */
+  iconStart?: IconName;
+  /** YouTube 영상 ID — 지정하면 <button>으로 렌더링되고 공용 영상 다이얼로그를 연다 */
+  video?: string;
+  videoTitle?: string;
+  class?: string;
+}
+
+const {
+  href,
+  variant = 'ghost',
+  size = 'md',
+  icon,
+  iconStart,
+  video,
+  videoTitle,
+  class: className,
+} = Astro.props;
+const external = href?.startsWith('http') ?? false;
+const classes = [
+  'btn',
+  variant !== 'ghost' && `btn--${variant}`,
+  size !== 'md' && `btn--${size}`,
+  className,
+];
+---
+
+{video ? (
+  <button type="button" class:list={classes} data-video={video} data-video-title={videoTitle}>
+    {iconStart && <Icon name={iconStart} />}
+    <slot />
+    {icon && <Icon name={icon} />}
+  </button>
+) : (
+  <a
+    class:list={classes}
+    href={href}
+    target={external ? '_blank' : undefined}
+    rel={external ? 'noopener noreferrer' : undefined}
+  >
+    {iconStart && <Icon name={iconStart} />}
+    <slot />
+    {external && <span class="sr-only">(새 창)</span>}
+    {icon && <Icon name={icon} />}
+  </a>
+)}

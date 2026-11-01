@@ -1,0 +1,266 @@
+---
+import Icon from './Icon.astro';
+import Logo from './Logo.astro';
+import { nav, official } from '@/data/site';
+import { isCurrent, url } from '@/lib/url';
+
+const path = Astro.url.pathname;
+---
+
+<header class="site-header" data-header>
+  <div class="container site-header__inner">
+    <a class="site-header__logo" href={url()} aria-label="oculus 홈으로">
+      <Logo />
+    </a>
+
+    <nav class="site-nav" aria-label="주요 메뉴">
+      <ul role="list">
+        {nav.map((item) => (
+          <li>
+            <a href={url(item.href)} aria-current={isCurrent(path, item.href) ? 'page' : undefined}>
+              {item.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <div class="site-header__actions">
+      <a
+        class="btn btn--primary btn--sm buy"
+        href={official.store}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        구매하기<span class="sr-only">(Meta 공식 스토어, 새 창)</span>
+      </a>
+      <button
+        class="menu-btn"
+        type="button"
+        aria-controls="mobile-menu"
+        aria-expanded="false"
+        data-menu-open
+      >
+        <Icon name="menu" />
+        <span class="sr-only">메뉴 열기</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<dialog id="mobile-menu" class="mobile-menu" aria-label="전체 메뉴" data-menu>
+  <div class="mobile-menu__top">
+    <Logo />
+    <button class="menu-btn" type="button" data-menu-close>
+      <Icon name="x" />
+      <span class="sr-only">메뉴 닫기</span>
+    </button>
+  </div>
+  <nav aria-label="전체 메뉴">
+    <ul role="list" class="mobile-menu__list">
+      {nav.map((item, i) => (
+        <li style={{ '--i': i }}>
+          <a href={url(item.href)} aria-current={isCurrent(path, item.href) ? 'page' : undefined}>
+            {item.label}
+            <Icon name="arrow-right" size={22} />
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+  <a
+    class="btn btn--primary btn--lg mobile-menu__buy"
+    href={official.store}
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    Meta 공식 스토어에서 구매하기
+    <span class="sr-only">(새 창)</span>
+    <Icon name="arrow-up-right" />
+  </a>
+</dialog>
+
+<style>
+  .site-header {
+    position: fixed;
+    inset: 0 0 auto;
+    z-index: 50;
+    block-size: var(--header-h);
+    border-bottom: 1px solid transparent;
+    view-transition-name: site-header;
+    transition:
+      background-color 0.4s,
+      border-color 0.4s,
+      backdrop-filter 0.4s;
+  }
+
+  .site-header[data-scrolled] {
+    background: rgb(5 5 7 / 0.7);
+    border-bottom-color: var(--c-border);
+    -webkit-backdrop-filter: blur(22px) saturate(160%);
+    backdrop-filter: blur(22px) saturate(160%);
+  }
+
+  /* 로고 | 가운데 정렬 메뉴 | 액션 — 메뉴가 숨겨져도 액션은 오른쪽 끝에 남는다 */
+  .site-header__inner {
+    block-size: 100%;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .site-header__logo {
+    justify-self: start;
+    border-radius: var(--r-sm);
+  }
+
+  .site-nav {
+    grid-column: 2;
+  }
+
+  .site-nav ul {
+    display: flex;
+    gap: 0.15rem;
+  }
+
+  .site-nav a {
+    display: block;
+    padding: 0.5rem 0.95rem;
+    border-radius: var(--r-pill);
+    font-size: var(--fs-sm);
+    font-weight: 500;
+    color: var(--c-text-2);
+    transition:
+      color 0.25s,
+      background-color 0.25s;
+  }
+
+  .site-nav a:hover {
+    color: var(--c-text);
+    background: rgb(255 255 255 / 0.06);
+  }
+
+  .site-nav a[aria-current='page'] {
+    color: var(--c-text);
+    background: rgb(255 255 255 / 0.1);
+  }
+
+  .site-header__actions {
+    grid-column: 3;
+    justify-self: end;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .menu-btn {
+    display: none;
+    place-items: center;
+    inline-size: 44px;
+    block-size: 44px;
+    border-radius: 50%;
+    color: var(--c-text);
+    transition: background-color 0.25s;
+  }
+
+  .menu-btn:hover {
+    background: rgb(255 255 255 / 0.08);
+  }
+
+  @media (max-width: 1000px) {
+    .site-nav {
+      display: none;
+    }
+
+    .menu-btn {
+      display: grid;
+    }
+  }
+
+  @media (max-width: 340px) {
+    .buy {
+      display: none;
+    }
+  }
+
+  /* ---------- mobile menu: <dialog> + @starting-style 진입 애니메이션 ---------- */
+  .mobile-menu {
+    position: fixed;
+    inset: 0;
+    inline-size: 100%;
+    max-inline-size: none;
+    block-size: 100dvh;
+    max-block-size: none;
+    padding: 0 var(--gutter) calc(2rem + env(safe-area-inset-bottom));
+    border: 0;
+    background: rgb(5 5 7 / 0.94);
+    -webkit-backdrop-filter: blur(24px);
+    backdrop-filter: blur(24px);
+    flex-direction: column;
+    opacity: 0;
+    transition:
+      opacity 0.35s var(--ease-out),
+      display 0.35s allow-discrete,
+      overlay 0.35s allow-discrete;
+  }
+
+  .mobile-menu[open] {
+    display: flex;
+    opacity: 1;
+  }
+
+  @starting-style {
+    .mobile-menu[open] {
+      opacity: 0;
+    }
+  }
+
+  .mobile-menu::backdrop {
+    background: transparent;
+  }
+
+  .mobile-menu__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    block-size: var(--header-h);
+  }
+
+  .mobile-menu__list {
+    margin-block: 2rem auto;
+  }
+
+  .mobile-menu__list li {
+    border-bottom: 1px solid var(--c-border);
+    transition:
+      opacity 0.5s var(--ease-out),
+      translate 0.5s var(--ease-out);
+    transition-delay: calc(var(--i) * 45ms + 60ms);
+  }
+
+  @starting-style {
+    .mobile-menu[open] .mobile-menu__list li {
+      opacity: 0;
+      translate: 0 14px;
+    }
+  }
+
+  .mobile-menu__list a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-block: 1.15rem;
+    font-size: var(--fs-xl);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+  }
+
+  .mobile-menu__list a[aria-current='page'] {
+    color: var(--c-blue);
+  }
+
+  .mobile-menu__buy {
+    inline-size: 100%;
+  }
+</style>

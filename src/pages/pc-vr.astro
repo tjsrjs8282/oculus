@@ -1,0 +1,558 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Button from '@/components/Button.astro';
+import CtaBand from '@/components/CtaBand.astro';
+import Icon from '@/components/Icon.astro';
+import PageHero from '@/components/PageHero.astro';
+import SectionHeading from '@/components/SectionHeading.astro';
+import SubNav from '@/components/SubNav.astro';
+import { connectMethods, gpuGroups, gpuTiers, linkSteps, requirements } from '@/data/pcvr';
+import { official } from '@/data/site';
+import { url } from '@/lib/url';
+import pcvrImage from '@/assets/gen/pc-vr.jpg';
+---
+
+<BaseLayout
+  title="PC VR 연결"
+  description="Meta Quest 3·3S를 PC VR 헤드셋으로. Quest Link, Air Link, Steam Link 연결 방법과 최소 사양, 그래픽카드 호환성 체크."
+  ogImage={pcvrImage}
+>
+  <PageHero
+    image={pcvrImage}
+    eyebrow="PC VR"
+    title={'PC 게임까지,\n*선 하나로* 혹은 선 없이'}
+    lead="Meta Quest 3·3S는 PC에 연결하는 순간 고사양 PC VR 헤드셋이 돼요. 2019년의 ‘Oculus Ready PC’ 인증 대신, 지금 쓰는 PC로 바로 확인해 보세요."
+  >
+    <Button slot="actions" href="#checker" variant="primary" icon="arrow-right">
+      내 PC 확인하기
+    </Button>
+  </PageHero>
+
+  <SubNav />
+
+  <!-- ============ 연결 방법 ============ -->
+  <section class="section" aria-labelledby="methods-title">
+    <div class="container">
+      <SectionHeading
+        id="methods-title"
+        eyebrow="Connect"
+        title="세 가지 연결 방법"
+        lead="화질이 먼저라면 케이블, 자유로운 움직임이 먼저라면 무선. 상황에 맞게 골라 쓰면 돼요."
+      />
+      <ul class="methods" role="list">
+        {connectMethods.map((method, i) => (
+          <li class="method" data-reveal style={{ '--i': i }}>
+            <div class="method__top">
+              <span class="method__icon">
+                <Icon name={method.icon} size={26} />
+              </span>
+              <span class="badge">{method.kind}</span>
+            </div>
+            <h3>{method.name}</h3>
+            <p class="method__desc">{method.desc}</p>
+            <h4>준비물</h4>
+            <ul role="list" class="method__needs">
+              {method.needs.map((need) => (
+                <li>
+                  <Icon name="check" size={16} />
+                  {need}
+                </li>
+              ))}
+            </ul>
+            <p class="method__best">
+              <strong>추천</strong> {method.best}
+            </p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ 사양 & 호환성 체크 ============ -->
+  <section id="checker" class="section checker" aria-labelledby="req-title">
+    <div class="container checker__grid">
+      <div>
+        <SectionHeading
+          id="req-title"
+          eyebrow="Requirements"
+          title="최소 사양"
+          lead="Quest Link를 쓰려면 PC가 아래 조건을 갖춰야 해요. 그래픽카드가 가장 중요해요."
+        />
+        <dl class="req">
+          {requirements.map((req) => (
+            <div class="req__row" data-reveal>
+              <dt>
+                <Icon name={req.icon} size={20} />
+                {req.label}
+              </dt>
+              <dd>{req.value}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+
+      <div class="gpu glass" data-gpu data-tiers={JSON.stringify(gpuTiers)} data-reveal>
+        <h3>내 그래픽카드로 될까?</h3>
+        <p class="gpu__intro">그래픽카드 시리즈를 고르면 Quest Link 적합도를 알려 드려요.</p>
+        <label class="gpu__label" for="gpu-select">
+          그래픽카드
+        </label>
+        <div class="gpu__select">
+          <select id="gpu-select" data-gpu-select>
+            <option value="" selected disabled>
+              시리즈를 선택해 주세요
+            </option>
+            {gpuGroups.map((group) => (
+              <optgroup label={group.vendor}>
+                {group.options.map((option) => (
+                  <option value={option.tier}>{option.label}</option>
+                ))}
+              </optgroup>
+            ))}
+          </select>
+          <Icon name="chevron-down" size={18} />
+        </div>
+
+        <output class="gpu__result" for="gpu-select" data-tier="" data-gpu-result>
+          <span class="gpu__meter" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+          <strong class="gpu__tier" data-gpu-tier>
+            —
+          </strong>
+          <span class="gpu__desc" data-gpu-desc>
+            아직 선택하지 않았어요.
+          </span>
+        </output>
+
+        <p class="fine">
+          공식 인증이 아닌 참고용 가이드예요. 노트북은 같은 이름이라도 성능이 낮을 수 있어요. 정확한
+          호환 목록은
+          <a href={official.help} target="_blank" rel="noopener noreferrer">
+            Meta 고객센터<span class="sr-only">(새 창)</span>
+          </a>
+          에서 확인하세요.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 연결 순서 ============ -->
+  <section class="section" aria-labelledby="steps-title">
+    <div class="container">
+      <SectionHeading id="steps-title" eyebrow="How to" title="4단계로 연결하기" align="center" />
+      <ol class="steps" role="list">
+        {linkSteps.map((step, i) => (
+          <li class="step" data-reveal style={{ '--i': i }}>
+            <span class="step__num" aria-hidden="true">
+              {String(i + 1).padStart(2, '0')}
+            </span>
+            <h3>{step.title}</h3>
+            <p>{step.text}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ 2019 → 2026 ============ -->
+  <section class="section--tight" aria-labelledby="legacy-title">
+    <div class="container container--narrow">
+      <aside class="legacy" data-reveal>
+        <Icon name="info" />
+        <div>
+          <h2 id="legacy-title">2019년의 ‘Oculus Ready PC’는 어디 갔나요?</h2>
+          <p>
+            2020년 버전의 이 페이지는 Rift S용 인증 PC(Alienware Aurora, Falcon Northwest Tiki,
+            Lenovo Legion 등)를 소개했어요. 지금은 인증 프로그램 대신 위의 최소 사양과 호환 목록으로
+            확인하면 되고, 대부분의 게이밍 PC와 노트북에서 Quest Link를 쓸 수 있어요.
+          </p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <CtaBand
+    eyebrow="Next"
+    title="헤드셋 설정이 아직이라면"
+    text="PC에 연결하기 전에 헤드셋 기본 설정부터 끝내 두세요. 7단계 체크리스트로 금방이에요."
+  >
+    <Button href={url('setup.html')} variant="primary" size="lg" icon="arrow-right">
+      설정 가이드
+    </Button>
+    <Button href={url('games.html')} size="lg" icon="arrow-right">
+      게임 둘러보기
+    </Button>
+  </CtaBand>
+</BaseLayout>
+
+<script>
+  type Tier = { label: string; desc: string };
+  const root = document.querySelector<HTMLElement>('[data-gpu]');
+  const select = root?.querySelector<HTMLSelectElement>('[data-gpu-select]');
+  const result = root?.querySelector<HTMLElement>('[data-gpu-result]');
+  const tierEl = root?.querySelector<HTMLElement>('[data-gpu-tier]');
+  const descEl = root?.querySelector<HTMLElement>('[data-gpu-desc]');
+
+  if (root && select && result && tierEl && descEl) {
+    const tiers = JSON.parse(root.dataset.tiers ?? '{}') as Record<string, Tier>;
+    select.addEventListener('change', () => {
+      const tier = tiers[select.value];
+      if (!tier) return;
+      result.dataset.tier = select.value;
+      tierEl.textContent = tier.label;
+      descEl.textContent = tier.desc;
+    });
+  }
+</script>
+
+<style>
+  /* ---------- methods ---------- */
+  .methods {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+
+  .method {
+    display: grid;
+    align-content: start;
+    gap: 0.85rem;
+    padding: clamp(1.5rem, 1.2rem + 1vw, 2.25rem);
+    border: 1px solid var(--c-border);
+    border-radius: var(--r-xl);
+    background: linear-gradient(180deg, rgb(255 255 255 / 0.05), rgb(255 255 255 / 0.015));
+  }
+
+  .method__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-block-end: 0.5rem;
+  }
+
+  .method__icon {
+    display: grid;
+    place-items: center;
+    inline-size: 56px;
+    block-size: 56px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, rgb(79 140 255 / 0.3), rgb(139 92 255 / 0.3));
+    color: #dbe7ff;
+  }
+
+  .method h3 {
+    font-size: var(--fs-xl);
+  }
+
+  .method__desc {
+    color: var(--c-text-2);
+    font-size: var(--fs-sm);
+  }
+
+  .method h4 {
+    margin-block-start: 0.5rem;
+    font-size: var(--fs-xs);
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--c-text-3);
+  }
+
+  .method__needs {
+    display: grid;
+    gap: 0.5rem;
+    font-size: var(--fs-sm);
+  }
+
+  .method__needs li {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .method__needs :global(svg) {
+    flex: none;
+    margin-block-start: 0.3rem;
+    color: var(--c-green);
+  }
+
+  .method__best {
+    margin-block-start: 0.5rem;
+    padding-block-start: 1rem;
+    border-top: 1px solid var(--c-border);
+    font-size: var(--fs-sm);
+    color: var(--c-text-2);
+  }
+
+  .method__best strong {
+    margin-inline-end: 0.4rem;
+    color: var(--c-text);
+  }
+
+  @media (max-width: 960px) {
+    .methods {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* ---------- requirements & checker ---------- */
+  .checker {
+    background: radial-gradient(50% 60% at 80% 50%, rgb(139 92 255 / 0.12), transparent 70%);
+  }
+
+  .checker__grid {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    align-items: start;
+    gap: clamp(2rem, 1rem + 4vw, 5rem);
+  }
+
+  .req {
+    border-top: 1px solid var(--c-border);
+  }
+
+  .req__row {
+    display: grid;
+    grid-template-columns: 10rem 1fr;
+    gap: 1rem;
+    padding-block: 1.1rem;
+    border-bottom: 1px solid var(--c-border);
+  }
+
+  .req dt {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-weight: 600;
+    color: var(--c-text-2);
+  }
+
+  .req dd {
+    font-weight: 600;
+  }
+
+  .gpu {
+    position: sticky;
+    top: calc(var(--header-h) + 5rem);
+    display: grid;
+    gap: 1rem;
+    padding: clamp(1.5rem, 1.2rem + 1.5vw, 2.5rem);
+    border-radius: var(--r-xl);
+  }
+
+  .gpu h3 {
+    font-size: var(--fs-2xl);
+    font-weight: 800;
+  }
+
+  .gpu__intro {
+    color: var(--c-text-2);
+  }
+
+  .gpu__label {
+    margin-block-start: 0.5rem;
+    font-size: var(--fs-xs);
+    font-weight: 700;
+    color: var(--c-text-3);
+  }
+
+  .gpu__select {
+    position: relative;
+  }
+
+  .gpu__select select {
+    inline-size: 100%;
+    padding: 0.95rem 3rem 0.95rem 1.1rem;
+    border: 1px solid var(--c-border-2);
+    border-radius: var(--r-md);
+    background: rgb(5 5 7 / 0.6);
+    font-weight: 600;
+    appearance: none;
+    cursor: pointer;
+  }
+
+  .gpu__select select:focus-visible {
+    outline: 2px solid var(--c-blue);
+    outline-offset: 2px;
+  }
+
+  .gpu__select :global(svg) {
+    position: absolute;
+    top: 50%;
+    right: 1rem;
+    translate: 0 -50%;
+    pointer-events: none;
+    color: var(--c-text-3);
+  }
+
+  .gpu__result {
+    --tone: var(--c-text-3);
+
+    display: grid;
+    gap: 0.5rem;
+    padding: 1.25rem;
+    border: 1px solid var(--c-border);
+    border-radius: var(--r-md);
+    background: rgb(5 5 7 / 0.5);
+  }
+
+  .gpu__result[data-tier='great'] {
+    --tone: var(--c-green);
+  }
+
+  .gpu__result[data-tier='good'] {
+    --tone: #7ee0b0;
+  }
+
+  .gpu__result[data-tier='ok'] {
+    --tone: var(--c-amber);
+  }
+
+  .gpu__result[data-tier='min'] {
+    --tone: #ff9f5a;
+  }
+
+  .gpu__result[data-tier='no'] {
+    --tone: var(--c-red);
+  }
+
+  .gpu__result[data-tier='unknown'] {
+    --tone: var(--c-blue);
+  }
+
+  .gpu__meter {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 4px;
+    margin-block-end: 0.35rem;
+  }
+
+  .gpu__meter span {
+    block-size: 6px;
+    border-radius: 3px;
+    background: rgb(255 255 255 / 0.1);
+    transition: background-color 0.4s;
+  }
+
+  /* 등급만큼 막대를 채운다: great 5 · good 4 · ok 3 · min 2 · no 1 · unknown 0 */
+  .gpu__result[data-tier='no'] .gpu__meter span:first-child,
+  .gpu__result[data-tier='great'] .gpu__meter span,
+  .gpu__result[data-tier='good'] .gpu__meter span:nth-child(-n + 4),
+  .gpu__result[data-tier='ok'] .gpu__meter span:nth-child(-n + 3),
+  .gpu__result[data-tier='min'] .gpu__meter span:nth-child(-n + 2) {
+    background: var(--tone);
+  }
+
+  .gpu__tier {
+    font-size: var(--fs-xl);
+    font-weight: 800;
+    color: var(--tone);
+    transition: color 0.4s;
+  }
+
+  .gpu__desc {
+    font-size: var(--fs-sm);
+    color: var(--c-text-2);
+  }
+
+  .gpu .fine a {
+    color: var(--c-text-2);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  @media (max-width: 960px) {
+    .checker__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .gpu {
+      position: static;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .req__row {
+      grid-template-columns: 1fr;
+      gap: 0.35rem;
+    }
+  }
+
+  /* ---------- steps ---------- */
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    counter-reset: step;
+  }
+
+  .step {
+    position: relative;
+    display: grid;
+    align-content: start;
+    gap: 0.6rem;
+    padding: 1.75rem 1.5rem;
+    border: 1px solid var(--c-border);
+    border-radius: var(--r-lg);
+    background: var(--c-surface);
+  }
+
+  .step__num {
+    font-size: var(--fs-2xl);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    background: var(--grad-brand);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .step h3 {
+    font-size: var(--fs-lg);
+  }
+
+  .step p {
+    font-size: var(--fs-sm);
+    color: var(--c-text-2);
+  }
+
+  @media (max-width: 960px) {
+    .steps {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 560px) {
+    .steps {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* ---------- legacy note ---------- */
+  .legacy {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1rem;
+    padding: 1.75rem;
+    border: 1px dashed var(--c-border-2);
+    border-radius: var(--r-lg);
+    color: var(--c-text-2);
+  }
+
+  .legacy :global(svg) {
+    color: var(--c-blue);
+  }
+
+  .legacy h2 {
+    margin-block-end: 0.5rem;
+    font-size: var(--fs-lg);
+    color: var(--c-text);
+  }
+
+  .legacy p {
+    font-size: var(--fs-sm);
+  }
+</style>

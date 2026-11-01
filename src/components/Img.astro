@@ -1,0 +1,38 @@
+---
+/**
+ * 모든 이미지는 이 컴포넌트를 거친다.
+ * AVIF 우선 + WebP 폴백, 반응형 srcset, width/height(=CLS 0), 지연 로딩을 한 번에 처리한다.
+ * <picture>는 display: contents(.pic)라서 레이아웃에는 <img>만 남는다.
+ */
+import { Picture } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+  src: ImageMetadata;
+  alt: string;
+  sizes?: string;
+  widths?: number[];
+  layout?: 'constrained' | 'full-width' | 'fixed';
+  /** LCP 이미지에만 — fetchpriority=high, loading=eager */
+  priority?: boolean;
+  fit?: 'cover' | 'contain';
+  position?: string;
+  quality?: number;
+  width?: number;
+  height?: number;
+  class?: string;
+}
+
+const { src, alt, layout = 'constrained', class: className, ...rest } = Astro.props;
+---
+
+<Picture
+  src={src}
+  alt={alt}
+  layout={layout}
+  formats={['avif']}
+  fallbackFormat="webp"
+  class={className}
+  pictureAttributes={{ class: 'pic' }}
+  {...rest}
+/>

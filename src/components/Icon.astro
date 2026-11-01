@@ -1,0 +1,35 @@
+---
+import { brandIcons, lineIcons, type BrandIconName, type IconName } from '@/lib/icons';
+
+interface Props {
+  name: IconName;
+  size?: number;
+  /** 의미 있는 아이콘이면 라벨을, 장식이면 생략(aria-hidden) */
+  label?: string;
+  class?: string;
+}
+
+const { name, size = 24, label, class: className } = Astro.props;
+const isBrand = name in brandIcons;
+const body = isBrand
+  ? brandIcons[name as BrandIconName]
+  : lineIcons[name as keyof typeof lineIcons];
+---
+
+<svg
+  class:list={['icon', `icon-${name}`, className]}
+  width={size}
+  height={size}
+  viewBox="0 0 24 24"
+  fill={isBrand ? 'currentColor' : 'none'}
+  stroke={isBrand ? 'none' : 'currentColor'}
+  stroke-width={isBrand ? undefined : 1.75}
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  role={label ? 'img' : undefined}
+  aria-label={label}
+  aria-hidden={label ? undefined : 'true'}
+  focusable="false"
+>
+  <Fragment set:html={body} />
+</svg>

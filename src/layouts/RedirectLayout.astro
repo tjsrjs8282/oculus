@@ -1,0 +1,47 @@
+---
+/**
+ * 2020년 버전 주소(rift.html 등)로 들어온 방문자를 새 페이지로 보낸다.
+ * GitHub Pages는 서버 리다이렉트를 지원하지 않으므로 meta refresh + canonical 조합을 쓴다.
+ */
+import { url } from '@/lib/url';
+
+interface Props {
+  to: string;
+  label: string;
+}
+
+const { to, label } = Astro.props;
+const target = url(to);
+const canonical = new URL(target, Astro.site);
+---
+
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{label} 페이지로 이동 | oculus</title>
+    <meta http-equiv="refresh" content={`0; url=${target}`} />
+    <link rel="canonical" href={canonical} />
+    <meta name="robots" content="noindex" />
+    <style>
+      body {
+        display: grid;
+        place-items: center;
+        min-height: 100vh;
+        margin: 0;
+        background: #050507;
+        color: #f4f6fb;
+        font-family: system-ui, sans-serif;
+      }
+      a {
+        color: #8fb6ff;
+      }
+    </style>
+  </head>
+  <body>
+    <p>
+      페이지가 이전했어요. <a href={target}>{label} 페이지로 이동</a>
+    </p>
+  </body>
+</html>

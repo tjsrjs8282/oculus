@@ -1,0 +1,87 @@
+---
+/** 2020년 버전의 'Rift S · 개요 / 지원 PC / 설정' 탭을 잇는 제품 하위 메뉴. 헤더 아래에 붙어 따라온다. */
+import { productNav } from '@/data/site';
+import { isCurrent, url } from '@/lib/url';
+
+const path = Astro.url.pathname;
+---
+
+<nav class="subnav" aria-label="Meta Quest 하위 메뉴">
+  <div class="container subnav__inner">
+    <span class="subnav__title">Meta Quest 3·3S</span>
+    <ul role="list">
+      {productNav.map((item) => (
+        <li>
+          <a href={url(item.href)} aria-current={isCurrent(path, item.href) ? 'page' : undefined}>
+            {item.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</nav>
+
+<style>
+  .subnav {
+    position: sticky;
+    top: var(--header-h);
+    z-index: 40;
+    border-block: 1px solid var(--c-border);
+    background: rgb(10 11 16 / 0.72);
+    -webkit-backdrop-filter: blur(22px) saturate(160%);
+    backdrop-filter: blur(22px) saturate(160%);
+  }
+
+  .subnav__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    min-block-size: 52px;
+  }
+
+  .subnav__title {
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+  }
+
+  ul {
+    display: flex;
+    gap: 0.25rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  a {
+    display: block;
+    padding: 0.45rem 0.9rem;
+    border-radius: var(--r-pill);
+    font-size: var(--fs-sm);
+    color: var(--c-text-2);
+    white-space: nowrap;
+    transition:
+      color 0.2s,
+      background-color 0.2s;
+  }
+
+  a:hover {
+    color: var(--c-text);
+  }
+
+  a[aria-current='page'] {
+    color: #07080c;
+    background: #fff;
+    font-weight: 600;
+  }
+
+  @media (max-width: 560px) {
+    .subnav__title {
+      display: none;
+    }
+
+    .subnav__inner {
+      justify-content: center;
+    }
+  }
+</style>

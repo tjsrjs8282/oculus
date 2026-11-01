@@ -1,0 +1,494 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Button from '@/components/Button.astro';
+import CtaBand from '@/components/CtaBand.astro';
+import Faq from '@/components/Faq.astro';
+import Icon from '@/components/Icon.astro';
+import PageHero from '@/components/PageHero.astro';
+import SectionHeading from '@/components/SectionHeading.astro';
+import SubNav from '@/components/SubNav.astro';
+import { safetyTips, setupFaq, setupSteps } from '@/data/setup';
+import { official } from '@/data/site';
+import { url } from '@/lib/url';
+import setupImage from '@/assets/gen/setup.jpg';
+
+const total = setupSteps.length;
+---
+
+<BaseLayout
+  title="설정 가이드"
+  description="Meta Quest 3·3S 첫 설정을 7단계 체크리스트로. 충전, Meta Horizon 앱, 착용과 IPD, 페어링, 플레이 공간 설정까지."
+  ogImage={setupImage}
+>
+  <PageHero
+    image={setupImage}
+    eyebrow="Getting started"
+    title={'상자를 열고,\n*첫 VR*까지'}
+    lead="충전부터 공간 설정까지 하나씩 체크하며 따라 해 보세요. 진행 상황은 이 브라우저에만 저장돼요."
+    position="center"
+  >
+    <Button slot="actions" href="#checklist" variant="primary" icon="arrow-right">
+      체크리스트 시작
+    </Button>
+  </PageHero>
+
+  <SubNav />
+
+  <!-- ============ checklist ============ -->
+  <section id="checklist" class="section" aria-labelledby="checklist-title">
+    <div class="container checklist">
+      <aside class="progress glass" aria-label="진행 상황" data-progress>
+        <div class="ring" style={{ '--p': 0 }} data-ring>
+          <svg viewBox="0 0 120 120" aria-hidden="true">
+            <circle class="ring__track" cx="60" cy="60" r="52"></circle>
+            <circle class="ring__bar" cx="60" cy="60" r="52" pathLength="100"></circle>
+          </svg>
+          <p class="ring__label">
+            <strong data-done>0</strong>
+            <span>/ {total}</span>
+          </p>
+        </div>
+        <p class="progress__text" role="status" aria-live="polite" data-progress-text>
+          체크하면서 진행해 보세요.
+        </p>
+        <button class="btn btn--sm" type="button" data-reset>
+          <Icon name="refresh" size={16} />
+          처음부터
+        </button>
+      </aside>
+
+      <div>
+        <SectionHeading
+          id="checklist-title"
+          eyebrow="Checklist"
+          title={'7단계면\n*준비 끝*'}
+          lead="Meta Quest 3와 3S 모두 같은 순서로 설정해요."
+        />
+        <ol class="steps" role="list" data-steps>
+          {setupSteps.map((step, i) => (
+            <li class="step" data-step={step.id} data-reveal>
+              <label class="step__check">
+                <input type="checkbox" value={step.id} data-step-check />
+                <span class="step__box" aria-hidden="true">
+                  <Icon name="check" size={18} />
+                </span>
+                <span class="sr-only">{step.title} 완료</span>
+              </label>
+              <div class="step__body">
+                <p class="step__num">STEP {i + 1}</p>
+                <h3>{step.title}</h3>
+                <p>{step.text}</p>
+                {step.tip && (
+                  <p class="step__tip">
+                    <Icon name="info" size={16} />
+                    {step.tip}
+                  </p>
+                )}
+              </div>
+              <span class="step__icon" aria-hidden="true">
+                <Icon name={step.icon} size={28} />
+              </span>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ safety ============ -->
+  <section class="section safety" aria-labelledby="safety-title">
+    <div class="container">
+      <SectionHeading
+        id="safety-title"
+        eyebrow="Play safe"
+        title="안전하게 즐기려면"
+        lead="몰입할수록 주변을 잊기 쉬워요. 시작 전에 이것만은 꼭 챙겨 주세요."
+      />
+      <ul class="tips" role="list">
+        {safetyTips.map((tip, i) => (
+          <li class="tip" data-reveal style={{ '--i': i }}>
+            <Icon name={tip.icon} size={26} />
+            <h3>{tip.title}</h3>
+            <p>{tip.text}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ troubleshooting ============ -->
+  <section class="section" aria-labelledby="trouble-title">
+    <div class="container container--narrow">
+      <SectionHeading id="trouble-title" eyebrow="Troubleshooting" title="이럴 땐 이렇게" />
+      <Faq items={setupFaq} name="setup-faq" />
+      <p class="support">
+        해결되지 않는다면
+        <a class="link-arrow" href={official.help} target="_blank" rel="noopener noreferrer">
+          Meta 고객 지원<span class="sr-only">(새 창)</span>
+          <Icon name="arrow-up-right" size={16} />
+        </a>
+      </p>
+    </div>
+  </section>
+
+  <CtaBand
+    eyebrow="Ready"
+    title="설정을 마쳤다면, 이제 놀 차례"
+    text="첫 게임을 고르거나 PC VR까지 연결해 보세요."
+  >
+    <Button href={url('games.html')} variant="primary" size="lg" icon="arrow-right">
+      게임 둘러보기
+    </Button>
+    <Button href={url('pc-vr.html')} size="lg" icon="arrow-right">
+      PC VR 연결
+    </Button>
+  </CtaBand>
+</BaseLayout>
+
+<script>
+  const KEY = 'oculus:setup-checklist';
+  const list = document.querySelector<HTMLElement>('[data-steps]');
+  const ring = document.querySelector<HTMLElement>('[data-ring]');
+  const doneEl = document.querySelector<HTMLElement>('[data-done]');
+  const text = document.querySelector<HTMLElement>('[data-progress-text]');
+  const reset = document.querySelector<HTMLButtonElement>('[data-reset]');
+
+  if (list && ring && doneEl && text && reset) {
+    const boxes = [...list.querySelectorAll<HTMLInputElement>('[data-step-check]')];
+
+    // 시크릿 모드 등에서 localStorage가 막혀 있어도 체크리스트는 그대로 동작해야 한다.
+    const load = (): string[] => {
+      try {
+        return JSON.parse(localStorage.getItem(KEY) ?? '[]') as string[];
+      } catch {
+        return [];
+      }
+    };
+    const save = (ids: string[]) => {
+      try {
+        localStorage.setItem(KEY, JSON.stringify(ids));
+      } catch {
+        /* 저장 불가 — 무시 */
+      }
+    };
+
+    const render = () => {
+      const done = boxes.filter((box) => box.checked);
+      boxes.forEach((box) => box.closest('.step')?.classList.toggle('is-done', box.checked));
+      const pct = Math.round((done.length / boxes.length) * 100);
+      ring.style.setProperty('--p', String(pct));
+      doneEl.textContent = String(done.length);
+      text.textContent =
+        done.length === boxes.length
+          ? '모든 단계를 마쳤어요! 이제 새로운 세계로 들어가 보세요.'
+          : done.length === 0
+            ? '체크하면서 진행해 보세요.'
+            : `${boxes.length - done.length}단계 남았어요.`;
+      return done.map((box) => box.value);
+    };
+
+    // 저장된 진행 상황 복원
+    const saved = new Set(load());
+    boxes.forEach((box) => (box.checked = saved.has(box.value)));
+    render();
+
+    list.addEventListener('change', () => save(render()));
+    reset.addEventListener('click', () => {
+      boxes.forEach((box) => (box.checked = false));
+      save(render());
+    });
+  }
+</script>
+
+<style>
+  .checklist {
+    display: grid;
+    grid-template-columns: 17rem 1fr;
+    align-items: start;
+    gap: clamp(2rem, 1rem + 4vw, 5rem);
+  }
+
+  /* ---------- progress ring ---------- */
+  .progress {
+    position: sticky;
+    top: calc(var(--header-h) + 5rem);
+    display: grid;
+    justify-items: center;
+    gap: 1.1rem;
+    padding: 2rem 1.5rem;
+    border-radius: var(--r-xl);
+    text-align: center;
+  }
+
+  .ring {
+    position: relative;
+    inline-size: 9.5rem;
+    aspect-ratio: 1;
+  }
+
+  .ring svg {
+    inline-size: 100%;
+    block-size: 100%;
+    rotate: -90deg;
+  }
+
+  .ring circle {
+    fill: none;
+    stroke-width: 10;
+  }
+
+  .ring__track {
+    stroke: rgb(255 255 255 / 0.08);
+  }
+
+  .ring__bar {
+    stroke: var(--c-blue);
+    stroke-linecap: round;
+    stroke-dasharray: 100;
+    stroke-dashoffset: calc(100 - var(--p));
+    transition: stroke-dashoffset 0.8s var(--ease-out);
+  }
+
+  .ring__label {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-content: center;
+    grid-auto-flow: column;
+    align-items: baseline;
+    gap: 0.25rem;
+  }
+
+  .ring__label strong {
+    font-size: var(--fs-3xl);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .ring__label span {
+    color: var(--c-text-3);
+    font-weight: 600;
+  }
+
+  .progress__text {
+    min-block-size: 3.2em;
+    font-size: var(--fs-sm);
+    color: var(--c-text-2);
+  }
+
+  /* ---------- steps ---------- */
+  .steps {
+    display: grid;
+    gap: 0.85rem;
+  }
+
+  .step {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 1.25rem;
+    padding: 1.5rem;
+    border: 1px solid var(--c-border);
+    border-radius: var(--r-lg);
+    background: var(--c-surface);
+    transition:
+      border-color 0.4s,
+      background-color 0.4s,
+      opacity 0.4s;
+  }
+
+  .step.is-done {
+    border-color: rgb(61 220 151 / 0.35);
+    background: rgb(61 220 151 / 0.05);
+  }
+
+  .step__check {
+    position: relative;
+    cursor: pointer;
+  }
+
+  .step__check input {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  .step__box {
+    display: grid;
+    place-items: center;
+    inline-size: 32px;
+    block-size: 32px;
+    border: 1.5px solid var(--c-border-2);
+    border-radius: 10px;
+    color: transparent;
+    transition:
+      background-color 0.3s,
+      border-color 0.3s,
+      color 0.3s,
+      scale 0.3s var(--ease-out);
+  }
+
+  .step__check input:checked + .step__box {
+    border-color: var(--c-green);
+    background: var(--c-green);
+    color: #04140c;
+    scale: 1.05;
+  }
+
+  .step__check input:focus-visible + .step__box {
+    outline: 2px solid var(--c-blue);
+    outline-offset: 3px;
+  }
+
+  .step__body {
+    display: grid;
+    gap: 0.4rem;
+  }
+
+  .step__num {
+    font-size: var(--fs-xs);
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    color: var(--c-blue);
+  }
+
+  .step h3 {
+    font-size: var(--fs-lg);
+  }
+
+  .step.is-done h3 {
+    text-decoration: line-through;
+    text-decoration-color: rgb(61 220 151 / 0.7);
+    text-decoration-thickness: 2px;
+  }
+
+  .step__body p:not(.step__num) {
+    font-size: var(--fs-sm);
+    color: var(--c-text-2);
+  }
+
+  .step__tip {
+    display: flex;
+    gap: 0.45rem;
+    margin-block-start: 0.25rem;
+    padding: 0.7rem 0.85rem;
+    border-radius: var(--r-sm);
+    background: rgb(79 140 255 / 0.08);
+  }
+
+  .step__tip :global(svg) {
+    flex: none;
+    margin-block-start: 0.25rem;
+    color: var(--c-blue);
+  }
+
+  .step__icon {
+    color: var(--c-text-3);
+  }
+
+  @media (max-width: 900px) {
+    .checklist {
+      grid-template-columns: 1fr;
+    }
+
+    .progress {
+      position: sticky;
+      top: calc(var(--header-h) + 3.5rem);
+      z-index: 5;
+      grid-template-columns: auto 1fr auto;
+      justify-items: start;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.85rem 1rem;
+      border-radius: var(--r-lg);
+      text-align: start;
+    }
+
+    .ring {
+      inline-size: 3.5rem;
+    }
+
+    .ring circle {
+      stroke-width: 12;
+    }
+
+    .ring__label strong {
+      font-size: var(--fs-md);
+    }
+
+    .ring__label span {
+      font-size: var(--fs-xs);
+    }
+
+    .progress__text {
+      min-block-size: 0;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .step {
+      grid-template-columns: auto 1fr;
+    }
+
+    .step__icon {
+      display: none;
+    }
+
+    .progress .btn {
+      padding-inline: 0.75rem;
+    }
+  }
+
+  /* ---------- safety ---------- */
+  .tips {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
+
+  .tip {
+    display: grid;
+    align-content: start;
+    gap: 0.6rem;
+    padding: 1.75rem;
+    border: 1px solid var(--c-border);
+    border-radius: var(--r-lg);
+    background: var(--c-surface);
+  }
+
+  .tip :global(svg) {
+    margin-block-end: 0.4rem;
+    color: var(--c-amber);
+  }
+
+  .tip h3 {
+    font-size: var(--fs-lg);
+  }
+
+  .tip p {
+    font-size: var(--fs-sm);
+    color: var(--c-text-2);
+  }
+
+  @media (max-width: 960px) {
+    .tips {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 560px) {
+    .tips {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .support {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    margin-block-start: 2rem;
+    color: var(--c-text-2);
+  }
+</style>

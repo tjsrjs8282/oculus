@@ -1,0 +1,754 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Button from '@/components/Button.astro';
+import CtaBand from '@/components/CtaBand.astro';
+import Faq from '@/components/Faq.astro';
+import Icon from '@/components/Icon.astro';
+import Img from '@/components/Img.astro';
+import ProductCard from '@/components/ProductCard.astro';
+import SectionHeading from '@/components/SectionHeading.astro';
+import SubNav from '@/components/SubNav.astro';
+import type { FaqItem } from '@/data/setup';
+import { inTheBox, priceNote, products, specs } from '@/data/products';
+import { official } from '@/data/site';
+import type { IconName } from '@/lib/icons';
+import { url } from '@/lib/url';
+import controllers from '@/assets/gen/controllers.webp';
+import mixedReality from '@/assets/gen/mixed-reality.jpg';
+import quest3Image from '@/assets/gen/quest3-product.webp';
+
+const highlights: { icon: IconName; title: string; text: string; href?: string }[] = [
+  {
+    icon: 'layers',
+    title: '풀 컬러 혼합현실',
+    text: '고해상도 컬러 패스스루로 실제 공간을 보면서 가상 콘텐츠를 자연스럽게 겹쳐요.',
+  },
+  {
+    icon: 'cpu',
+    title: 'Snapdragon XR2 Gen 2',
+    text: 'Quest 2보다 2배 이상 강력한 그래픽 성능으로 더 정교한 세계를 그려요.',
+  },
+  {
+    icon: 'gamepad',
+    title: 'Touch Plus 컨트롤러',
+    text: '링을 없앤 컴팩트한 디자인과 TruTouch 햅틱으로 손맛까지 전해요.',
+  },
+  {
+    icon: 'hand',
+    title: '핸드 트래킹',
+    text: '컨트롤러를 내려놓고 맨손으로 집고, 누르고, 넘겨 보세요.',
+  },
+  {
+    icon: 'monitor',
+    title: 'PC VR 연결',
+    text: 'Quest Link 케이블이나 Air Link로 고사양 PC VR 게임까지 즐겨요.',
+    href: url('pc-vr.html'),
+  },
+  {
+    icon: 'sparkles',
+    title: '하나의 라이브러리',
+    text: '게임·피트니스·영상·소셜 앱을 Meta Horizon Store 하나에서. 두 모델 모두 같은 앱을 써요.',
+  },
+];
+
+const mrPoints: { icon: IconName; title: string; text: string }[] = [
+  { icon: 'eye', title: '컬러 패스스루', text: '헤드셋을 쓴 채로도 주변이 또렷하게 보여요.' },
+  {
+    icon: 'scan',
+    title: '공간 인식',
+    text: '벽과 가구를 인식해 가상 오브젝트가 현실에 자리 잡아요.',
+  },
+  { icon: 'hand', title: '손으로 조작', text: '허공의 창을 잡아 옮기고 손가락으로 눌러요.' },
+];
+
+const faq: FaqItem[] = [
+  {
+    q: 'Quest 3와 Quest 3S 중 무엇을 사야 할까요?',
+    a: '같은 칩셋이라 즐길 수 있는 게임과 앱은 같아요. 더 선명한 화면과 넓은 시야, 넉넉한 저장 공간이 중요하다면 Quest 3, 가격 부담을 줄이고 싶다면 Quest 3S를 추천해요.',
+  },
+  {
+    q: 'PC나 스마트폰 없이도 쓸 수 있나요?',
+    a: '네. 헤드셋 단독으로 동작하는 올인원 기기예요. 다만 처음 설정할 때는 스마트폰의 Meta Horizon 앱과 Meta 계정이 필요해요.',
+  },
+  {
+    q: '안경을 쓴 채로 사용할 수 있나요?',
+    a: '대부분의 안경을 착용한 채로 쓸 수 있지만 프레임 크기에 따라 불편할 수 있어요. 도수 렌즈 인서트(별매)를 끼우면 안경 없이도 선명하게 볼 수 있어요.',
+  },
+  {
+    q: '가격은 왜 달러(USD)로 표시되나요?',
+    a: '미국 Meta 공식 스토어 가격(2026년 4월 19일 조정 반영)을 기준으로 했어요. 국내 판매가는 Meta 공식 스토어나 판매처에서 확인해 주세요.',
+  },
+];
+---
+
+<BaseLayout
+  title="Meta Quest 3 · 3S"
+  description="Meta Quest 3와 3S의 특징, 사양 비교, 구성품, 자주 묻는 질문. 풀 컬러 혼합현실 헤드셋 두 모델을 한눈에 비교해 보세요."
+  ogImage={quest3Image}
+>
+  <section class="phero" aria-labelledby="phero-title">
+    <div class="container">
+      <div class="phero__head" data-reveal>
+        <p class="eyebrow">Meta Quest 3 · 3S</p>
+        <h1 id="phero-title">
+          혼합현실의 <span class="text-gradient">새 기준</span>
+        </h1>
+      </div>
+
+      <div class="ptabs" data-tabs>
+        <div class="ptabs__list" role="tablist" aria-label="모델 선택">
+          {products.map((p, i) => (
+            <button
+              type="button"
+              role="tab"
+              id={`tab-${p.id}`}
+              aria-controls={p.id}
+              aria-selected={i === 0 ? 'true' : 'false'}
+              tabindex={i === 0 ? 0 : -1}
+            >
+              {p.name}
+            </button>
+          ))}
+        </div>
+        {products.map((p, i) => (
+          <div
+            class="ptabs__panel"
+            role="tabpanel"
+            id={p.id}
+            aria-labelledby={`tab-${p.id}`}
+            data-active={i === 0 ? '' : undefined}
+            tabindex="0"
+          >
+            <ProductCard product={p} variant="feature" priority={i === 0} />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <SubNav />
+
+  <!-- ============ highlights ============ -->
+  <section class="section" aria-labelledby="hl-title">
+    <div class="container">
+      <SectionHeading
+        id="hl-title"
+        eyebrow="Highlights"
+        title={'두 모델이 함께 가진\n*핵심 기능*'}
+        lead="Quest 3와 3S는 칩셋, 컨트롤러, 앱 라이브러리를 공유해요. 무엇을 고르든 같은 세계로 들어가요."
+      />
+      <ul class="hl-grid" role="list">
+        {highlights.map((item, i) => (
+          <li class="hl" data-reveal style={{ '--i': i % 3 }}>
+            <span class="hl__icon">
+              <Icon name={item.icon} />
+            </span>
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+            {item.href && (
+              <a class="link-arrow" href={item.href}>
+                연결 방법 <Icon name="arrow-right" size={16} />
+              </a>
+            )}
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ mixed reality ============ -->
+  <section class="section mr" aria-labelledby="mr-title">
+    <div class="container mr__grid">
+      <div class="mr__media" data-reveal>
+        <Img
+          src={mixedReality}
+          alt="거실 탁자 위에 가상의 성과 기사들을 띄워 놓고 손을 뻗는 사람"
+          widths={[640, 960, 1280, 1600]}
+          sizes="(min-width: 1000px) 58vw, 100vw"
+        />
+      </div>
+      <div class="mr__copy">
+        <SectionHeading
+          id="mr-title"
+          eyebrow="Mixed reality"
+          title={'거실이\n*게임 무대*가 될 때'}
+          lead="패스스루로 현실을 그대로 보면서 그 위에 가상 세계를 올려요. 탁자는 전장이 되고, 벽은 창문이 돼요."
+        />
+        <ul class="mr__points" role="list">
+          {mrPoints.map((point, i) => (
+            <li data-reveal style={{ '--i': i }}>
+              <Icon name={point.icon} />
+              <div>
+                <h3>{point.title}</h3>
+                <p>{point.text}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ compare ============ -->
+  <section id="compare" class="section compare theme-light" aria-labelledby="compare-title">
+    <div class="container container--narrow">
+      <SectionHeading
+        id="compare-title"
+        eyebrow="Compare"
+        title="한눈에 *비교*하기"
+        lead="같은 칩셋과 라이브러리, 다른 디스플레이와 렌즈. 차이 나는 항목만 골라 볼 수도 있어요."
+      />
+
+      <label class="switch">
+        <input type="checkbox" id="diff-only" />
+        <span class="switch__track" aria-hidden="true"></span>
+        차이점만 보기
+      </label>
+
+      <div class="compare__wrap" role="region" aria-labelledby="compare-title" tabindex="0">
+        <table class="compare__table">
+          <caption class="sr-only">Meta Quest 3와 Meta Quest 3S 사양 비교</caption>
+          <thead>
+            <tr>
+              <th scope="col">
+                <span class="sr-only">항목</span>
+              </th>
+              {products.map((p) => (
+                <th scope="col">
+                  <span class="compare__product">
+                    <Img src={p.image} alt="" widths={[120, 240]} sizes="120px" fit="contain" />
+                    {p.name}
+                  </span>
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {specs.map((row) => (
+              <tr data-same={row.quest3 === row.quest3s ? '' : undefined}>
+                <th scope="row">{row.label}</th>
+                <td>{row.quest3}</td>
+                <td>{row.quest3s}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="fine compare__note">{priceNote}</p>
+    </div>
+  </section>
+
+  <!-- ============ in the box ============ -->
+  <section class="section box" aria-labelledby="box-title">
+    <div class="container box__grid">
+      <div class="box__visual" data-reveal>
+        <div class="box__halo" aria-hidden="true"></div>
+        <Img
+          src={controllers}
+          alt="마주 보고 떠 있는 흰색 Touch Plus 컨트롤러 한 쌍"
+          widths={[400, 640, 880]}
+          sizes="(min-width: 900px) 40vw, 80vw"
+          fit="contain"
+        />
+      </div>
+      <div>
+        <SectionHeading
+          id="box-title"
+          eyebrow="In the box"
+          title="상자 안 구성품"
+          lead="두 모델 모두 같은 구성이라, 받자마자 바로 시작할 수 있어요."
+        />
+        <ul class="box__list" role="list">
+          {inTheBox.map((item, i) => (
+            <li data-reveal style={{ '--i': i }}>
+              <span class="box__icon">
+                <Icon name={item.icon} />
+              </span>
+              {item.label}
+            </li>
+          ))}
+        </ul>
+        <p class="fine box__note">국가와 판매처에 따라 구성이 다를 수 있어요.</p>
+        <Button href={official.accessories} icon="arrow-up-right">
+          액세서리 둘러보기
+        </Button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section class="section" aria-labelledby="faq-title">
+    <div class="container container--narrow">
+      <SectionHeading id="faq-title" eyebrow="FAQ" title="자주 묻는 질문" />
+      <Faq items={faq} name="quest-faq" />
+    </div>
+  </section>
+
+  <CtaBand
+    eyebrow="Get started"
+    title="새로운 현실로 들어갈 준비 되셨나요?"
+    text="구매는 Meta 공식 스토어에서, 첫 설정은 이 사이트의 체크리스트와 함께."
+  >
+    <Button href={official.store} variant="primary" size="lg" icon="arrow-up-right">
+      공식 스토어
+    </Button>
+    <Button href={url('setup.html')} size="lg" icon="arrow-right">
+      설정 가이드
+    </Button>
+  </CtaBand>
+</BaseLayout>
+
+<script>
+  /* WAI-ARIA 탭: 클릭·←/→·Home/End, 그리고 #quest-3s 같은 해시로 바로 열기 */
+  const tabs = document.querySelector<HTMLElement>('[data-tabs]');
+  if (tabs) {
+    const buttons = [...tabs.querySelectorAll<HTMLButtonElement>('[role="tab"]')];
+    const panels = buttons.map((b) =>
+      document.getElementById(b.getAttribute('aria-controls') ?? ''),
+    );
+
+    const select = (index: number, focus = false) => {
+      buttons.forEach((button, i) => {
+        const on = i === index;
+        button.setAttribute('aria-selected', String(on));
+        button.tabIndex = on ? 0 : -1;
+        panels[i]?.toggleAttribute('data-active', on);
+      });
+      if (focus) buttons[index]?.focus();
+    };
+
+    buttons.forEach((button, i) => {
+      button.addEventListener('click', () => {
+        select(i);
+        history.replaceState(null, '', `#${panels[i]?.id ?? ''}`);
+      });
+      button.addEventListener('keydown', (event) => {
+        const last = buttons.length - 1;
+        const next =
+          event.key === 'ArrowRight'
+            ? i === last
+              ? 0
+              : i + 1
+            : event.key === 'ArrowLeft'
+              ? i === 0
+                ? last
+                : i - 1
+              : event.key === 'Home'
+                ? 0
+                : event.key === 'End'
+                  ? last
+                  : -1;
+        if (next < 0) return;
+        event.preventDefault();
+        select(next, true);
+      });
+    });
+
+    const fromHash = () => {
+      const index = panels.findIndex((panel) => panel && `#${panel.id}` === location.hash);
+      if (index >= 0) select(index);
+    };
+    fromHash();
+    window.addEventListener('hashchange', fromHash);
+  }
+</script>
+
+<style>
+  /* ---------- product hero ---------- */
+  .phero {
+    padding-block: calc(var(--header-h) + clamp(2.5rem, 2rem + 3vw, 5rem))
+      clamp(3rem, 2rem + 4vw, 6rem);
+    background:
+      radial-gradient(60% 50% at 30% 30%, rgb(79 140 255 / 0.16), transparent 70%),
+      radial-gradient(40% 40% at 80% 60%, rgb(139 92 255 / 0.12), transparent 70%);
+  }
+
+  .phero__head {
+    display: grid;
+    justify-items: center;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .phero h1 {
+    font-size: var(--fs-4xl);
+    font-weight: 800;
+    letter-spacing: -0.05em;
+  }
+
+  .ptabs__list {
+    display: flex;
+    justify-content: center;
+    gap: 0.25rem;
+    inline-size: fit-content;
+    margin: 2rem auto clamp(2rem, 1.5rem + 2vw, 3.5rem);
+    padding: 0.3rem;
+    border: 1px solid var(--c-border);
+    border-radius: var(--r-pill);
+    background: rgb(255 255 255 / 0.04);
+  }
+
+  [role='tab'] {
+    padding: 0.7rem 1.4rem;
+    border-radius: var(--r-pill);
+    font-size: var(--fs-sm);
+    font-weight: 600;
+    color: var(--c-text-2);
+    transition:
+      background-color 0.3s,
+      color 0.3s;
+  }
+
+  [role='tab']:hover {
+    color: var(--c-text);
+  }
+
+  [role='tab'][aria-selected='true'] {
+    background: #fff;
+    color: #07080c;
+  }
+
+  :global(.js) .ptabs__panel:not([data-active]) {
+    display: none;
+  }
+
+  .ptabs__panel[data-active] {
+    animation: panel-in 0.6s var(--ease-out);
+  }
+
+  .ptabs__panel:focus-visible {
+    outline-offset: 12px;
+  }
+
+  @keyframes panel-in {
+    from {
+      opacity: 0;
+      translate: 0 12px;
+    }
+  }
+
+  /* ---------- highlights ---------- */
+  .hl-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+
+  .hl {
+    display: grid;
+    align-content: start;
+    gap: 0.75rem;
+    padding: 1.75rem;
+    border: 1px solid var(--c-border);
+    border-radius: var(--r-lg);
+    background: var(--c-surface);
+    transition:
+      border-color 0.3s,
+      background-color 0.3s;
+  }
+
+  .hl:hover {
+    border-color: var(--c-border-2);
+    background: var(--c-surface-2);
+  }
+
+  .hl__icon {
+    display: grid;
+    place-items: center;
+    inline-size: 48px;
+    block-size: 48px;
+    margin-block-end: 0.5rem;
+    border-radius: 14px;
+    background: linear-gradient(135deg, rgb(79 140 255 / 0.25), rgb(139 92 255 / 0.25));
+    color: #cfe0ff;
+  }
+
+  .hl h3 {
+    font-size: var(--fs-lg);
+  }
+
+  .hl p {
+    font-size: var(--fs-sm);
+    color: var(--c-text-2);
+  }
+
+  .hl .link-arrow {
+    font-size: var(--fs-sm);
+  }
+
+  @media (max-width: 960px) {
+    .hl-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .hl-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* ---------- mixed reality ---------- */
+  .mr__grid {
+    display: grid;
+    grid-template-columns: 1.25fr 1fr;
+    align-items: center;
+    gap: clamp(2rem, 1rem + 4vw, 5rem);
+  }
+
+  .mr__media {
+    border-radius: var(--r-xl);
+    overflow: hidden;
+    border: 1px solid var(--c-border);
+  }
+
+  .mr__media :global(img) {
+    inline-size: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+
+  .mr__copy :global(.section-heading) {
+    margin-block-end: 2rem;
+  }
+
+  .mr__points {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .mr__points li {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1rem;
+  }
+
+  .mr__points :global(svg) {
+    color: var(--c-cyan);
+    margin-block-start: 0.15rem;
+  }
+
+  .mr__points h3 {
+    font-size: var(--fs-md);
+  }
+
+  .mr__points p {
+    font-size: var(--fs-sm);
+    color: var(--c-text-2);
+  }
+
+  @media (max-width: 900px) {
+    .mr__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* ---------- compare (밝은 섹션) ---------- */
+  .switch {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-block-end: 1.25rem;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .switch input {
+    position: absolute;
+    opacity: 0;
+  }
+
+  .switch__track {
+    position: relative;
+    inline-size: 46px;
+    block-size: 28px;
+    border-radius: var(--r-pill);
+    background: var(--c-bg-3);
+    border: 1px solid var(--c-border-2);
+    transition: background-color 0.3s;
+  }
+
+  .switch__track::after {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    inline-size: 20px;
+    block-size: 20px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 1px 4px rgb(0 0 0 / 0.25);
+    transition: translate 0.3s var(--ease-out);
+  }
+
+  .switch input:checked + .switch__track {
+    background: var(--c-blue);
+    border-color: var(--c-blue);
+  }
+
+  .switch input:checked + .switch__track::after {
+    translate: 18px 0;
+  }
+
+  .switch input:focus-visible + .switch__track {
+    outline: 2px solid var(--c-blue);
+    outline-offset: 3px;
+  }
+
+  .compare__wrap {
+    border: 1px solid var(--c-border);
+    border-radius: var(--r-lg);
+    background: var(--c-bg-2);
+    overflow-x: auto;
+  }
+
+  .compare__table {
+    inline-size: 100%;
+    min-inline-size: 34rem;
+    font-size: var(--fs-sm);
+  }
+
+  .compare__table th,
+  .compare__table td {
+    padding: 1rem 1.25rem;
+    text-align: start;
+    border-bottom: 1px solid var(--c-border);
+  }
+
+  .compare__table tbody tr:last-child > * {
+    border-bottom: 0;
+  }
+
+  .compare__table thead th {
+    position: sticky;
+    top: 0;
+    background: var(--c-bg-2);
+    vertical-align: bottom;
+  }
+
+  .compare__product {
+    display: grid;
+    gap: 0.5rem;
+    font-size: var(--fs-md);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+
+  .compare__product :global(img) {
+    inline-size: 84px;
+    block-size: auto;
+  }
+
+  .compare__table tbody th {
+    inline-size: 30%;
+    font-weight: 500;
+    color: var(--c-text-3);
+  }
+
+  .compare__table tbody tr:not([data-same]) td {
+    font-weight: 700;
+  }
+
+  .compare__table tbody tr:not([data-same]) td:first-of-type {
+    color: #2f6ee6;
+  }
+
+  /* 체크박스 하나로 같은 행을 숨긴다 — JS 없음 */
+  .compare:has(#diff-only:checked) tr[data-same] {
+    display: none;
+  }
+
+  .compare__note {
+    margin-block-start: 1rem;
+  }
+
+  /* 휴대폰에서도 두 모델이 가로 스크롤 없이 한 화면에 */
+  @media (max-width: 560px) {
+    .compare__table {
+      min-inline-size: 0;
+      font-size: var(--fs-xs);
+    }
+
+    .compare__table th,
+    .compare__table td {
+      padding: 0.8rem 0.6rem;
+    }
+
+    .compare__table tbody th {
+      inline-size: 26%;
+    }
+
+    .compare__product {
+      font-size: var(--fs-sm);
+    }
+
+    .compare__product :global(img) {
+      inline-size: 60px;
+    }
+  }
+
+  /* ---------- in the box ---------- */
+  .box__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: clamp(2rem, 1rem + 4vw, 5rem);
+  }
+
+  .box__visual {
+    position: relative;
+    isolation: isolate;
+    display: grid;
+    place-items: center;
+  }
+
+  .box__halo {
+    position: absolute;
+    inset: 15%;
+    z-index: -1;
+    border-radius: 50%;
+    background: radial-gradient(closest-side, rgb(139 92 255 / 0.4), transparent);
+    filter: blur(30px);
+  }
+
+  .box__visual :global(img) {
+    inline-size: min(100%, 480px);
+    filter: drop-shadow(0 30px 40px rgb(0 0 0 / 0.5));
+  }
+
+  .box__list {
+    display: grid;
+    gap: 0.75rem;
+    margin-block-end: 1.25rem;
+  }
+
+  .box__list li {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.15rem;
+    border: 1px solid var(--c-border);
+    border-radius: var(--r-md);
+    background: var(--c-surface);
+    font-weight: 600;
+  }
+
+  .box__icon {
+    display: grid;
+    place-items: center;
+    inline-size: 40px;
+    block-size: 40px;
+    border-radius: 12px;
+    background: rgb(255 255 255 / 0.06);
+  }
+
+  .box__note {
+    margin-block-end: 1.5rem;
+  }
+
+  @media (max-width: 900px) {
+    .box__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

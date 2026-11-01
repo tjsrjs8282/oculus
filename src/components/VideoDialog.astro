@@ -1,0 +1,122 @@
+---
+/**
+ * 페이지 어디서든 [data-video] 버튼을 누르면 열리는 공용 YouTube 플레이어.
+ * 2020년 버전의 jQuery colorbox를 네이티브 <dialog>로 대체했다 — 포커스 가두기·ESC 닫기는 브라우저가 처리한다.
+ * iframe은 열 때 만들고 닫을 때 지워서, 페이지 로드 비용이 0이고 닫으면 재생도 멈춘다.
+ */
+import Icon from './Icon.astro';
+---
+
+<dialog class="video-dialog" aria-labelledby="video-dialog-title" data-video-dialog>
+  <div class="video-dialog__bar">
+    <p id="video-dialog-title" class="video-dialog__title" data-video-title>
+      동영상
+    </p>
+    <form method="dialog">
+      <button class="video-dialog__close" type="submit">
+        <Icon name="x" />
+        <span class="sr-only">닫기</span>
+      </button>
+    </form>
+  </div>
+  <div class="video-dialog__frame" data-video-frame></div>
+</dialog>
+
+<style>
+  .video-dialog {
+    margin: auto;
+    inline-size: min(100% - 2rem, 1100px);
+    max-inline-size: none;
+    padding: 0;
+    border: 1px solid var(--c-border);
+    border-radius: var(--r-lg);
+    background: #000;
+    overflow: hidden;
+    box-shadow: 0 40px 120px -20px rgb(0 0 0 / 0.8);
+    opacity: 0;
+    scale: 0.96;
+    transition:
+      opacity 0.35s var(--ease-out),
+      scale 0.35s var(--ease-out),
+      display 0.35s allow-discrete,
+      overlay 0.35s allow-discrete;
+  }
+
+  .video-dialog[open] {
+    opacity: 1;
+    scale: 1;
+  }
+
+  @starting-style {
+    .video-dialog[open] {
+      opacity: 0;
+      scale: 0.96;
+    }
+  }
+
+  .video-dialog::backdrop {
+    background: rgb(0 0 0 / 0);
+    -webkit-backdrop-filter: blur(0);
+    backdrop-filter: blur(0);
+    transition:
+      background-color 0.35s,
+      backdrop-filter 0.35s,
+      display 0.35s allow-discrete,
+      overlay 0.35s allow-discrete;
+  }
+
+  .video-dialog[open]::backdrop {
+    background: rgb(0 0 0 / 0.78);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+  }
+
+  @starting-style {
+    .video-dialog[open]::backdrop {
+      background: rgb(0 0 0 / 0);
+      backdrop-filter: blur(0);
+    }
+  }
+
+  .video-dialog__bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.5rem 0.5rem 0.5rem 1.25rem;
+    background: var(--c-bg-2);
+  }
+
+  .video-dialog__title {
+    overflow: hidden;
+    font-size: var(--fs-sm);
+    font-weight: 600;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .video-dialog__close {
+    display: grid;
+    place-items: center;
+    inline-size: 44px;
+    block-size: 44px;
+    border-radius: 50%;
+    transition: background-color 0.2s;
+  }
+
+  .video-dialog__close:hover {
+    background: rgb(255 255 255 / 0.1);
+  }
+
+  .video-dialog__frame {
+    aspect-ratio: 16 / 9;
+    background: #000;
+  }
+
+  .video-dialog__frame :global(iframe) {
+    display: block;
+    inline-size: 100%;
+    block-size: 100%;
+    border: 0;
+  }
+</style>
