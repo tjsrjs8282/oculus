@@ -1,0 +1,556 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Button from '@/components/Button.astro';
+import CtaBand from '@/components/CtaBand.astro';
+import Icon from '@/components/Icon.astro';
+import Img from '@/components/Img.astro';
+import PageHero from '@/components/PageHero.astro';
+import SectionHeading from '@/components/SectionHeading.astro';
+import { official } from '@/data/site';
+import { milestones } from '@/data/timeline';
+import type { IconName } from '@/lib/icons';
+import { url } from '@/lib/url';
+import aboutHero from '@/assets/gen/about-hero.jpg';
+
+const reasons: { icon: IconName; title: string; text: string }[] = [
+  {
+    icon: 'headset',
+    title: '선 없는 자유',
+    text: 'PC도 외부 센서도 필요 없는 올인원 헤드셋. 켜면 바로 시작해요.',
+  },
+  {
+    icon: 'layers',
+    title: '현실과 함께',
+    text: '풀 컬러 혼합현실로 주변을 보면서 가상 콘텐츠를 즐겨요.',
+  },
+  {
+    icon: 'gamepad',
+    title: '가장 큰 라이브러리',
+    text: '게임, 피트니스, 영상, 소셜까지 수천 개의 앱이 기다려요.',
+  },
+  {
+    icon: 'monitor',
+    title: 'PC VR까지',
+    text: '케이블 하나, 혹은 무선으로 고사양 PC VR 게임도 즐겨요.',
+  },
+];
+
+const devTools: { icon: IconName; title: string; text: string }[] = [
+  {
+    icon: 'code',
+    title: 'Meta XR SDK',
+    text: 'Unity와 Unreal용 공식 SDK. 핸드 트래킹, 패스스루, 공간 앵커까지 한 번에.',
+  },
+  {
+    icon: 'smartphone',
+    title: 'Meta Spatial SDK',
+    text: 'Android 개발자가 익숙한 도구 그대로 혼합현실 앱을 만들 수 있어요.',
+  },
+  {
+    icon: 'globe',
+    title: 'WebXR',
+    text: '설치 없이 브라우저에서 바로 실행되는 웹 기반 VR·MR 경험.',
+  },
+  {
+    icon: 'sparkles',
+    title: 'Meta Horizon OS',
+    text: 'Quest를 움직이는 Android 기반 운영체제와 Meta Horizon Store.',
+  },
+];
+---
+
+<BaseLayout
+  title="Oculus 이야기"
+  description="2012년 킥스타터의 Oculus Rift부터 Meta Quest 3·3S, 2027년 Meta VR Glasses까지. Oculus와 Meta Quest의 연혁."
+  ogImage={aboutHero}
+>
+  <PageHero
+    image={aboutHero}
+    eyebrow="Since 2012"
+    title={'Oculus에서\n*Meta Quest*까지'}
+    lead="킥스타터 프로토타입에서 거실 속 혼합현실까지. 이 사이트가 처음 만들어진 2020년, 그 전과 후의 VR 이야기를 모았어요."
+  >
+    <Button slot="actions" href="#timeline" variant="primary" icon="arrow-right">
+      연혁 보기
+    </Button>
+  </PageHero>
+
+  <!-- ============ then & now ============ -->
+  <section class="section then-now" aria-labelledby="then-title">
+    <div class="container then-now__grid">
+      <figure class="quote" data-reveal>
+        <blockquote>
+          <p>
+            “VR의 성장세는 놀라울 만큼 빠릅니다. 10년 전엔 생소했던 스마트폰이 널리 쓰이는 장면을
+            떠올리게 할 정도입니다. VR의 대중화는 곧 다가올 미래입니다.”
+          </p>
+        </blockquote>
+        <figcaption>— 2020년, 이 사이트의 첫 번째 About 페이지에서</figcaption>
+      </figure>
+      <div class="then-now__copy" data-reveal style={{ '--i': 1 }}>
+        <p class="eyebrow">2020 → 2026</p>
+        <h2 id="then-title">그 미래는, 생각보다 빨리 왔어요</h2>
+        <p>
+          그로부터 6년. Oculus Quest 2는 역대 가장 많이 팔린 VR 헤드셋이 됐고, Oculus라는 이름은
+          Meta Quest로 바뀌었어요. 헤드셋은 현실을 가리는 대신 현실 위에 가상을 겹치는 혼합현실
+          기기로 진화했고, 이제는 안경처럼 가벼운 VR 글래스를 앞두고 있어요.
+        </p>
+        <p>
+          이 사이트도 같은 6년을 건너 jQuery 시절의 퍼블리싱에서 Astro 기반의 모던 웹으로 다시
+          태어났어요.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ timeline ============ -->
+  <section id="timeline" class="section" aria-labelledby="timeline-title">
+    <div class="container">
+      <SectionHeading
+        id="timeline-title"
+        eyebrow="Timeline"
+        title="Oculus *연혁*"
+        lead="2012년부터 2026년까지, VR이 거실에 들어오기까지의 결정적 순간들."
+        align="center"
+      />
+      <div class="timeline">
+        <span class="timeline__fill" aria-hidden="true"></span>
+        <ol class="timeline__list" role="list">
+          {milestones.map((m) => (
+            <li
+              class:list={['tl', m.highlight && 'tl--highlight', !m.image && 'tl--text']}
+              data-reveal
+            >
+              <span class="tl__dot" aria-hidden="true" />
+              <article class="tl__card">
+                <time class="tl__date">{m.date}</time>
+                <h3>{m.title}</h3>
+                <p>{m.text}</p>
+                {m.video && (
+                  <Button video={m.video.id} videoTitle={m.video.title} size="sm" iconStart="play">
+                    영상 보기
+                  </Button>
+                )}
+              </article>
+              {m.image && (
+                <div class:list={['tl__media', m.image.cutout && 'tl__media--cutout']}>
+                  <Img
+                    src={m.image.src}
+                    alt={m.image.alt}
+                    widths={[360, 540, 720, 960]}
+                    sizes="(min-width: 900px) 40vw, 90vw"
+                    fit={m.image.cutout ? 'contain' : 'cover'}
+                  />
+                </div>
+              )}
+            </li>
+          ))}
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ why ============ -->
+  <section class="section why" aria-labelledby="why-title">
+    <div class="container">
+      <SectionHeading id="why-title" eyebrow="Why Quest" title="왜 *Meta Quest*인가요?" />
+      <ul class="cards" role="list">
+        {reasons.map((reason, i) => (
+          <li class="card" data-reveal style={{ '--i': i }}>
+            <span class="card__icon">
+              <Icon name={reason.icon} />
+            </span>
+            <h3>{reason.title}</h3>
+            <p>{reason.text}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ developers ============ -->
+  <section class="section dev" aria-labelledby="dev-title">
+    <div class="container">
+      <SectionHeading
+        id="dev-title"
+        eyebrow="For developers"
+        title="만들 준비가 되셨나요?"
+        lead="2020년에는 Oculus SDK와 Unity·Unreal 지원을 소개했어요. 지금은 Meta Horizon 플랫폼이 그 자리를 이어받았어요."
+      />
+      <ul class="cards cards--dev" role="list">
+        {devTools.map((tool, i) => (
+          <li class="card" data-reveal style={{ '--i': i }}>
+            <span class="card__icon card__icon--dev">
+              <Icon name={tool.icon} />
+            </span>
+            <h3>{tool.title}</h3>
+            <p>{tool.text}</p>
+          </li>
+        ))}
+      </ul>
+      <div class="dev__foot">
+        <Button href={official.developers} variant="primary" icon="arrow-up-right">
+          Meta Horizon 개발자 센터
+        </Button>
+        <p class="dev__archive">
+          <span>2019 개발자 스포트라이트 아카이브</span>
+          <button
+            type="button"
+            class="link-arrow"
+            data-video="eLBrxnfPJsc"
+            data-video-title="Developer Spotlight - Tripwire Interactive"
+          >
+            Tripwire Interactive <Icon name="play" size={14} />
+          </button>
+          <button
+            type="button"
+            class="link-arrow"
+            data-video="XUB5DffvjO4"
+            data-video-title="Developer Spotlight - Playful and Lucky's Tale"
+          >
+            Playful · Lucky’s Tale <Icon name="play" size={14} />
+          </button>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    eyebrow="Your turn"
+    title="이제, 직접 경험해 볼 차례"
+    text="역사는 여기까지. 다음 장면은 당신의 거실에서 시작돼요."
+  >
+    <Button href={url('quest.html')} variant="primary" size="lg" icon="arrow-right">
+      Meta Quest 3·3S
+    </Button>
+    <Button href={url('games.html')} size="lg" icon="arrow-right">
+      게임 둘러보기
+    </Button>
+  </CtaBand>
+</BaseLayout>
+
+<style>
+  /* ---------- then & now ---------- */
+  .then-now__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: clamp(2rem, 1rem + 5vw, 6rem);
+  }
+
+  .quote {
+    position: relative;
+    padding: clamp(2rem, 1.5rem + 2vw, 3rem);
+    border: 1px solid var(--c-border);
+    border-radius: var(--r-xl);
+    background: linear-gradient(160deg, rgb(255 255 255 / 0.06), rgb(255 255 255 / 0.01));
+  }
+
+  .quote::before {
+    content: '“';
+    position: absolute;
+    top: -0.35em;
+    left: 0.25em;
+    font-size: 7rem;
+    font-weight: 800;
+    line-height: 1;
+    background: var(--grad-brand);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .quote blockquote p {
+    font-size: var(--fs-xl);
+    font-weight: 600;
+    line-height: 1.55;
+    letter-spacing: -0.025em;
+  }
+
+  .quote figcaption {
+    margin-block-start: 1.25rem;
+    font-size: var(--fs-sm);
+    color: var(--c-text-3);
+  }
+
+  .then-now__copy {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .then-now__copy h2 {
+    font-size: var(--fs-2xl);
+    font-weight: 800;
+  }
+
+  .then-now__copy p:not(.eyebrow) {
+    color: var(--c-text-2);
+  }
+
+  @media (max-width: 900px) {
+    .then-now__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* ---------- timeline ---------- */
+  .timeline {
+    --line-x: 50%;
+    position: relative;
+    padding-block: 1rem;
+  }
+
+  .timeline__list {
+    display: grid;
+    gap: clamp(2.5rem, 2rem + 3vw, 4.5rem);
+  }
+
+  .timeline::before,
+  .timeline__fill {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: var(--line-x);
+    inline-size: 2px;
+    translate: -50% 0;
+    border-radius: 1px;
+  }
+
+  .timeline::before {
+    background: var(--c-border);
+  }
+
+  .timeline__fill {
+    background: linear-gradient(180deg, var(--c-blue), var(--c-violet), var(--c-pink));
+    transform-origin: top;
+  }
+
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      .timeline__fill {
+        animation: timeline-fill linear both;
+        animation-timeline: view();
+        /* 채워진 선의 끝이 항상 화면 중앙을 따라오도록 */
+        animation-range: cover 50vh cover calc(100% - 50vh);
+      }
+    }
+  }
+
+  @keyframes timeline-fill {
+    from {
+      scale: 1 0;
+    }
+    to {
+      scale: 1 1;
+    }
+  }
+
+  .tl {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: clamp(3rem, 2rem + 4vw, 6rem);
+  }
+
+  .tl__dot {
+    position: absolute;
+    top: 50%;
+    left: var(--line-x);
+    inline-size: 14px;
+    block-size: 14px;
+    translate: -50% -50%;
+    border: 3px solid var(--c-bg);
+    border-radius: 50%;
+    background: var(--c-text-3);
+    box-shadow: 0 0 0 1px var(--c-border-2);
+  }
+
+  .tl--highlight .tl__dot {
+    background: var(--c-blue);
+    box-shadow:
+      0 0 0 1px var(--c-blue),
+      0 0 18px var(--c-blue);
+  }
+
+  /* 지그재그 배치: 짝수 항목은 카드가 오른쪽으로 */
+  .tl:nth-child(odd) .tl__card {
+    order: 2;
+  }
+
+  .tl--text .tl__card {
+    grid-column: 1;
+  }
+
+  .tl--text:nth-child(odd) .tl__card {
+    grid-column: 2;
+  }
+
+  .tl__card {
+    display: grid;
+    justify-items: start;
+    gap: 0.6rem;
+    padding: 1.75rem;
+    border: 1px solid var(--c-border);
+    border-radius: var(--r-lg);
+    background: var(--c-surface);
+  }
+
+  .tl--highlight .tl__card {
+    border-color: rgb(79 140 255 / 0.35);
+    background: linear-gradient(160deg, rgb(79 140 255 / 0.1), rgb(255 255 255 / 0.02));
+  }
+
+  .tl__date {
+    font-size: var(--fs-2xl);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    font-variant-numeric: tabular-nums;
+    background: var(--grad-brand);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .tl__card h3 {
+    font-size: var(--fs-lg);
+  }
+
+  .tl__card p {
+    font-size: var(--fs-sm);
+    color: var(--c-text-2);
+  }
+
+  .tl__card :global(.btn) {
+    margin-block-start: 0.4rem;
+  }
+
+  .tl__media {
+    border: 1px solid var(--c-border);
+    border-radius: var(--r-lg);
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+    background: var(--c-bg-3);
+  }
+
+  .tl__media :global(img) {
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: cover;
+  }
+
+  .tl__media--cutout {
+    display: grid;
+    place-items: center;
+    border: 0;
+    background: radial-gradient(closest-side, rgb(79 140 255 / 0.25), transparent);
+  }
+
+  .tl__media--cutout :global(img) {
+    inline-size: 78%;
+    block-size: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 20px 30px rgb(0 0 0 / 0.5));
+  }
+
+  @media (max-width: 860px) {
+    .timeline {
+      --line-x: 7px;
+      padding-inline-start: 2.25rem;
+    }
+
+    .tl {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .tl__dot {
+      top: 2.1rem;
+      left: calc(-2.25rem + 7px);
+    }
+
+    .tl:nth-child(odd) .tl__card,
+    .tl--text .tl__card,
+    .tl--text:nth-child(odd) .tl__card {
+      order: 0;
+      grid-column: auto;
+    }
+  }
+
+  /* ---------- cards ---------- */
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
+
+  .card {
+    display: grid;
+    align-content: start;
+    gap: 0.7rem;
+    padding: 1.75rem;
+    border: 1px solid var(--c-border);
+    border-radius: var(--r-lg);
+    background: var(--c-surface);
+  }
+
+  .card__icon {
+    display: grid;
+    place-items: center;
+    inline-size: 48px;
+    block-size: 48px;
+    margin-block-end: 0.4rem;
+    border-radius: 14px;
+    background: linear-gradient(135deg, rgb(79 140 255 / 0.25), rgb(139 92 255 / 0.25));
+    color: #cfe0ff;
+  }
+
+  .card__icon--dev {
+    background: linear-gradient(135deg, rgb(52 214 255 / 0.22), rgb(61 220 151 / 0.2));
+    color: #c9f6ff;
+  }
+
+  .card h3 {
+    font-size: var(--fs-lg);
+  }
+
+  .card p {
+    font-size: var(--fs-sm);
+    color: var(--c-text-2);
+  }
+
+  @media (max-width: 1000px) {
+    .cards {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 560px) {
+    .cards {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .dev__foot {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.25rem;
+    margin-block-start: 2rem;
+  }
+
+  .dev__archive {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 1.25rem;
+    font-size: var(--fs-sm);
+    color: var(--c-text-3);
+  }
+
+  .dev__archive .link-arrow {
+    font-size: var(--fs-sm);
+  }
+</style>

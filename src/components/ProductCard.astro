@@ -1,0 +1,307 @@
+---
+import Button from './Button.astro';
+import Icon from './Icon.astro';
+import Img from './Img.astro';
+import type { Product } from '@/data/products';
+import { url } from '@/lib/url';
+
+interface Props {
+  product: Product;
+  /** card: 홈 라인업 카드 / feature: 제품 페이지의 큰 레이아웃 */
+  variant?: 'card' | 'feature';
+  index?: number;
+  priority?: boolean;
+}
+
+const { product: p, variant = 'card', index = 0, priority = false } = Astro.props;
+const Heading = variant === 'feature' ? 'h2' : 'h3';
+const sizes =
+  variant === 'feature' ? '(min-width: 1000px) 560px, 88vw' : '(min-width: 1000px) 440px, 80vw';
+---
+
+<article
+  class:list={['product', `product--${variant}`]}
+  style={{ '--glow': p.glow, '--i': index }}
+  data-reveal={variant === 'card' ? '' : undefined}
+>
+  <div class="product__visual">
+    <div class="product__halo" aria-hidden="true"></div>
+    <Img
+      src={p.image}
+      alt={p.imageAlt}
+      widths={[400, 640, 880, 1200]}
+      sizes={sizes}
+      fit="contain"
+      priority={priority}
+    />
+  </div>
+
+  <div class="product__body">
+    <p class="product__tagline">{p.tagline}</p>
+    <Heading class="product__name">{p.name}</Heading>
+    <p class="product__summary">{p.summary}</p>
+
+    <ul class="product__points" role="list">
+      {p.points.map((point) => (
+        <li>
+          <Icon name={point.icon} size={18} />
+          {point.label}
+        </li>
+      ))}
+    </ul>
+
+    <div class="product__buy">
+      <fieldset class="product__storage">
+        <legend class="sr-only">{p.name} 저장 용량</legend>
+        {p.storage.map((s, i) => (
+          <label class="chip">
+            <input
+              type="radio"
+              name={`storage-${p.id}-${variant}`}
+              value={s.id}
+              checked={i === 0}
+            />
+            <span>{s.label}</span>
+          </label>
+        ))}
+      </fieldset>
+      <p class="product__price" aria-live="polite">
+        {p.storage.map((s) => (
+          <span class="product__price-value" data-storage={s.id}>
+            {s.price}
+          </span>
+        ))}
+        <span class="product__price-unit">USD</span>
+      </p>
+    </div>
+
+    <div class="product__actions">
+      {variant === 'card' ? (
+        <>
+          <Button href={url(`quest.html#${p.id}`)} variant="primary" icon="arrow-right">
+            자세히 보기
+          </Button>
+          <Button href={p.storeUrl} icon="arrow-up-right">
+            공식 스토어
+          </Button>
+        </>
+      ) : (
+        <>
+          <Button href={p.storeUrl} variant="primary" icon="arrow-up-right">
+            공식 스토어에서 구매
+          </Button>
+          <Button video={p.video.id} videoTitle={p.video.title} iconStart="play">
+            영상 보기
+          </Button>
+        </>
+      )}
+    </div>
+  </div>
+</article>
+
+<style>
+  .product {
+    position: relative;
+    isolation: isolate;
+    display: grid;
+    gap: 1.5rem;
+    padding: clamp(1.5rem, 1rem + 2vw, 2.5rem);
+    border: 1px solid var(--c-border);
+    border-radius: var(--r-xl);
+    background: linear-gradient(180deg, rgb(255 255 255 / 0.055), rgb(255 255 255 / 0.015));
+    overflow: hidden;
+  }
+
+  .product--feature {
+    grid-template-columns: 1.05fr 1fr;
+    align-items: center;
+    gap: clamp(2rem, 1rem + 4vw, 5rem);
+    padding: 0;
+    border: 0;
+    background: none;
+    overflow: visible;
+  }
+
+  .product__visual {
+    position: relative;
+    display: grid;
+    place-items: center;
+    aspect-ratio: 5 / 4;
+  }
+
+  .product__halo {
+    position: absolute;
+    inset: 12%;
+    z-index: -1;
+    border-radius: 50%;
+    background: radial-gradient(closest-side, rgb(var(--glow) / 0.55), rgb(var(--glow) / 0));
+    filter: blur(28px);
+    transition: scale 0.8s var(--ease-out);
+  }
+
+  .product:hover .product__halo {
+    scale: 1.12;
+  }
+
+  .product__visual :global(img) {
+    inline-size: min(88%, 460px);
+    block-size: auto;
+    filter: drop-shadow(0 28px 36px rgb(0 0 0 / 0.55));
+    animation: product-float 7s ease-in-out infinite;
+    animation-delay: calc(var(--i) * -2.4s);
+  }
+
+  .product--feature .product__visual :global(img) {
+    inline-size: min(100%, 560px);
+  }
+
+  @keyframes product-float {
+    50% {
+      translate: 0 -12px;
+    }
+  }
+
+  .product__body {
+    display: grid;
+    gap: 1rem;
+    align-content: start;
+  }
+
+  .product__tagline {
+    font-size: var(--fs-sm);
+    font-weight: 600;
+    color: rgb(var(--glow));
+  }
+
+  .product__name {
+    font-size: var(--fs-2xl);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+  }
+
+  .product--feature .product__name {
+    font-size: var(--fs-4xl);
+  }
+
+  .product__summary {
+    color: var(--c-text-2);
+  }
+
+  .product__points {
+    display: grid;
+    gap: 0.6rem;
+    padding-block: 0.4rem;
+  }
+
+  .product__points li {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    font-size: var(--fs-sm);
+  }
+
+  .product__points :global(svg) {
+    flex: none;
+    color: rgb(var(--glow));
+  }
+
+  .product__buy {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-block: 1rem;
+    border-block: 1px solid var(--c-border);
+  }
+
+  .product__storage {
+    display: flex;
+    gap: 0.5rem;
+    border: 0;
+  }
+
+  .chip {
+    position: relative;
+  }
+
+  .chip input {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  .chip span {
+    display: inline-flex;
+    padding: 0.55em 1.05em;
+    border: 1px solid var(--c-border-2);
+    border-radius: var(--r-pill);
+    font-size: var(--fs-sm);
+    font-weight: 600;
+    color: var(--c-text-2);
+    transition:
+      background-color 0.25s,
+      color 0.25s,
+      border-color 0.25s;
+  }
+
+  .chip input:checked + span {
+    border-color: #fff;
+    background: #fff;
+    color: #07080c;
+  }
+
+  .chip input:focus-visible + span {
+    outline: 2px solid var(--c-blue);
+    outline-offset: 2px;
+  }
+
+  .product__price {
+    display: flex;
+    align-items: baseline;
+    gap: 0.4rem;
+  }
+
+  .product__price-value {
+    font-size: var(--fs-xl);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .product__price-unit {
+    font-size: var(--fs-xs);
+    color: var(--c-text-3);
+  }
+
+  /* 용량 선택에 따라 가격을 바꾸는 건 JS 없이 :has()만으로. */
+  .product__price-value:not(:first-child) {
+    display: none;
+  }
+
+  @supports selector(:has(*)) {
+    .product__price-value {
+      display: none !important;
+    }
+
+    .product:has(input[value='512']:checked) [data-storage='512'],
+    .product:has(input[value='128']:checked) [data-storage='128'],
+    .product:has(input[value='256']:checked) [data-storage='256'] {
+      display: inline !important;
+    }
+  }
+
+  .product__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    padding-block-start: 0.25rem;
+  }
+
+  @media (max-width: 900px) {
+    .product--feature {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,124 @@
+---
+import type { ImageMetadata } from 'astro';
+import Img from './Img.astro';
+
+interface Props {
+  image: ImageMetadata;
+  eyebrow?: string;
+  /** `*강조*`와 줄바꿈(\n)을 지원 */
+  title: string;
+  lead?: string;
+  /** 이미지 크롭 기준 (object-position 키워드) */
+  position?: string;
+}
+
+const { image, eyebrow, title, lead, position = 'center' } = Astro.props;
+const lines = title.split('\n').map((line) => line.split('*'));
+---
+
+<section class="page-hero" aria-labelledby="page-title">
+  <div class="page-hero__media" aria-hidden="true">
+    <Img
+      src={image}
+      alt=""
+      layout="full-width"
+      priority
+      position={position}
+      widths={[640, 960, 1280, 1600, 1920, 2560]}
+      sizes="100vw"
+    />
+  </div>
+  <div class="container page-hero__content">
+    {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+    <h1 id="page-title" class="page-hero__title">
+      {lines.map((parts, i) => (
+        <>
+          {i > 0 && <br />}
+          {parts.map((part, j) => (j % 2 === 1 ? <span class="text-gradient">{part}</span> : part))}
+        </>
+      ))}
+    </h1>
+    {lead && <p class="lead page-hero__lead">{lead}</p>}
+    <div class="page-hero__actions">
+      <slot name="actions" />
+    </div>
+  </div>
+</section>
+
+<style>
+  .page-hero {
+    position: relative;
+    isolation: isolate;
+    display: grid;
+    align-items: end;
+    min-block-size: clamp(30rem, 78svh, 52rem);
+    padding-block: calc(var(--header-h) + 4rem) clamp(3rem, 6vw, 5.5rem);
+    overflow: hidden;
+  }
+
+  .page-hero__media {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+  }
+
+  .page-hero__media :global(img) {
+    position: absolute;
+    inset: 0;
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: cover;
+  }
+
+  .page-hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+      linear-gradient(0deg, var(--c-bg) 0%, rgb(5 5 7 / 0.55) 42%, rgb(5 5 7 / 0.1) 75%),
+      linear-gradient(90deg, rgb(5 5 7 / 0.6) 0%, transparent 60%);
+  }
+
+  .page-hero__content {
+    display: grid;
+    justify-items: start;
+    gap: 1.25rem;
+  }
+
+  .page-hero__title {
+    max-inline-size: 18ch;
+    font-size: var(--fs-4xl);
+    font-weight: 800;
+    letter-spacing: -0.045em;
+    line-height: 1.08;
+  }
+
+  .page-hero__lead {
+    max-inline-size: 40rem;
+  }
+
+  .page-hero__actions:not(:empty) {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-block-start: 0.5rem;
+  }
+
+  @supports (animation-timeline: scroll()) {
+    @media (prefers-reduced-motion: no-preference) {
+      .page-hero__media {
+        animation: page-hero-drift linear both;
+        animation-timeline: scroll(root);
+        animation-range: 0 90vh;
+      }
+    }
+  }
+
+  @keyframes page-hero-drift {
+    to {
+      transform: translateY(14%) scale(1.05);
+      opacity: 0.45;
+    }
+  }
+</style>

@@ -1,0 +1,318 @@
+---
+import Icon from './Icon.astro';
+import Logo from './Logo.astro';
+import { official, site } from '@/data/site';
+import { url } from '@/lib/url';
+
+const year = new Date().getFullYear();
+
+const columns: { title: string; links: { label: string; href: string; external?: boolean }[] }[] = [
+  {
+    title: '제품',
+    links: [
+      { label: 'Meta Quest 3', href: url('quest.html#quest-3') },
+      { label: 'Meta Quest 3S', href: url('quest.html#quest-3s') },
+      { label: 'PC VR 연결', href: url('pc-vr.html') },
+      { label: '설정 가이드', href: url('setup.html') },
+    ],
+  },
+  {
+    title: '둘러보기',
+    links: [
+      { label: '게임', href: url('games.html') },
+      { label: '클래식 아카이브', href: url('games.html#classics') },
+      { label: 'Oculus 이야기', href: url('oculus.html') },
+    ],
+  },
+  {
+    title: 'Meta 공식',
+    links: [
+      { label: '공식 스토어', href: official.store, external: true },
+      { label: '고객 지원', href: official.help, external: true },
+      { label: '개발자 센터', href: official.developers, external: true },
+      { label: 'YouTube', href: official.youtube, external: true },
+    ],
+  },
+];
+---
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href={url()} aria-label="oculus 홈으로">
+          <Logo />
+        </a>
+        <p>
+          2020년 퍼블리싱 포트폴리오로 시작해, 2026년 Astro로 다시 만든 Oculus · Meta Quest 팬
+          사이트.
+        </p>
+        <a class="footer-repo" href={site.repo} target="_blank" rel="noopener noreferrer">
+          <Icon name="github" size={18} />
+          소스 코드 보기<span class="sr-only">(GitHub, 새 창)</span>
+        </a>
+      </div>
+
+      <nav class="footer-links" aria-label="사이트맵">
+        {columns.map((col) => (
+          <div>
+            <h2>{col.title}</h2>
+            <ul role="list">
+              {col.links.map((link) => (
+                <li>
+                  <a
+                    href={link.href}
+                    target={link.external ? '_blank' : undefined}
+                    rel={link.external ? 'noopener noreferrer' : undefined}
+                  >
+                    {link.label}
+                    {link.external && (
+                      <>
+                        <Icon name="arrow-up-right" size={14} />
+                        <span class="sr-only">(새 창)</span>
+                      </>
+                    )}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </nav>
+
+      <form class="newsletter" data-newsletter novalidate aria-labelledby="newsletter-title">
+        <h2 id="newsletter-title">새 소식 받아보기</h2>
+        <p>신제품과 게임 소식을 메일로 받아보세요.</p>
+        <div class="newsletter__field">
+          <label class="sr-only" for="newsletter-email">
+            이메일 주소
+          </label>
+          <input
+            id="newsletter-email"
+            name="email"
+            type="email"
+            inputmode="email"
+            autocomplete="email"
+            placeholder="이메일 주소"
+            required
+          />
+          <button class="btn btn--primary btn--sm" type="submit">
+            구독
+          </button>
+        </div>
+        <label class="newsletter__consent">
+          <input type="checkbox" name="consent" required />
+          <span>서비스 약관 및 개인정보 처리방침에 동의합니다.</span>
+        </label>
+        <p class="newsletter__status" role="status" aria-live="polite" data-newsletter-status></p>
+      </form>
+    </div>
+
+    <div class="footer-bottom">
+      <p class="fine">
+        이 사이트는 개인 포트폴리오용 <strong>비공식 팬 사이트</strong>이며 Meta Platforms, Inc.와
+        관련이 없습니다. Meta, Meta Quest, Oculus는 Meta Platforms, Inc.의 상표입니다.
+        제품·라이프스타일 사진 일부는 Higgsfield로 생성한 연출 이미지이고, 가격·사양·일정은{' '}
+        {site.verifiedAt} 기준 공개 정보라 실제와 다를 수 있습니다.
+      </p>
+      <div class="footer-meta">
+        <span>
+          © 2020–{year} {site.author}
+        </span>
+        <button class="to-top" type="button" data-to-top>
+          <Icon name="arrow-up" size={16} />맨 위로
+        </button>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    margin-block-start: var(--section);
+    padding-block: 4.5rem 2.5rem;
+    border-top: 1px solid var(--c-border);
+    background:
+      radial-gradient(60% 120% at 85% 0%, rgb(139 92 255 / 0.12), transparent 60%), var(--c-bg-2);
+    font-size: var(--fs-sm);
+    color: var(--c-text-2);
+  }
+
+  .footer-top {
+    display: grid;
+    grid-template-columns: 1.1fr 1.6fr 1.2fr;
+    gap: 3rem;
+  }
+
+  .footer-brand {
+    display: grid;
+    align-content: start;
+    gap: 1.1rem;
+    max-inline-size: 30ch;
+  }
+
+  .footer-repo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    justify-self: start;
+    color: var(--c-text);
+    font-weight: 600;
+  }
+
+  .footer-repo:hover {
+    color: var(--c-blue);
+  }
+
+  .footer-links {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  h2 {
+    margin-block-end: 1rem;
+    font-size: var(--fs-sm);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--c-text);
+  }
+
+  .footer-links li + li {
+    margin-block-start: 0.65rem;
+  }
+
+  .footer-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover {
+    color: var(--c-text);
+  }
+
+  .newsletter {
+    display: grid;
+    align-content: start;
+    gap: 0.85rem;
+  }
+
+  .newsletter__field {
+    display: flex;
+    gap: 0.4rem;
+    padding: 0.35rem;
+    border: 1px solid var(--c-border-2);
+    border-radius: var(--r-pill);
+    background: rgb(255 255 255 / 0.04);
+    transition: border-color 0.25s;
+  }
+
+  .newsletter__field:focus-within {
+    border-color: var(--c-blue);
+  }
+
+  .newsletter__field input {
+    flex: 1;
+    min-inline-size: 0;
+    padding-inline: 0.85rem;
+    border: 0;
+    background: none;
+    outline: none;
+  }
+
+  .newsletter__field input::placeholder {
+    color: var(--c-text-3);
+  }
+
+  .newsletter__consent {
+    display: flex;
+    gap: 0.55rem;
+    align-items: flex-start;
+    font-size: var(--fs-xs);
+    cursor: pointer;
+  }
+
+  .newsletter__consent input {
+    flex: none;
+    inline-size: 1rem;
+    block-size: 1rem;
+    margin-block-start: 0.2rem;
+    accent-color: var(--c-blue);
+  }
+
+  .newsletter__status {
+    min-block-size: 1.5em;
+    font-size: var(--fs-xs);
+  }
+
+  .newsletter__status[data-state='ok'] {
+    color: var(--c-green);
+  }
+
+  .newsletter__status[data-state='error'] {
+    color: var(--c-red);
+  }
+
+  .footer-bottom {
+    display: grid;
+    gap: 1.5rem;
+    margin-block-start: 3.5rem;
+    padding-block-start: 2rem;
+    border-top: 1px solid var(--c-border);
+  }
+
+  .footer-bottom strong {
+    color: var(--c-text-2);
+  }
+
+  .footer-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    font-size: var(--fs-xs);
+    color: var(--c-text-3);
+  }
+
+  .to-top {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.5rem 0.85rem;
+    border: 1px solid var(--c-border);
+    border-radius: var(--r-pill);
+    color: var(--c-text-2);
+    transition:
+      color 0.2s,
+      border-color 0.2s;
+  }
+
+  .to-top:hover {
+    color: var(--c-text);
+    border-color: var(--c-border-2);
+  }
+
+  @media (max-width: 1000px) {
+    .footer-top {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .footer-links {
+      grid-column: 1 / -1;
+      grid-row: 2;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .footer-top {
+      grid-template-columns: 1fr;
+    }
+
+    .footer-links {
+      grid-row: auto;
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+</style>

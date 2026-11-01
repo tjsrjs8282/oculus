@@ -1,0 +1,409 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Button from '@/components/Button.astro';
+import CtaBand from '@/components/CtaBand.astro';
+import GameCard from '@/components/GameCard.astro';
+import Img from '@/components/Img.astro';
+import PageHero from '@/components/PageHero.astro';
+import Rail from '@/components/Rail.astro';
+import SectionHeading from '@/components/SectionHeading.astro';
+import {
+  classicCover,
+  classicGames,
+  classicShelves,
+  featuredGames,
+  genreLabels,
+  upcomingGames,
+  type Genre,
+} from '@/data/games';
+import { official } from '@/data/site';
+import { url } from '@/lib/url';
+import gamesHero from '@/assets/gen/games-hero.jpg';
+
+// 데이터에 실제로 등장하는 장르만 필터로 노출
+const genres = (Object.keys(genreLabels) as Genre[]).filter((g) =>
+  featuredGames.some((game) => game.genres.includes(g)),
+);
+
+// 장르 필터는 JS 없이 :has()로 — 장르 목록에서 규칙을 만들어 넣는다.
+const filterCss = `${genres
+  .map(
+    (g) => `.picks:has(input[name='genre'][value='${g}']:checked) .game:not([data-genres~='${g}'])`,
+  )
+  .join(',\n')} { display: none; }`;
+---
+
+<BaseLayout
+  title="게임"
+  description="2026년에 즐기기 좋은 Meta Quest 게임, 출시 예정작, 그리고 Oculus 시절 클래식 게임 아카이브."
+  ogImage={gamesHero}
+>
+  <PageHero
+    image={gamesHero}
+    eyebrow="Games"
+    title={'지금, *플레이할* 세계'}
+    lead="액션부터 리듬, 피트니스까지. 2026년에 즐기기 좋은 Quest 게임과 출시 예정작, 그리고 2020년 버전의 클래식 아카이브를 모았어요."
+    position="top"
+  >
+    <Button slot="actions" href="#picks" variant="primary" icon="arrow-right">
+      추천 게임
+    </Button>
+    <Button slot="actions" href="#classics" icon="arrow-right">
+      클래식 아카이브
+    </Button>
+  </PageHero>
+
+  <Fragment slot="head">
+    <style is:inline set:html={filterCss}></style>
+  </Fragment>
+
+  <!-- ============ picks ============ -->
+  <section id="picks" class="section picks" aria-labelledby="picks-title">
+    <div class="container">
+      <SectionHeading
+        id="picks-title"
+        eyebrow="Editor's picks"
+        title="2026 *추천 게임*"
+        lead="공식 키 아트 대신 각 게임의 분위기를 색으로 옮긴 포스터예요."
+      />
+
+      <fieldset class="filters" data-filters>
+        <legend class="sr-only">장르로 거르기</legend>
+        <label class="filter">
+          <input type="radio" name="genre" value="all" checked />
+          <span>전체</span>
+        </label>
+        {genres.map((g) => (
+          <label class="filter">
+            <input type="radio" name="genre" value={g} />
+            <span>{genreLabels[g]}</span>
+          </label>
+        ))}
+      </fieldset>
+
+      <ul class="picks__grid" role="list">
+        {featuredGames.map((game) => (
+          <GameCard game={game} />
+        ))}
+      </ul>
+      <p class="fine picks__note">
+        가격과 지원 기기는{' '}
+        <a href={official.store} target="_blank" rel="noopener noreferrer">
+          Meta Horizon Store<span class="sr-only">(새 창)</span>
+        </a>
+        에서 확인하세요.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ upcoming ============ -->
+  <section class="section upcoming" aria-labelledby="upcoming-title">
+    <div class="container container--narrow">
+      <SectionHeading
+        id="upcoming-title"
+        eyebrow="Coming soon"
+        title="출시 예정 · 플레이테스트"
+        lead="Connect 2026 전후로 발표된 타이틀이에요. 손만으로 즐기는 핸드 트래킹 게임이 크게 늘었어요."
+      />
+      <ol class="upcoming__list" role="list">
+        {upcomingGames.map((game, i) => (
+          <li class="upcoming__item" data-reveal style={{ '--i': i % 3 }}>
+            <span class="upcoming__when">{game.when}</span>
+            <div class="upcoming__body">
+              <h3>{game.title}</h3>
+              <p class="upcoming__note">{game.note}</p>
+              <p>{game.desc}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+      <p class="fine">출처: UploadVR(2026년 9~10월 보도). 일정은 바뀔 수 있어요.</p>
+    </div>
+  </section>
+
+  <!-- ============ classics ============ -->
+  <section id="classics" class="section classics" aria-labelledby="classics-title">
+    <div class="container">
+      <SectionHeading
+        id="classics-title"
+        eyebrow="Archive · 2016–2020"
+        title="Oculus *클래식* 아카이브"
+        lead="2020년 버전의 이 사이트를 채웠던 커버 이미지들이에요. ‘Lorem ipsum’으로 남아 있던 카드마다 제목을 찾아 붙였어요."
+      />
+      <div class="shelves">
+        {classicShelves.map((shelf) => (
+          <Rail label={shelf.title} item="min(300px, 72vw)">
+            <div slot="head" class="shelf__head">
+              <h3>{shelf.title}</h3>
+              <p>{shelf.desc}</p>
+            </div>
+            {classicGames
+              .filter((game) => game.shelf === shelf.id)
+              .map((game) => (
+                <li class="classic">
+                  <div class="classic__media">
+                    <Img
+                      src={classicCover(game.slug)}
+                      alt=""
+                      widths={[320, 480, 640]}
+                      sizes="(min-width: 768px) 300px, 72vw"
+                    />
+                  </div>
+                  <p class="classic__title">{game.title}</p>
+                </li>
+              ))}
+          </Rail>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    eyebrow="Play"
+    title="어떤 게임이든, 같은 헤드셋으로"
+    text="Quest 3와 3S는 같은 라이브러리를 공유해요. 나에게 맞는 모델부터 골라 보세요."
+  >
+    <Button href={url('quest.html')} variant="primary" size="lg" icon="arrow-right">
+      모델 비교하기
+    </Button>
+    <Button href={url('pc-vr.html')} size="lg" icon="arrow-right">
+      PC VR 게임도 하려면
+    </Button>
+  </CtaBand>
+</BaseLayout>
+
+<script>
+  /* 필터 전환을 View Transitions로 부드럽게 — 미지원 브라우저는 CSS만으로 즉시 바뀐다. */
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const filters = document.querySelector<HTMLElement>('[data-filters]');
+  filters?.addEventListener('click', (event) => {
+    const input = (event.target as Element | null)?.closest<HTMLInputElement>(
+      'input[name="genre"]',
+    );
+    if (!input || input.checked || !document.startViewTransition || reduce.matches) return;
+    event.preventDefault();
+    document.startViewTransition(() => {
+      input.checked = true;
+    });
+  });
+</script>
+
+<style>
+  /* ---------- filters ---------- */
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-block-end: 2.5rem;
+    border: 0;
+  }
+
+  .filter {
+    position: relative;
+  }
+
+  .filter input {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  .filter span {
+    display: inline-flex;
+    padding: 0.6em 1.15em;
+    border: 1px solid var(--c-border-2);
+    border-radius: var(--r-pill);
+    font-size: var(--fs-sm);
+    font-weight: 600;
+    color: var(--c-text-2);
+    transition:
+      background-color 0.25s,
+      color 0.25s,
+      border-color 0.25s;
+  }
+
+  .filter:hover span {
+    color: var(--c-text);
+    border-color: rgb(255 255 255 / 0.32);
+  }
+
+  .filter input:checked + span {
+    border-color: #fff;
+    background: #fff;
+    color: #07080c;
+  }
+
+  .filter input:focus-visible + span {
+    outline: 2px solid var(--c-blue);
+    outline-offset: 2px;
+  }
+
+  /* ---------- picks ---------- */
+  .picks__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(15rem, 100%), 1fr));
+    gap: 2rem 1.25rem;
+  }
+
+  .picks__grid > :global(li) {
+    view-transition-class: game-card;
+  }
+
+  .picks__grid > :global(li:nth-child(1)) {
+    view-transition-name: game-1;
+  }
+  .picks__grid > :global(li:nth-child(2)) {
+    view-transition-name: game-2;
+  }
+  .picks__grid > :global(li:nth-child(3)) {
+    view-transition-name: game-3;
+  }
+  .picks__grid > :global(li:nth-child(4)) {
+    view-transition-name: game-4;
+  }
+  .picks__grid > :global(li:nth-child(5)) {
+    view-transition-name: game-5;
+  }
+  .picks__grid > :global(li:nth-child(6)) {
+    view-transition-name: game-6;
+  }
+  .picks__grid > :global(li:nth-child(7)) {
+    view-transition-name: game-7;
+  }
+  .picks__grid > :global(li:nth-child(8)) {
+    view-transition-name: game-8;
+  }
+  .picks__grid > :global(li:nth-child(9)) {
+    view-transition-name: game-9;
+  }
+  .picks__grid > :global(li:nth-child(10)) {
+    view-transition-name: game-10;
+  }
+  .picks__grid > :global(li:nth-child(11)) {
+    view-transition-name: game-11;
+  }
+  .picks__grid > :global(li:nth-child(12)) {
+    view-transition-name: game-12;
+  }
+
+  :global(::view-transition-group(*.game-card)) {
+    animation-duration: 0.5s;
+    animation-timing-function: var(--ease-out);
+  }
+
+  .picks__note {
+    margin-block-start: 2.5rem;
+  }
+
+  .picks__note a {
+    color: var(--c-text-2);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  /* ---------- upcoming ---------- */
+  .upcoming {
+    background: radial-gradient(50% 50% at 20% 40%, rgb(255 184 77 / 0.08), transparent 70%);
+  }
+
+  .upcoming__list {
+    display: grid;
+    gap: 0.75rem;
+    margin-block-end: 1.5rem;
+  }
+
+  .upcoming__item {
+    display: grid;
+    grid-template-columns: 8.5rem 1fr;
+    gap: 1.5rem;
+    padding: 1.5rem 1.75rem;
+    border: 1px solid var(--c-border);
+    border-radius: var(--r-lg);
+    background: var(--c-surface);
+  }
+
+  .upcoming__when {
+    font-size: var(--fs-lg);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--c-amber);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .upcoming__body {
+    display: grid;
+    gap: 0.3rem;
+  }
+
+  .upcoming__body h3 {
+    font-size: var(--fs-lg);
+  }
+
+  .upcoming__note {
+    font-size: var(--fs-xs);
+    font-weight: 600;
+    color: var(--c-text-3);
+  }
+
+  .upcoming__body p:last-child {
+    font-size: var(--fs-sm);
+    color: var(--c-text-2);
+  }
+
+  @media (max-width: 600px) {
+    .upcoming__item {
+      grid-template-columns: 1fr;
+      gap: 0.5rem;
+    }
+  }
+
+  /* ---------- classics ---------- */
+  .shelves {
+    display: grid;
+    gap: clamp(2.5rem, 2rem + 2vw, 4rem);
+  }
+
+  .shelf__head h3 {
+    font-size: var(--fs-xl);
+    font-weight: 800;
+  }
+
+  .shelf__head p {
+    font-size: var(--fs-sm);
+    color: var(--c-text-3);
+  }
+
+  .classic {
+    display: grid;
+    gap: 0.7rem;
+  }
+
+  .classic__media {
+    border: 1px solid var(--c-border);
+    border-radius: var(--r-md);
+    overflow: hidden;
+    aspect-ratio: 16 / 9;
+    background: var(--c-bg-3);
+  }
+
+  .classic__media :global(img) {
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: cover;
+    filter: saturate(0.9);
+    transition:
+      scale 0.8s var(--ease-out),
+      filter 0.5s;
+  }
+
+  .classic:hover .classic__media :global(img) {
+    scale: 1.06;
+    filter: saturate(1.1);
+  }
+
+  .classic__title {
+    font-size: var(--fs-sm);
+    font-weight: 600;
+  }
+</style>

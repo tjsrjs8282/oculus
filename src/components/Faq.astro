@@ -1,0 +1,87 @@
+---
+/** <details name>로 한 번에 하나만 열리는 아코디언. ::details-content로 높이까지 부드럽게 열린다. */
+import Icon from './Icon.astro';
+import type { FaqItem } from '@/data/setup';
+
+interface Props {
+  items: FaqItem[];
+  name: string;
+}
+
+const { items, name } = Astro.props;
+---
+
+<div class="faq">
+  {items.map((item, i) => (
+    <details name={name} open={i === 0} data-reveal style={{ '--i': i }}>
+      <summary>
+        <span>{item.q}</span>
+        <Icon name="chevron-down" size={20} />
+      </summary>
+      <p>{item.a}</p>
+    </details>
+  ))}
+</div>
+
+<style>
+  .faq {
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  details {
+    border: 1px solid var(--c-border);
+    border-radius: var(--r-md);
+    background: var(--c-surface);
+    transition:
+      border-color 0.3s,
+      background-color 0.3s;
+  }
+
+  details[open] {
+    border-color: var(--c-border-2);
+    background: var(--c-surface-2);
+  }
+
+  details::details-content {
+    block-size: 0;
+    overflow: clip;
+    transition:
+      block-size 0.4s var(--ease-out),
+      content-visibility 0.4s allow-discrete;
+  }
+
+  details[open]::details-content {
+    block-size: auto;
+  }
+
+  summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.15rem 1.35rem;
+    font-weight: 600;
+    cursor: pointer;
+    list-style: none;
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
+  summary :global(svg) {
+    flex: none;
+    color: var(--c-text-3);
+    transition: rotate 0.35s var(--ease-out);
+  }
+
+  details[open] summary :global(svg) {
+    rotate: 180deg;
+  }
+
+  p {
+    padding: 0 1.35rem 1.25rem;
+    color: var(--c-text-2);
+  }
+</style>

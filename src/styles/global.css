@@ -1,0 +1,501 @@
+/* =====================================================================
+   oculus 2026 — design tokens & base
+   - 리셋만 cascade layer에 두고, 나머지는 unlayered로 둬서 컴포넌트 스타일이 항상 이긴다.
+   ===================================================================== */
+
+/* Pretendard Variable 서브셋 — scripts/subset-font.mjs가 빌드 때마다 다시 만든다 */
+@font-face {
+  font-family: 'Pretendard Variable';
+  font-style: normal;
+  font-weight: 45 920;
+  font-display: swap;
+  src: url('../assets/fonts/pretendard-subset.woff2') format('woff2');
+}
+
+@layer reset {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+  * {
+    margin: 0;
+    padding: 0;
+  }
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+  img,
+  picture,
+  video,
+  canvas,
+  svg {
+    display: block;
+    max-width: 100%;
+  }
+  img,
+  video {
+    height: auto;
+  }
+  input,
+  button,
+  textarea,
+  select {
+    font: inherit;
+    color: inherit;
+  }
+  button {
+    background: none;
+    border: 0;
+    cursor: pointer;
+  }
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+  ul[role='list'],
+  ol[role='list'] {
+    list-style: none;
+  }
+  table {
+    border-collapse: collapse;
+  }
+  dialog {
+    color: inherit;
+  }
+}
+
+:root {
+  color-scheme: dark;
+
+  /* color */
+  --c-bg: #050507;
+  --c-bg-2: #0a0b10;
+  --c-bg-3: #12141b;
+  --c-surface: rgb(255 255 255 / 0.045);
+  --c-surface-2: rgb(255 255 255 / 0.08);
+  --c-border: rgb(255 255 255 / 0.09);
+  --c-border-2: rgb(255 255 255 / 0.18);
+  --c-text: #f4f6fb;
+  --c-text-2: #b3b9c7;
+  --c-text-3: #7f8699;
+  --c-blue: #4f8cff;
+  --c-violet: #8b5cff;
+  --c-pink: #ff5cc8;
+  --c-cyan: #34d6ff;
+  --c-green: #3ddc97;
+  --c-amber: #ffb84d;
+  --c-red: #ff5d6c;
+  --grad-brand: linear-gradient(100deg, #5b9dff 0%, #8b5cff 48%, #ff5cc8 100%);
+
+  /* type */
+  --font-sans:
+    'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui,
+    'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+  --fs-xs: 0.8125rem;
+  --fs-sm: 0.9375rem;
+  --fs-md: 1.0625rem;
+  --fs-lg: clamp(1.125rem, 1.03rem + 0.4vw, 1.3125rem);
+  --fs-xl: clamp(1.3125rem, 1.12rem + 0.8vw, 1.75rem);
+  --fs-2xl: clamp(1.75rem, 1.35rem + 1.7vw, 2.75rem);
+  --fs-3xl: clamp(2.25rem, 1.6rem + 2.9vw, 4rem);
+  --fs-4xl: clamp(2.6rem, 1.6rem + 4.4vw, 5.25rem);
+  --fs-hero: clamp(2.9rem, 1.5rem + 6vw, 6.75rem);
+
+  /* layout */
+  --gutter: clamp(1.25rem, 0.6rem + 2.8vw, 2.5rem);
+  --container: 1280px;
+  --container-narrow: 860px;
+  --section: clamp(5rem, 3.2rem + 7vw, 9.5rem);
+  --header-h: 64px;
+
+  /* shape */
+  --r-sm: 10px;
+  --r-md: 16px;
+  --r-lg: 24px;
+  --r-xl: 32px;
+  --r-pill: 999px;
+
+  /* motion */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+/* 밝은 섹션: 토큰만 바꿔 끼우면 하위 컴포넌트가 그대로 따라온다. */
+.theme-light {
+  color-scheme: light;
+  --c-bg: #f4f4f7;
+  --c-bg-2: #ffffff;
+  --c-bg-3: #e9eaef;
+  --c-surface: #ffffff;
+  --c-surface-2: #eef0f4;
+  --c-border: rgb(10 12 20 / 0.08);
+  --c-border-2: rgb(10 12 20 / 0.16);
+  --c-text: #0b0c10;
+  --c-text-2: #4a5061;
+  --c-text-3: #6f7587;
+  background: var(--c-bg);
+  color: var(--c-text);
+}
+
+html {
+  background: var(--c-bg);
+  color: var(--c-text);
+  font-family: var(--font-sans);
+  scroll-padding-top: calc(var(--header-h) + 1.5rem);
+  scrollbar-color: rgb(255 255 255 / 0.22) transparent;
+  scrollbar-width: thin;
+  interpolate-size: allow-keywords;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  min-height: 100dvh;
+  font-size: var(--fs-md);
+  line-height: 1.7;
+  letter-spacing: -0.011em;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  overflow-x: clip;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  line-height: 1.22;
+  letter-spacing: -0.032em;
+  font-weight: 700;
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+::selection {
+  background: rgb(139 92 255 / 0.55);
+  color: #fff;
+}
+
+:focus-visible {
+  outline: 2px solid var(--c-blue);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+main:focus {
+  outline: none;
+}
+
+/* ---------- 페이지 전환: JS 없이 cross-document View Transitions ---------- */
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.45s;
+  animation-timing-function: var(--ease-out);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  @view-transition {
+    navigation: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ---------- layout ---------- */
+.container {
+  width: min(100% - var(--gutter) * 2, var(--container));
+  margin-inline: auto;
+}
+
+.container--narrow {
+  width: min(100% - var(--gutter) * 2, var(--container-narrow));
+  margin-inline: auto;
+}
+
+.section {
+  position: relative;
+  padding-block: var(--section);
+}
+
+.section--tight {
+  padding-block: calc(var(--section) * 0.6);
+}
+
+/* ---------- typography ---------- */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--c-text-2);
+}
+
+.eyebrow::before {
+  content: '';
+  inline-size: 0.5em;
+  block-size: 0.5em;
+  border-radius: 50%;
+  background: var(--grad-brand);
+  box-shadow: 0 0 12px var(--c-violet);
+}
+
+.text-gradient {
+  background: var(--grad-brand);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.lead {
+  font-size: var(--fs-lg);
+  line-height: 1.65;
+  color: var(--c-text-2);
+}
+
+.fine {
+  font-size: var(--fs-xs);
+  line-height: 1.6;
+  color: var(--c-text-3);
+}
+
+/* ---------- buttons ---------- */
+.btn {
+  --btn-bg: rgb(255 255 255 / 0.06);
+  --btn-fg: var(--c-text);
+  --btn-border: var(--c-border-2);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  min-block-size: 48px;
+  padding: 0.8em 1.45em;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--btn-border);
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  transition:
+    transform 0.35s var(--ease-out),
+    background-color 0.3s,
+    border-color 0.3s,
+    box-shadow 0.35s,
+    color 0.3s;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  --btn-bg: rgb(255 255 255 / 0.12);
+  --btn-border: rgb(255 255 255 / 0.32);
+}
+
+.btn:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.btn svg {
+  inline-size: 1.15em;
+  block-size: 1.15em;
+  flex: none;
+  transition: transform 0.35s var(--ease-out);
+}
+
+.btn:hover .icon-arrow-right {
+  transform: translateX(3px);
+}
+
+.btn:hover .icon-arrow-up-right {
+  transform: translate(2px, -2px);
+}
+
+.btn--primary {
+  --btn-bg: #fff;
+  --btn-fg: #07080c;
+  --btn-border: #fff;
+}
+
+.btn--primary:hover {
+  --btn-bg: #e8ebf4;
+  --btn-border: #e8ebf4;
+  box-shadow: 0 12px 40px -12px rgb(255 255 255 / 0.5);
+}
+
+.btn--accent {
+  --btn-bg: var(--grad-brand);
+  --btn-fg: #fff;
+  --btn-border: transparent;
+}
+
+.btn--accent:hover {
+  --btn-bg: var(--grad-brand);
+  --btn-border: transparent;
+  box-shadow: 0 14px 44px -14px rgb(139 92 255 / 0.8);
+}
+
+.btn--sm {
+  min-block-size: 38px;
+  padding: 0.6em 1.05em;
+  font-size: var(--fs-xs);
+}
+
+.btn--lg {
+  min-block-size: 56px;
+  padding-inline: 1.85em;
+  font-size: var(--fs-md);
+}
+
+.theme-light .btn {
+  --btn-bg: rgb(10 12 20 / 0.04);
+  --btn-border: rgb(10 12 20 / 0.14);
+}
+
+.theme-light .btn:hover {
+  --btn-bg: rgb(10 12 20 / 0.08);
+  --btn-border: rgb(10 12 20 / 0.28);
+}
+
+.theme-light .btn--primary {
+  --btn-bg: #0b0c10;
+  --btn-fg: #fff;
+  --btn-border: #0b0c10;
+}
+
+.theme-light .btn--primary:hover {
+  --btn-bg: #24262e;
+  --btn-border: #24262e;
+  box-shadow: 0 12px 40px -14px rgb(10 12 20 / 0.5);
+}
+
+.link-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+  font-weight: 600;
+  color: var(--c-text);
+}
+
+.link-arrow svg {
+  inline-size: 1em;
+  block-size: 1em;
+  transition: transform 0.35s var(--ease-out);
+}
+
+.link-arrow:hover svg {
+  transform: translateX(3px);
+}
+
+/* ---------- small UI ---------- */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  padding: 0.38em 0.8em;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--c-border);
+  background: var(--c-surface-2);
+  color: var(--c-text-2);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.badge--blue {
+  background: rgb(79 140 255 / 0.14);
+  border-color: rgb(79 140 255 / 0.38);
+  color: #b4cdff;
+}
+
+.badge--amber {
+  background: rgb(255 184 77 / 0.12);
+  border-color: rgb(255 184 77 / 0.36);
+  color: #ffd699;
+}
+
+.glass {
+  background: linear-gradient(180deg, rgb(255 255 255 / 0.075), rgb(255 255 255 / 0.03));
+  border: 1px solid var(--c-border);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  backdrop-filter: blur(20px) saturate(140%);
+}
+
+/* <Img>가 만드는 <picture>는 레이아웃에서 빠지고 <img>만 남는다. */
+.pic {
+  display: contents;
+}
+
+.sr-only {
+  position: absolute !important;
+  inline-size: 1px;
+  block-size: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 1000;
+  padding: 0.8rem 1.1rem;
+  border-radius: var(--r-md);
+  background: #fff;
+  color: #000;
+  font-weight: 700;
+  translate: 0 -200%;
+  transition: translate 0.25s var(--ease-out);
+}
+
+.skip-link:focus {
+  translate: none;
+}
+
+/* ---------- 스크롤 등장 효과 (JS가 .js 클래스를 붙였을 때만 숨긴다) ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  .js [data-reveal] {
+    opacity: 0;
+    translate: 0 28px;
+    transition:
+      opacity 1s var(--ease-out),
+      translate 1s var(--ease-out);
+    transition-delay: calc(var(--i, 0) * 90ms);
+  }
+
+  .js [data-reveal].is-in {
+    opacity: 1;
+    translate: none;
+  }
+}

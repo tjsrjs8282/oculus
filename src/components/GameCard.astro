@@ -1,0 +1,167 @@
+---
+/**
+ * 공식 키 아트 없이 색과 타이포만으로 만든 게임 포스터 카드.
+ * 이미지 0바이트라 몇십 장을 깔아도 페이지가 무거워지지 않는다.
+ */
+import { genreLabels, type Game } from '@/data/games';
+
+interface Props {
+  game: Game;
+}
+
+const { game } = Astro.props;
+const [c1, c2, c3] = game.colors;
+---
+
+<li class="game" data-genres={game.genres.join(' ')}>
+  <div class="game__cover" style={{ '--c1': c1, '--c2': c2, '--c3': c3 }} aria-hidden="true">
+    {game.badge && <span class="game__badge">{game.badge}</span>}
+    <span class="game__art">{game.title}</span>
+  </div>
+  <div class="game__info">
+    <h3 class="game__title">{game.title}</h3>
+    <p class="game__meta">
+      {game.studio}
+      {game.year && ` · ${game.year}`}
+    </p>
+    <p class="game__desc">{game.desc}</p>
+    <ul class="game__tags" role="list">
+      {game.genres.map((g) => (
+        <li>{genreLabels[g]}</li>
+      ))}
+    </ul>
+  </div>
+</li>
+
+<style>
+  .game {
+    display: grid;
+    align-content: start;
+    gap: 1rem;
+  }
+
+  .game__cover {
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    align-items: flex-end;
+    aspect-ratio: 4 / 5;
+    padding: 1.25rem;
+    border: 1px solid rgb(255 255 255 / 0.08);
+    border-radius: var(--r-lg);
+    background:
+      radial-gradient(
+        120% 80% at 12% 8%,
+        color-mix(in oklab, var(--c1) 88%, transparent),
+        transparent 58%
+      ),
+      radial-gradient(
+        90% 70% at 92% 88%,
+        color-mix(in oklab, var(--c2) 85%, transparent),
+        transparent 62%
+      ),
+      linear-gradient(160deg, var(--c3), #000);
+    overflow: hidden;
+    transition:
+      transform 0.6s var(--ease-out),
+      box-shadow 0.6s var(--ease-out);
+  }
+
+  /* 은은한 그리드 + 지나가는 하이라이트 */
+  .game__cover::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-image:
+      repeating-linear-gradient(90deg, rgb(255 255 255 / 0.06) 0 1px, transparent 1px 32px),
+      repeating-linear-gradient(0deg, rgb(255 255 255 / 0.06) 0 1px, transparent 1px 32px);
+    mask-image: linear-gradient(170deg, #000 10%, transparent 65%);
+  }
+
+  .game__cover::after {
+    content: '';
+    position: absolute;
+    inset: -50%;
+    background: linear-gradient(
+      115deg,
+      transparent 42%,
+      rgb(255 255 255 / 0.22) 50%,
+      transparent 58%
+    );
+    translate: -55% 0;
+    transition: translate 1s var(--ease-out);
+    pointer-events: none;
+  }
+
+  .game:hover .game__cover {
+    transform: translateY(-6px);
+    box-shadow: 0 34px 60px -30px color-mix(in oklab, var(--c1) 70%, transparent);
+  }
+
+  .game:hover .game__cover::after {
+    translate: 55% 0;
+  }
+
+  .game__art {
+    font-size: clamp(1.45rem, 1.15rem + 1vw, 1.9rem);
+    font-weight: 900;
+    line-height: 1.02;
+    letter-spacing: -0.045em;
+    text-transform: uppercase;
+    text-wrap: balance;
+    color: #fff;
+    text-shadow: 0 2px 24px rgb(0 0 0 / 0.45);
+  }
+
+  .game__badge {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    padding: 0.35em 0.75em;
+    border-radius: var(--r-pill);
+    background: rgb(0 0 0 / 0.45);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    font-size: var(--fs-xs);
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .game__info {
+    display: grid;
+    gap: 0.35rem;
+  }
+
+  .game__title {
+    font-size: var(--fs-md);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  .game__meta {
+    font-size: var(--fs-xs);
+    color: var(--c-text-3);
+  }
+
+  .game__desc {
+    font-size: var(--fs-sm);
+    color: var(--c-text-2);
+    line-height: 1.6;
+  }
+
+  .game__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin-block-start: 0.35rem;
+  }
+
+  .game__tags li {
+    padding: 0.2em 0.6em;
+    border: 1px solid var(--c-border);
+    border-radius: var(--r-pill);
+    font-size: 0.75rem;
+    color: var(--c-text-2);
+  }
+</style>
