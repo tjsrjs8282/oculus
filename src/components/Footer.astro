@@ -19,9 +19,9 @@ const columns: { title: string; links: { label: string; href: string; external?:
   {
     title: '둘러보기',
     links: [
-      { label: '게임', href: url('games.html') },
-      { label: '클래식 아카이브', href: url('games.html#classics') },
-      { label: 'Oculus 이야기', href: url('oculus.html') },
+      { label: '추천 게임', href: url('games.html') },
+      { label: '출시 예정작', href: url('games.html#upcoming') },
+      { label: '소개', href: url('oculus.html') },
     ],
   },
   {
@@ -43,14 +43,7 @@ const columns: { title: string; links: { label: string; href: string; external?:
         <a href={url()} aria-label="oculus 홈으로">
           <Logo />
         </a>
-        <p>
-          2020년 퍼블리싱 포트폴리오로 시작해, 2026년 Astro로 다시 만든 Oculus · Meta Quest 팬
-          사이트.
-        </p>
-        <a class="footer-repo" href={site.repo} target="_blank" rel="noopener noreferrer">
-          <Icon name="github" size={18} />
-          소스 코드 보기<span class="sr-only">(GitHub, 새 창)</span>
-        </a>
+        <p>풀 컬러 혼합현실의 Meta Quest 3·3S부터 게임, PC VR, 설정 가이드까지 한곳에서.</p>
       </div>
 
       <nav class="footer-links" aria-label="사이트맵">
@@ -80,48 +73,40 @@ const columns: { title: string; links: { label: string; href: string; external?:
         ))}
       </nav>
 
-      <form class="newsletter" data-newsletter novalidate aria-labelledby="newsletter-title">
-        <h2 id="newsletter-title">새 소식 받아보기</h2>
-        <p>신제품과 게임 소식을 메일로 받아보세요.</p>
-        <div class="newsletter__field">
-          <label class="sr-only" for="newsletter-email">
-            이메일 주소
-          </label>
-          <input
-            id="newsletter-email"
-            name="email"
-            type="email"
-            inputmode="email"
-            autocomplete="email"
-            placeholder="이메일 주소"
-            required
-          />
-          <button class="btn btn--primary btn--sm" type="submit">
-            구독
-          </button>
-        </div>
-        <label class="newsletter__consent">
-          <input type="checkbox" name="consent" required />
-          <span>서비스 약관 및 개인정보 처리방침에 동의합니다.</span>
-        </label>
-        <p class="newsletter__status" role="status" aria-live="polite" data-newsletter-status></p>
-      </form>
+      <div class="footer-cta">
+        <h2>지금 시작하기</h2>
+        <p>Meta Quest 3S $349.99부터 · Meta Quest 3 $599.99 (미국 공식가)</p>
+        <a
+          class="btn btn--primary btn--sm"
+          href={official.store}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Meta 공식 스토어<span class="sr-only">(새 창)</span>
+          <Icon name="arrow-up-right" />
+        </a>
+      </div>
     </div>
 
     <div class="footer-bottom">
       <p class="fine">
-        이 사이트는 개인 포트폴리오용 <strong>비공식 팬 사이트</strong>이며 Meta Platforms, Inc.와
-        관련이 없습니다. Meta, Meta Quest, Oculus는 Meta Platforms, Inc.의 상표입니다.
-        제품·라이프스타일 사진 일부는 Higgsfield로 생성한 연출 이미지이고, 가격·사양·일정은{' '}
-        {site.verifiedAt} 기준 공개 정보라 실제와 다를 수 있습니다.
+        비공식 팬 사이트로 Meta Platforms, Inc.와 관련이 없습니다. Meta, Meta Quest, Oculus는 Meta
+        Platforms, Inc.의 상표입니다. 제품·라이프스타일 사진 일부는 AI로 생성한 연출 이미지이며,
+        가격·사양·일정은 {site.verifiedAt} 기준 공개 정보입니다.
       </p>
       <div class="footer-meta">
         <span>
-          © 2020–{year} {site.author}
+          © {year} {site.author}
         </span>
-        <button class="to-top" type="button" data-to-top>
-          <Icon name="arrow-up" size={16} />맨 위로
-        </button>
+        <div class="footer-meta__actions">
+          <a class="footer-repo" href={site.repo} target="_blank" rel="noopener noreferrer">
+            <Icon name="github" size={16} />
+            GitHub<span class="sr-only">(새 창)</span>
+          </a>
+          <button class="to-top" type="button" data-to-top>
+            <Icon name="arrow-up" size={16} />맨 위로
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -140,7 +125,7 @@ const columns: { title: string; links: { label: string; href: string; external?:
 
   .footer-top {
     display: grid;
-    grid-template-columns: 1.1fr 1.6fr 1.2fr;
+    grid-template-columns: 1.1fr 1.6fr 1.1fr;
     gap: 3rem;
   }
 
@@ -149,19 +134,6 @@ const columns: { title: string; links: { label: string; href: string; external?:
     align-content: start;
     gap: 1.1rem;
     max-inline-size: 30ch;
-  }
-
-  .footer-repo {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    justify-self: start;
-    color: var(--c-text);
-    font-weight: 600;
-  }
-
-  .footer-repo:hover {
-    color: var(--c-blue);
   }
 
   .footer-links {
@@ -193,66 +165,20 @@ const columns: { title: string; links: { label: string; href: string; external?:
     color: var(--c-text);
   }
 
-  .newsletter {
+  .footer-cta {
     display: grid;
     align-content: start;
+    justify-items: start;
     gap: 0.85rem;
+    padding: 1.5rem;
+    border: 1px solid var(--c-border);
+    border-radius: var(--r-lg);
+    background: rgb(255 255 255 / 0.03);
   }
 
-  .newsletter__field {
-    display: flex;
-    gap: 0.4rem;
-    padding: 0.35rem;
-    border: 1px solid var(--c-border-2);
-    border-radius: var(--r-pill);
-    background: rgb(255 255 255 / 0.04);
-    transition: border-color 0.25s;
-  }
-
-  .newsletter__field:focus-within {
-    border-color: var(--c-blue);
-  }
-
-  .newsletter__field input {
-    flex: 1;
-    min-inline-size: 0;
-    padding-inline: 0.85rem;
-    border: 0;
-    background: none;
-    outline: none;
-  }
-
-  .newsletter__field input::placeholder {
-    color: var(--c-text-3);
-  }
-
-  .newsletter__consent {
-    display: flex;
-    gap: 0.55rem;
-    align-items: flex-start;
-    font-size: var(--fs-xs);
-    cursor: pointer;
-  }
-
-  .newsletter__consent input {
-    flex: none;
-    inline-size: 1rem;
-    block-size: 1rem;
-    margin-block-start: 0.2rem;
-    accent-color: var(--c-blue);
-  }
-
-  .newsletter__status {
-    min-block-size: 1.5em;
-    font-size: var(--fs-xs);
-  }
-
-  .newsletter__status[data-state='ok'] {
-    color: var(--c-green);
-  }
-
-  .newsletter__status[data-state='error'] {
-    color: var(--c-red);
+  .footer-cta h2 {
+    margin: 0;
+    font-size: var(--fs-md);
   }
 
   .footer-bottom {
@@ -261,10 +187,6 @@ const columns: { title: string; links: { label: string; href: string; external?:
     margin-block-start: 3.5rem;
     padding-block-start: 2rem;
     border-top: 1px solid var(--c-border);
-  }
-
-  .footer-bottom strong {
-    color: var(--c-text-2);
   }
 
   .footer-meta {
@@ -276,6 +198,13 @@ const columns: { title: string; links: { label: string; href: string; external?:
     color: var(--c-text-3);
   }
 
+  .footer-meta__actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .footer-repo,
   .to-top {
     display: inline-flex;
     align-items: center;
@@ -289,6 +218,7 @@ const columns: { title: string; links: { label: string; href: string; external?:
       border-color 0.2s;
   }
 
+  .footer-repo:hover,
   .to-top:hover {
     color: var(--c-text);
     border-color: var(--c-border-2);

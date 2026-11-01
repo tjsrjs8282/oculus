@@ -31,15 +31,15 @@
 | `quest.html`       | Quest 3 / 3S 탭 · 핵심 기능 · 혼합현실 · **차이점만 보기** 스펙 비교 · 구성품 · FAQ                |
 | `pc-vr.html`       | Quest Link · Air Link · Steam Link · 최소 사양 · **그래픽카드 호환성 체크**                        |
 | `setup.html`       | 7단계 **설정 체크리스트**(진행률 링, 브라우저에 저장) · 안전 수칙 · 문제 해결                      |
-| `games.html`       | 2026 추천작(**장르 필터**) · 출시 예정작 · 2020년 커버 이미지로 만든 **클래식 아카이브**           |
-| `oculus.html`      | 2020 ↔ 2026 · 2012~2026 **연혁 타임라인**(스크롤 진행선, 당시 영상) · 개발자 플랫폼                |
+| `games.html`       | 2026 추천작(**장르 필터** · View Transitions) · Connect 2026 출시 예정작                           |
+| `oculus.html`      | 소개 — 왜 Meta Quest인가 · 지금과 다음(Quest 3 · 3S · VR Glasses) · 최근 주요 발표 · 개발자 플랫폼 |
 | `rift.html` 외 2개 | 2020년 주소 호환용 리다이렉트 (`rift` → `quest`, `riftpc` → `pc-vr`, `oculusSetting` → `setup`)    |
 
 ## 이번 리뉴얼에서 쓴 최신 웹 기능
 
 - **JS 없는 인터랙션** — `:has()`로 용량별 가격 전환, 스펙 비교 “차이점만 보기”, 게임 장르 필터
 - **Cross-document View Transitions** — `@view-transition`만으로 페이지 전환 애니메이션 (라이브러리 0)
-- **Scroll-driven Animations** — 히어로 패럴랙스, 연혁 타임라인 진행선 (`animation-timeline`)
+- **Scroll-driven Animations** — 히어로 패럴랙스, 주요 발표 타임라인 진행선 (`animation-timeline`)
 - **네이티브 `<dialog>` + `@starting-style`** — 모바일 메뉴와 YouTube 플레이어, 포커스 관리와 ESC는 브라우저가 처리
 - **`<details name>` + `::details-content`** — 하나만 열리고 높이까지 부드러운 FAQ 아코디언
 - **CSS scroll-snap 레일** — bxSlider·Swiper 대신 브라우저 기본 스크롤
@@ -81,7 +81,6 @@ src/
 - Connect 2026 · 출시 예정 게임: [UploadVR](https://www.uploadvr.com/new-games-announced-for-meta-vr-glasses/), [The Ghost Howls](https://skarredghost.com/2026/09/24/meta-connect-2026-3/)
 - 영상: Meta 공식 YouTube 채널(@metavr) 등 퍼가기 허용 영상
 - 제품·라이프스타일 사진과 히어로 루프 영상은 [Higgsfield](https://higgsfield.ai)로 생성한 연출 이미지입니다(GPT Image 2.5, Seedance 2.5). 실제 제품 사진이 아닙니다.
-- 연혁·클래식 아카이브 사진은 2020년 버전에 쓰였던 이미지입니다.
 - 폰트: [Pretendard](https://github.com/orioncactus/pretendard) (SIL OFL 1.1) · 아이콘: [Lucide](https://lucide.dev) (ISC), [Simple Icons](https://simpleicons.org) (CC0)
 
 가격·사양·일정은 2026년 11월 기준 공개 정보로, 실제와 다를 수 있습니다.

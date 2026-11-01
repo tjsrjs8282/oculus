@@ -133,30 +133,3 @@ document.querySelector('[data-to-top]')?.addEventListener('click', () => {
   window.scrollTo({ top: 0, behavior: reducedMotion.matches ? 'auto' : 'smooth' });
   document.querySelector<HTMLElement>('#main')?.focus({ preventScroll: true });
 });
-
-/* 뉴스레터: 포트폴리오 데모라 어디로도 전송하지 않는다 */
-const newsletter = document.querySelector<HTMLFormElement>('[data-newsletter]');
-if (newsletter) {
-  const status = newsletter.querySelector<HTMLElement>('[data-newsletter-status]');
-  newsletter.addEventListener('submit', (event) => {
-    event.preventDefault();
-    if (!status) return;
-    const email = newsletter.elements.namedItem('email') as HTMLInputElement;
-    const consent = newsletter.elements.namedItem('consent') as HTMLInputElement;
-    if (!email.validity.valid) {
-      status.dataset.state = 'error';
-      status.textContent = '올바른 이메일 주소를 입력해 주세요.';
-      email.focus();
-      return;
-    }
-    if (!consent.checked) {
-      status.dataset.state = 'error';
-      status.textContent = '약관 동의에 체크해 주세요.';
-      consent.focus();
-      return;
-    }
-    status.dataset.state = 'ok';
-    status.textContent = '구독 신청 완료! (포트폴리오 데모라 실제 메일은 발송되지 않아요)';
-    newsletter.reset();
-  });
-}

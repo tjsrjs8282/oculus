@@ -1,5 +1,3 @@
-import type { ImageMetadata } from 'astro';
-
 export type Genre =
   | 'action'
   | 'adventure'
@@ -183,73 +181,3 @@ export const upcomingGames: UpcomingGame[] = [
     desc: '엉뚱한 병원 경영 시뮬레이션을 손 닿는 거리에서.',
   },
 ];
-
-export type ClassicShelf = 'action' | 'rhythm' | 'adventure' | 'experience';
-
-export const classicShelves: { id: ClassicShelf; title: string; desc: string }[] = [
-  { id: 'action', title: '액션 & 슈팅', desc: 'Rift와 1세대 Quest를 달군 손맛' },
-  { id: 'rhythm', title: '리듬 & 음악', desc: '온몸으로 비트를 타던 그 시절' },
-  { id: 'adventure', title: '모험 & 퍼즐', desc: '이야기와 수수께끼에 빠져들던 시간' },
-  { id: 'experience', title: '체험 & 크리에이티브', desc: '롤러코스터부터 우주까지' },
-];
-
-export interface ClassicGame {
-  slug: string;
-  title: string;
-  shelf: ClassicShelf;
-}
-
-/** 2020년 버전에 쓰였던 커버 이미지를 제목과 함께 다시 정리한 아카이브 */
-export const classicGames: ClassicGame[] = [
-  { slug: 'asgards-wrath', title: "Asgard's Wrath", shelf: 'action' },
-  { slug: 'robo-recall', title: 'Robo Recall', shelf: 'action' },
-  { slug: 'stormland', title: 'Stormland', shelf: 'action' },
-  { slug: 'lone-echo', title: 'Lone Echo', shelf: 'action' },
-  { slug: 'blade-and-sorcery', title: 'Blade & Sorcery', shelf: 'action' },
-  { slug: 'vader-immortal', title: 'Vader Immortal', shelf: 'action' },
-  { slug: 'creed-rise-to-glory', title: 'Creed: Rise to Glory', shelf: 'action' },
-  { slug: 'dead-and-buried-2', title: 'Dead and Buried II', shelf: 'action' },
-  { slug: 'walking-dead-onslaught', title: 'The Walking Dead Onslaught', shelf: 'action' },
-  { slug: 'phantom-covert-ops', title: 'Phantom: Covert Ops', shelf: 'action' },
-  { slug: 'swords-of-gargantua', title: 'Swords of Gargantua', shelf: 'action' },
-  { slug: 'gun-club-vr', title: 'Gun Club VR', shelf: 'action' },
-  { slug: 'beat-saber', title: 'Beat Saber', shelf: 'rhythm' },
-  { slug: 'pistol-whip', title: 'Pistol Whip', shelf: 'rhythm' },
-  { slug: 'synth-riders', title: 'Synth Riders', shelf: 'rhythm' },
-  { slug: 'audica', title: 'Audica', shelf: 'rhythm' },
-  { slug: 'dance-central', title: 'Dance Central', shelf: 'rhythm' },
-  { slug: 'tribe-xr', title: 'Tribe XR DJ School', shelf: 'rhythm' },
-  { slug: 'the-climb', title: 'The Climb', shelf: 'adventure' },
-  { slug: 'vacation-simulator', title: 'Vacation Simulator', shelf: 'adventure' },
-  { slug: 'angry-birds-vr', title: 'Angry Birds VR: Isle of Pigs', shelf: 'adventure' },
-  {
-    slug: 'curious-tale-of-the-stolen-pets',
-    title: 'The Curious Tale of the Stolen Pets',
-    shelf: 'adventure',
-  },
-  { slug: 'ghost-giant', title: 'Ghost Giant', shelf: 'adventure' },
-  { slug: 'journey-of-the-gods', title: 'Journey of the Gods', shelf: 'adventure' },
-  { slug: 'star-trek-bridge-crew', title: 'Star Trek: Bridge Crew', shelf: 'adventure' },
-  { slug: 'doctor-who-edge-of-time', title: 'Doctor Who: The Edge of Time', shelf: 'adventure' },
-  { slug: 'affected-the-manor', title: 'Affected: The Manor', shelf: 'adventure' },
-  { slug: 'last-labyrinth', title: 'Last Labyrinth', shelf: 'adventure' },
-  { slug: 'real-vr-fishing', title: 'Real VR Fishing', shelf: 'experience' },
-  { slug: 'epic-roller-coasters', title: 'Epic Roller Coasters', shelf: 'experience' },
-  { slug: 'richies-plank-experience', title: "Richie's Plank Experience", shelf: 'experience' },
-  { slug: 'gravity-sketch', title: 'Gravity Sketch', shelf: 'experience' },
-  { slug: 'apollo-11', title: 'Apollo 11', shelf: 'experience' },
-  { slug: 'nat-geo-explore-vr', title: 'National Geographic Explore VR', shelf: 'experience' },
-  { slug: 'sculptrvr', title: 'SculptrVR', shelf: 'experience' },
-  { slug: 'sports-scramble', title: 'Sports Scramble', shelf: 'experience' },
-];
-
-const classicCovers = import.meta.glob<{ default: ImageMetadata }>(
-  '/src/assets/legacy/classics/*.jpg',
-  { eager: true },
-);
-
-export function classicCover(slug: string): ImageMetadata {
-  const mod = classicCovers[`/src/assets/legacy/classics/${slug}.jpg`];
-  if (!mod) throw new Error(`클래식 커버 이미지가 없습니다: ${slug}`);
-  return mod.default;
-}

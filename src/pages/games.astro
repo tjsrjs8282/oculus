@@ -3,19 +3,9 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import Button from '@/components/Button.astro';
 import CtaBand from '@/components/CtaBand.astro';
 import GameCard from '@/components/GameCard.astro';
-import Img from '@/components/Img.astro';
 import PageHero from '@/components/PageHero.astro';
-import Rail from '@/components/Rail.astro';
 import SectionHeading from '@/components/SectionHeading.astro';
-import {
-  classicCover,
-  classicGames,
-  classicShelves,
-  featuredGames,
-  genreLabels,
-  upcomingGames,
-  type Genre,
-} from '@/data/games';
+import { featuredGames, genreLabels, upcomingGames, type Genre } from '@/data/games';
 import { official } from '@/data/site';
 import { url } from '@/lib/url';
 import gamesHero from '@/assets/gen/games-hero.jpg';
@@ -35,21 +25,21 @@ const filterCss = `${genres
 
 <BaseLayout
   title="게임"
-  description="2026년에 즐기기 좋은 Meta Quest 게임, 출시 예정작, 그리고 Oculus 시절 클래식 게임 아카이브."
+  description="지금 Meta Quest 3·3S에서 즐기기 좋은 게임과 Connect 2026에서 발표된 출시 예정작."
   ogImage={gamesHero}
 >
   <PageHero
     image={gamesHero}
     eyebrow="Games"
     title={'지금, *플레이할* 세계'}
-    lead="액션부터 리듬, 피트니스까지. 2026년에 즐기기 좋은 Quest 게임과 출시 예정작, 그리고 2020년 버전의 클래식 아카이브를 모았어요."
+    lead="액션부터 리듬, 피트니스까지. 지금 Meta Quest에서 즐기기 좋은 게임과 곧 나올 신작을 모았어요."
     position="top"
   >
     <Button slot="actions" href="#picks" variant="primary" icon="arrow-right">
       추천 게임
     </Button>
-    <Button slot="actions" href="#classics" icon="arrow-right">
-      클래식 아카이브
+    <Button slot="actions" href="#upcoming" icon="arrow-right">
+      출시 예정작
     </Button>
   </PageHero>
 
@@ -64,7 +54,7 @@ const filterCss = `${genres
         id="picks-title"
         eyebrow="Editor's picks"
         title="2026 *추천 게임*"
-        lead="공식 키 아트 대신 각 게임의 분위기를 색으로 옮긴 포스터예요."
+        lead="Meta Quest 3·3S에서 바로 즐길 수 있는 대표작이에요. 장르별로 골라 보세요."
       />
 
       <fieldset class="filters" data-filters>
@@ -97,7 +87,7 @@ const filterCss = `${genres
   </section>
 
   <!-- ============ upcoming ============ -->
-  <section class="section upcoming" aria-labelledby="upcoming-title">
+  <section id="upcoming" class="section upcoming" aria-labelledby="upcoming-title">
     <div class="container container--narrow">
       <SectionHeading
         id="upcoming-title"
@@ -118,43 +108,6 @@ const filterCss = `${genres
         ))}
       </ol>
       <p class="fine">출처: UploadVR(2026년 9~10월 보도). 일정은 바뀔 수 있어요.</p>
-    </div>
-  </section>
-
-  <!-- ============ classics ============ -->
-  <section id="classics" class="section classics" aria-labelledby="classics-title">
-    <div class="container">
-      <SectionHeading
-        id="classics-title"
-        eyebrow="Archive · 2016–2020"
-        title="Oculus *클래식* 아카이브"
-        lead="2020년 버전의 이 사이트를 채웠던 커버 이미지들이에요. ‘Lorem ipsum’으로 남아 있던 카드마다 제목을 찾아 붙였어요."
-      />
-      <div class="shelves">
-        {classicShelves.map((shelf) => (
-          <Rail label={shelf.title} item="min(300px, 72vw)">
-            <div slot="head" class="shelf__head">
-              <h3>{shelf.title}</h3>
-              <p>{shelf.desc}</p>
-            </div>
-            {classicGames
-              .filter((game) => game.shelf === shelf.id)
-              .map((game) => (
-                <li class="classic">
-                  <div class="classic__media">
-                    <Img
-                      src={classicCover(game.slug)}
-                      alt=""
-                      widths={[320, 480, 640]}
-                      sizes="(min-width: 768px) 300px, 72vw"
-                    />
-                  </div>
-                  <p class="classic__title">{game.title}</p>
-                </li>
-              ))}
-          </Rail>
-        ))}
-      </div>
     </div>
   </section>
 
@@ -356,54 +309,5 @@ const filterCss = `${genres
       grid-template-columns: 1fr;
       gap: 0.5rem;
     }
-  }
-
-  /* ---------- classics ---------- */
-  .shelves {
-    display: grid;
-    gap: clamp(2.5rem, 2rem + 2vw, 4rem);
-  }
-
-  .shelf__head h3 {
-    font-size: var(--fs-xl);
-    font-weight: 800;
-  }
-
-  .shelf__head p {
-    font-size: var(--fs-sm);
-    color: var(--c-text-3);
-  }
-
-  .classic {
-    display: grid;
-    gap: 0.7rem;
-  }
-
-  .classic__media {
-    border: 1px solid var(--c-border);
-    border-radius: var(--r-md);
-    overflow: hidden;
-    aspect-ratio: 16 / 9;
-    background: var(--c-bg-3);
-  }
-
-  .classic__media :global(img) {
-    inline-size: 100%;
-    block-size: 100%;
-    object-fit: cover;
-    filter: saturate(0.9);
-    transition:
-      scale 0.8s var(--ease-out),
-      filter 0.5s;
-  }
-
-  .classic:hover .classic__media :global(img) {
-    scale: 1.06;
-    filter: saturate(1.1);
-  }
-
-  .classic__title {
-    font-size: var(--fs-sm);
-    font-weight: 600;
   }
 </style>
